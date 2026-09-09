@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PRIMARY_PROJECTS, ARCHIVED_PROJECTS } from "@/data/projects";
 import { ExternalLink, ArrowRight, ShieldCheck, ChevronRight, FolderGit2 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/GithubIcon";
+import { VoidShowcaseDeck } from "@/components/projects/VoidShowcaseDeck";
 
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState(PRIMARY_PROJECTS[0].id);
@@ -77,116 +78,120 @@ export function ProjectsSection() {
           })}
         </div>
 
-        {/* Right Column: Deep Storytelling Detail Card */}
+        {/* Right Column: Deep Storytelling Detail Card or Cyber Deck */}
         <div className="lg:col-span-7">
-          <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
-            {/* Top Tag & Metric */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-neutral-800/80">
-              <span className="font-mono text-xs uppercase px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-900/50 font-semibold">
-                {activeProject.category}
-              </span>
+          {activeProject.id === "void-downloader" ? (
+            <VoidShowcaseDeck />
+          ) : (
+            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
+              {/* Top Tag & Metric */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-neutral-800/80">
+                <span className="font-mono text-xs uppercase px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-900/50 font-semibold">
+                  {activeProject.category}
+                </span>
 
-              {activeProject.statsValue && (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 font-mono text-xs text-neutral-700 dark:text-neutral-300">
-                  <ShieldCheck className="w-3.5 h-3.5 text-red-600" />
-                  <span>
-                    {activeProject.statsLabel}: <strong className="font-semibold text-neutral-950 dark:text-white">{activeProject.statsValue}</strong>
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Project Header */}
-            <div className="space-y-2">
-              <div className="font-mono text-xs text-neutral-400 uppercase tracking-wider">
-                What I Built
+                {activeProject.statsValue && (
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 font-mono text-xs text-neutral-700 dark:text-neutral-300">
+                    <ShieldCheck className="w-3.5 h-3.5 text-red-600" />
+                    <span>
+                      {activeProject.statsLabel}: <strong className="font-semibold text-neutral-950 dark:text-white">{activeProject.statsValue}</strong>
+                    </span>
+                  </div>
+                )}
               </div>
-              <h3 className="text-2xl sm:text-4xl font-bold text-neutral-950 dark:text-white tracking-tight">
-                {activeProject.title}
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 font-light">
-                {activeProject.tagline}
-              </p>
-            </div>
 
-            {/* Problem & Solution Narrative */}
-            <div className="space-y-4 font-normal text-sm sm:text-base leading-relaxed">
-              <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
+              {/* Project Header */}
+              <div className="space-y-2">
+                <div className="font-mono text-xs text-neutral-400 uppercase tracking-wider">
+                  What I Built
+                </div>
+                <h3 className="text-2xl sm:text-4xl font-bold text-neutral-950 dark:text-white tracking-tight">
+                  {activeProject.title}
+                </h3>
+                <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 font-light">
+                  {activeProject.tagline}
+                </p>
+              </div>
+
+              {/* Problem & Solution Narrative */}
+              <div className="space-y-4 font-normal text-sm sm:text-base leading-relaxed">
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
+                  <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
+                    The Problem
+                  </div>
+                  <p className="text-neutral-700 dark:text-neutral-300 text-sm">
+                    {activeProject.problem}
+                  </p>
+                </div>
+
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
+                  <div className="font-mono text-xs uppercase text-red-600 dark:text-red-400 font-semibold">
+                    Engineered Solution
+                  </div>
+                  <p className="text-neutral-700 dark:text-neutral-300 text-sm">
+                    {activeProject.solution}
+                  </p>
+                </div>
+              </div>
+
+              {/* Key Architectural Highlights */}
+              <div className="space-y-3">
                 <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
-                  The Problem
+                  Architecture & Rigor
                 </div>
-                <p className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  {activeProject.problem}
-                </p>
+                <ul className="space-y-2">
+                  {activeProject.highlights.map((highlight, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                      <ArrowRight className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
-                <div className="font-mono text-xs uppercase text-red-600 dark:text-red-400 font-semibold">
-                  Engineered Solution
+              {/* Tech Stack Pills */}
+              <div className="space-y-3 pt-2">
+                <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
+                  Technologies Used
                 </div>
-                <p className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  {activeProject.solution}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {activeProject.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-mono text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Key Architectural Highlights */}
-            <div className="space-y-3">
-              <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
-                Architecture & Rigor
-              </div>
-              <ul className="space-y-2">
-                {activeProject.highlights.map((highlight, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
-                    <ArrowRight className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tech Stack Pills */}
-            <div className="space-y-3 pt-2">
-              <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
-                Technologies Used
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {activeProject.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-mono text-xs"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Links */}
-            <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a
-                href={activeProject.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono hover:opacity-90 transition-opacity font-medium"
-              >
-                <GithubIcon className="w-4 h-4" />
-                <span>View Source Code</span>
-              </a>
-
-              {activeProject.liveUrl && (
+              {/* Links */}
+              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
                 <a
-                  href={activeProject.liveUrl}
+                  href={activeProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-mono transition-colors text-neutral-900 dark:text-neutral-100"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono hover:opacity-90 transition-opacity font-medium"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Live Production Demo</span>
+                  <GithubIcon className="w-4 h-4" />
+                  <span>View Source Code</span>
                 </a>
-              )}
+
+                {activeProject.liveUrl && (
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-mono transition-colors text-neutral-900 dark:text-neutral-100"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Live Production Demo</span>
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 

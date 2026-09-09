@@ -24,9 +24,9 @@ export function AboutSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Visual Card with Authentic Portrait Reference */}
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-4 lg:sticky lg:top-28">
           <div className="relative group rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 p-3 shadow-lg">
             <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-inner">
               <Image
@@ -110,11 +110,11 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Academic Background / Riwayat Pendidikan */}
+          {/* Academic Background */}
           <div className="pt-6 space-y-4">
             <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neutral-400">
               <GraduationCap className="w-4 h-4 text-red-600" />
-              <span>Academic Trajectory // Pendidikan</span>
+              <span>Academic Trajectory</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

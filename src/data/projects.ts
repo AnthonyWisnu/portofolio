@@ -110,16 +110,17 @@ export const PRIMARY_PROJECTS: Project[] = [
   {
     id: "void-downloader",
     title: "VOID Downloader",
-    tagline: "High-Performance Media Link Extraction Engine",
+    tagline: "High-Performance Cyber-Studio Media Extraction Engine",
     category: "DevOps & Utilities",
     problem:
-      "Downloading media from social platforms like TikTok and Instagram often relies on ad-heavy, slow, or unsafe third-party proxies that leak sensitive credentials.",
+      "Extracting media from multi-protocol platforms (YouTube, TikTok, Instagram, X) often fails due to aggressive bot detection, data center IP blocks, and fragmented non-streamable video codecs.",
     solution:
-      "Created a utility-first web application featuring a monochrome brutalist UI, secure server-side yt-dlp cookie management, and automated FFmpeg video stream transcoding, deployed with Nginx and PM2 on Ubuntu.",
+      "Engineered an ultra-fast Cyber-Studio media ingestion engine with server-side cookie vault management, dynamic browser User-Agent spoofing, and automated FFmpeg H.264 Universal faststart transcoding, deployed with Nginx and PM2 on Ubuntu VPS.",
     highlights: [
-      "Monochrome brutalist design engineered for speed",
-      "Zero client-side credential exposure with private cookie rotation",
-      "Full production Linux droplet deployment with automated SSL",
+      "Cyber-Studio Media Deck Console with authentic platform brand matrix",
+      "Botguard challenge bypass with browser header spoofing and server cookie vaults",
+      "Universal codec transcoding (H.264 FastStart + 192k Stereo MP3 audio extraction)",
+      "Zero-log memory buffer proxy architecture ensuring complete user anonymity",
     ],
     techStack: [
       "React",
@@ -134,7 +135,7 @@ export const PRIMARY_PROJECTS: Project[] = [
     githubUrl: "https://github.com/AnthonyWisnu/void-downloader",
     liveUrl: "https://voiddl.my.id",
     statsLabel: "Style",
-    statsValue: "Brutalist",
+    statsValue: "Cyber Deck",
   },
   {
     id: "hotdog-watersport",
@@ -260,23 +261,23 @@ export const OWNER_INFO = {
   highSchool: "SMAN 3 Klaten",
   domain: "anthonywj.my.id",
   domainUrl: "https://anthonywj.my.id",
-  bio: "Mahasiswa Teknologi Informasi Universitas Udayana (Alumni SMAN 3 Klaten) yang berfokus merekayasa sistem perangkat lunak nyata: arsitektur multi-tenant, GraphRAG, sistem manajemen bisnis, dan web aplikasi modern.",
+  bio: "Information Technology undergraduate at Universitas Udayana specializing in real-world software engineering: multi-tenant daemon architectures, GraphRAG retrieval systems, and production-ready modern web applications.",
   github: "https://github.com/AnthonyWisnu",
   email: "jatianthony@gmail.com",
   education: [
     {
       institution: "Universitas Udayana",
-      degree: "S1 Teknologi Informasi",
-      period: "2023 — Sekarang",
-      highlights: "Fokus pada Rekayasa Perangkat Lunak, Arsitektur Sistem Terdistribusi, GraphRAG, dan Otomasi DevOps.",
-      badge: "Pendidikan Tinggi",
+      degree: "B.S. in Information Technology",
+      period: "2023 — Present",
+      highlights: "Core focus on Software Engineering, Distributed Systems Architecture, GraphRAG Retrieval, and DevOps Automation.",
+      badge: "Higher Education",
     },
     {
       institution: "SMAN 3 Klaten",
-      degree: "MIPA (Matematika & Ilmu Pengetahuan Alam)",
+      degree: "Natural Sciences & Mathematics (MIPA)",
       period: "Alumni",
-      highlights: "Pondasi analitis, logika pemrograman awal, dan sains komputasi.",
-      badge: "Sekolah Menengah Atas",
+      highlights: "Analytical reasoning, foundational algorithms, and computational problem solving.",
+      badge: "Secondary Education",
     },
   ],
   socials: {

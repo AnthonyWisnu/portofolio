@@ -27,7 +27,7 @@ export function HeroSection() {
               <span className="text-neutral-500 dark:text-neutral-400">WISNU JATI</span>
             </h1>
             <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 max-w-xl font-normal leading-relaxed">
-              Fullstack dan Systems Engineer yang merancang perangkat lunak andal serta terukur. Berpengalaman membangun sistem otomasi terdistribusi, arsitektur temu kembali GraphRAG, dan aplikasi web modern yang siap produksi.
+              Fullstack & Systems Engineer crafting resilient, scalable software architectures. Experienced in engineering distributed multi-tenant daemons, GraphRAG hybrid retrieval systems, and production-ready modern web applications.
             </p>
           </div>
 
