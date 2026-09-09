@@ -33,18 +33,18 @@ export function HeroSection() {
 
           {/* Key Engineering Pillars */}
           <div className="grid grid-cols-3 gap-3 pt-2">
-            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60">
-              <Terminal className="w-4 h-4 text-red-600 mb-1.5" />
+            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 group hover:border-emerald-500/50 transition-colors">
+              <Terminal className="w-4 h-4 text-emerald-500 mb-1.5" />
               <div className="text-xs font-mono text-neutral-500 dark:text-neutral-400">Automation</div>
               <div className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Multi-Tenant</div>
             </div>
-            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60">
-              <Cpu className="w-4 h-4 text-red-600 mb-1.5" />
+            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 group hover:border-purple-500/50 transition-colors">
+              <Cpu className="w-4 h-4 text-purple-500 mb-1.5" />
               <div className="text-xs font-mono text-neutral-500 dark:text-neutral-400">Retrieval</div>
               <div className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">GraphRAG</div>
             </div>
-            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60">
-              <ShieldCheck className="w-4 h-4 text-red-600 mb-1.5" />
+            <div className="p-3.5 rounded-2xl bg-neutral-100/70 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/60 group hover:border-amber-500/50 transition-colors">
+              <ShieldCheck className="w-4 h-4 text-amber-500 mb-1.5" />
               <div className="text-xs font-mono text-neutral-500 dark:text-neutral-400">Testing</div>
               <div className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">314 Tests Pass</div>
             </div>

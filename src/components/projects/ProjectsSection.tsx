@@ -45,7 +45,7 @@ export function ProjectsSection() {
                 onClick={() => setSelectedId(project.id)}
                 className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all flex items-center justify-between group ${
                   isSelected
-                    ? "bg-white dark:bg-neutral-900 border-red-500/60 shadow-lg shadow-red-500/5 ring-1 ring-red-500/20"
+                    ? `bg-white dark:bg-neutral-900 ${project.theme.activeBorder} shadow-lg ring-1 ${project.theme.activeRing}`
                     : "bg-neutral-50 dark:bg-neutral-900/40 border-neutral-200/70 dark:border-neutral-800/70 hover:bg-neutral-100 dark:hover:bg-neutral-800/60"
                 }`}
               >
@@ -54,11 +54,15 @@ export function ProjectsSection() {
                     <span className="font-mono text-[11px] text-neutral-400">
                       0{idx + 1}
                     </span>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-neutral-200/60 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
+                    <span
+                      className={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${project.theme.badgeBg} ${project.theme.badgeText} ${project.theme.badgeBorder}`}
+                    >
                       {project.category}
                     </span>
                   </div>
-                  <div className="text-base font-semibold text-neutral-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                  <div
+                    className={`text-base font-semibold text-neutral-900 dark:text-white ${project.theme.hoverText} transition-colors`}
+                  >
                     {project.title}
                   </div>
                   <div className="text-xs text-neutral-500 line-clamp-1 font-light">
@@ -69,7 +73,7 @@ export function ProjectsSection() {
                 <ChevronRight
                   className={`w-5 h-5 shrink-0 transition-transform ${
                     isSelected
-                      ? "text-red-600 translate-x-1"
+                      ? `${project.theme.iconText} translate-x-1`
                       : "text-neutral-400 group-hover:translate-x-0.5"
                   }`}
                 />
@@ -83,16 +87,24 @@ export function ProjectsSection() {
           {activeProject.id === "void-downloader" ? (
             <VoidShowcaseDeck />
           ) : (
-            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
+            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden transition-all">
+              {/* Subtle top ambient glow from project accent */}
+              <div
+                className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl pointer-events-none opacity-20"
+                style={{ backgroundColor: activeProject.theme.accent }}
+              />
+
               {/* Top Tag & Metric */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-neutral-800/80">
-                <span className="font-mono text-xs uppercase px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-900/50 font-semibold">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-neutral-800/80 relative z-10">
+                <span
+                  className={`font-mono text-xs uppercase px-3 py-1 rounded-full border font-semibold ${activeProject.theme.badgeBg} ${activeProject.theme.badgeText} ${activeProject.theme.badgeBorder}`}
+                >
                   {activeProject.category}
                 </span>
 
                 {activeProject.statsValue && (
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 font-mono text-xs text-neutral-700 dark:text-neutral-300">
-                    <ShieldCheck className="w-3.5 h-3.5 text-red-600" />
+                    <ShieldCheck className={`w-3.5 h-3.5 ${activeProject.theme.iconText}`} />
                     <span>
                       {activeProject.statsLabel}: <strong className="font-semibold text-neutral-950 dark:text-white">{activeProject.statsValue}</strong>
                     </span>
@@ -101,7 +113,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Project Header */}
-              <div className="space-y-2">
+              <div className="space-y-2 relative z-10">
                 <div className="font-mono text-xs text-neutral-400 uppercase tracking-wider">
                   What I Built
                 </div>
@@ -114,7 +126,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Problem & Solution Narrative */}
-              <div className="space-y-4 font-normal text-sm sm:text-base leading-relaxed">
+              <div className="space-y-4 font-normal text-sm sm:text-base leading-relaxed relative z-10">
                 <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
                   <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
                     The Problem
@@ -125,7 +137,7 @@ export function ProjectsSection() {
                 </div>
 
                 <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/60 dark:border-neutral-800/60 space-y-1.5">
-                  <div className="font-mono text-xs uppercase text-red-600 dark:text-red-400 font-semibold">
+                  <div className={`font-mono text-xs uppercase font-semibold ${activeProject.theme.iconText}`}>
                     Engineered Solution
                   </div>
                   <p className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -135,14 +147,14 @@ export function ProjectsSection() {
               </div>
 
               {/* Key Architectural Highlights */}
-              <div className="space-y-3">
+              <div className="space-y-3 relative z-10">
                 <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
                   Architecture & Rigor
                 </div>
                 <ul className="space-y-2">
                   {activeProject.highlights.map((highlight, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
-                      <ArrowRight className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                      <ArrowRight className={`w-4 h-4 shrink-0 mt-0.5 ${activeProject.theme.iconText}`} />
                       <span>{highlight}</span>
                     </li>
                   ))}
@@ -150,7 +162,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Tech Stack Pills */}
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-2 relative z-10">
                 <div className="font-mono text-xs uppercase text-neutral-400 font-semibold">
                   Technologies Used
                 </div>
@@ -167,7 +179,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Links */}
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80 relative z-10">
                 <a
                   href={activeProject.githubUrl}
                   target="_blank"

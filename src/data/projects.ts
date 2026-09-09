@@ -1,8 +1,20 @@
+export interface ProjectTheme {
+  accent: string;
+  badgeBg: string;
+  badgeText: string;
+  badgeBorder: string;
+  activeBorder: string;
+  activeRing: string;
+  hoverText: string;
+  iconText: string;
+}
+
 export interface Project {
   id: string;
   title: string;
   tagline: string;
   category: "Automation & SaaS" | "AI & Data Systems" | "Web Applications" | "DevOps & Utilities";
+  theme: ProjectTheme;
   problem: string;
   solution: string;
   highlights: string[];
@@ -22,13 +34,68 @@ export interface ArchiveProject {
   githubUrl: string;
 }
 
-// Exactly 5 Primary Showcase Projects as requested by Anthony
+// Exactly 5 Primary Showcase Projects in Anthony\'s prioritized sequence:
+// 01. VOID Downloader (Cyber Red)
+// 02. MinjiBot (Emerald Lime)
+// 03. PinFas (Golden Amber)
+// 04. scout-football (Cyber Violet)
+// 05. Hot Dog Watersport (Ocean Cyan)
 export const PRIMARY_PROJECTS: Project[] = [
+  {
+    id: "void-downloader",
+    title: "VOID Downloader",
+    tagline: "High-Performance Cyber-Studio Media Extraction Engine",
+    category: "DevOps & Utilities",
+    theme: {
+      accent: "#EF4444",
+      badgeBg: "bg-red-500/10 dark:bg-red-950/50",
+      badgeText: "text-red-600 dark:text-red-400",
+      badgeBorder: "border-red-500/30",
+      activeBorder: "border-red-500/80 dark:border-red-500/80",
+      activeRing: "ring-red-500/20 shadow-red-500/5",
+      hoverText: "group-hover:text-red-600 dark:group-hover:text-red-400",
+      iconText: "text-red-600 dark:text-red-500",
+    },
+    problem:
+      "Extracting media from multi-protocol platforms (YouTube, TikTok, Instagram, X) often fails due to aggressive bot detection, data center IP blocks, and fragmented non-streamable video codecs.",
+    solution:
+      "Engineered an ultra-fast Cyber-Studio media ingestion engine with server-side cookie vault management, dynamic browser User-Agent spoofing, and automated FFmpeg H.264 Universal faststart transcoding, deployed with Nginx and PM2 on Ubuntu VPS.",
+    highlights: [
+      "Cyber-Studio Media Deck Console with authentic platform brand matrix",
+      "Botguard challenge bypass with browser header spoofing and server cookie vaults",
+      "Universal codec transcoding (H.264 FastStart + 192k Stereo MP3 audio extraction)",
+      "Zero-log memory buffer proxy architecture ensuring complete user anonymity",
+    ],
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "yt-dlp",
+      "FFmpeg",
+      "Nginx",
+      "PM2",
+      "Ubuntu VPS",
+    ],
+    githubUrl: "https://github.com/AnthonyWisnu/void-downloader",
+    liveUrl: "https://voiddl.my.id",
+    statsLabel: "Style",
+    statsValue: "Cyber Deck",
+  },
   {
     id: "minjibot",
     title: "MinjiBot",
     tagline: "Multi-Tenant WhatsApp Bot & Automation SaaS Platform",
     category: "Automation & SaaS",
+    theme: {
+      accent: "#10B981",
+      badgeBg: "bg-emerald-500/10 dark:bg-emerald-950/50",
+      badgeText: "text-emerald-600 dark:text-emerald-400",
+      badgeBorder: "border-emerald-500/30",
+      activeBorder: "border-emerald-500/80 dark:border-emerald-500/80",
+      activeRing: "ring-emerald-500/20 shadow-emerald-500/5",
+      hoverText: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
+      iconText: "text-emerald-600 dark:text-emerald-500",
+    },
     problem:
       "Managing community WhatsApp groups requires continuous moderation, anti-raid defense, and activity tracking without risking server downtime or code coupling.",
     solution:
@@ -57,6 +124,16 @@ export const PRIMARY_PROJECTS: Project[] = [
     title: "PinFas",
     tagline: "Public Village & Kelurahan Facility Asset Booking Platform",
     category: "Web Applications",
+    theme: {
+      accent: "#F59E0B",
+      badgeBg: "bg-amber-500/10 dark:bg-amber-950/50",
+      badgeText: "text-amber-600 dark:text-amber-400",
+      badgeBorder: "border-amber-500/30",
+      activeBorder: "border-amber-500/80 dark:border-amber-500/80",
+      activeRing: "ring-amber-500/20 shadow-amber-500/5",
+      hoverText: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
+      iconText: "text-amber-600 dark:text-amber-500",
+    },
     problem:
       "Traditional public facility reservations in local villages (Banjar/Desa) are hindered by bureaucratic paperwork, unverified resident identities, and fragmented physical payment proofs.",
     solution:
@@ -84,6 +161,16 @@ export const PRIMARY_PROJECTS: Project[] = [
     title: "scout-football (RAG-STKI)",
     tagline: "Hybrid GraphRAG & Vector Retrieval Valuation System",
     category: "AI & Data Systems",
+    theme: {
+      accent: "#A855F7",
+      badgeBg: "bg-purple-500/10 dark:bg-purple-950/50",
+      badgeText: "text-purple-600 dark:text-purple-400",
+      badgeBorder: "border-purple-500/30",
+      activeBorder: "border-purple-500/80 dark:border-purple-500/80",
+      activeRing: "ring-purple-500/20 shadow-purple-500/5",
+      hoverText: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
+      iconText: "text-purple-600 dark:text-purple-500",
+    },
     problem:
       "Traditional scouting systems either suffer from LLM hallucinations or lack relational reasoning when comparing multi-dimensional player statistics and market values across top European leagues.",
     solution:
@@ -108,40 +195,20 @@ export const PRIMARY_PROJECTS: Project[] = [
     statsValue: "100%",
   },
   {
-    id: "void-downloader",
-    title: "VOID Downloader",
-    tagline: "High-Performance Cyber-Studio Media Extraction Engine",
-    category: "DevOps & Utilities",
-    problem:
-      "Extracting media from multi-protocol platforms (YouTube, TikTok, Instagram, X) often fails due to aggressive bot detection, data center IP blocks, and fragmented non-streamable video codecs.",
-    solution:
-      "Engineered an ultra-fast Cyber-Studio media ingestion engine with server-side cookie vault management, dynamic browser User-Agent spoofing, and automated FFmpeg H.264 Universal faststart transcoding, deployed with Nginx and PM2 on Ubuntu VPS.",
-    highlights: [
-      "Cyber-Studio Media Deck Console with authentic platform brand matrix",
-      "Botguard challenge bypass with browser header spoofing and server cookie vaults",
-      "Universal codec transcoding (H.264 FastStart + 192k Stereo MP3 audio extraction)",
-      "Zero-log memory buffer proxy architecture ensuring complete user anonymity",
-    ],
-    techStack: [
-      "React",
-      "Node.js",
-      "Express",
-      "yt-dlp",
-      "FFmpeg",
-      "Nginx",
-      "PM2",
-      "Ubuntu VPS",
-    ],
-    githubUrl: "https://github.com/AnthonyWisnu/void-downloader",
-    liveUrl: "https://voiddl.my.id",
-    statsLabel: "Style",
-    statsValue: "Cyber Deck",
-  },
-  {
     id: "hotdog-watersport",
     title: "Hot Dog Watersport",
     tagline: "Commercial Web Platform for Water Sports Rental",
     category: "Web Applications",
+    theme: {
+      accent: "#06B6D4",
+      badgeBg: "bg-cyan-500/10 dark:bg-cyan-950/50",
+      badgeText: "text-cyan-600 dark:text-cyan-400",
+      badgeBorder: "border-cyan-500/30",
+      activeBorder: "border-cyan-500/80 dark:border-cyan-500/80",
+      activeRing: "ring-cyan-500/20 shadow-cyan-500/5",
+      hoverText: "group-hover:text-cyan-600 dark:group-hover:text-cyan-400",
+      iconText: "text-cyan-600 dark:text-cyan-500",
+    },
     problem:
       "Local marine tourism businesses require fast, high-converting mobile web experiences with direct booking pathways and discoverable local SEO.",
     solution:
@@ -202,10 +269,22 @@ export const ARCHIVED_PROJECTS: ArchiveProject[] = [
 export const SKILL_CATEGORIES = [
   {
     name: "Languages",
+    color: "#06B6D4",
+    tag: "CYAN_DECODER",
+    activeClass: "bg-cyan-600 text-white shadow-md shadow-cyan-600/30",
+    borderHover: "hover:border-cyan-500/50 hover:bg-cyan-50/20 dark:hover:bg-cyan-950/20",
+    iconColor: "text-cyan-500",
+    sparkleColor: "text-cyan-400",
     skills: ["TypeScript", "JavaScript", "Python", "SQL", "HTML/CSS"],
   },
   {
     name: "Frontend Engineering",
+    color: "#A855F7",
+    tag: "VIOLET_CANVAS",
+    activeClass: "bg-purple-600 text-white shadow-md shadow-purple-600/30",
+    borderHover: "hover:border-purple-500/50 hover:bg-purple-50/20 dark:hover:bg-purple-950/20",
+    iconColor: "text-purple-500",
+    sparkleColor: "text-purple-400",
     skills: [
       "React",
       "Next.js (App Router)",
@@ -217,6 +296,12 @@ export const SKILL_CATEGORIES = [
   },
   {
     name: "Backend & Systems",
+    color: "#10B981",
+    tag: "EMERALD_DAEMON",
+    activeClass: "bg-emerald-600 text-white shadow-md shadow-emerald-600/30",
+    borderHover: "hover:border-emerald-500/50 hover:bg-emerald-50/20 dark:hover:bg-emerald-950/20",
+    iconColor: "text-emerald-500",
+    sparkleColor: "text-emerald-400",
     skills: [
       "Node.js",
       "Express",
@@ -228,6 +313,12 @@ export const SKILL_CATEGORIES = [
   },
   {
     name: "AI & Graph Systems",
+    color: "#F59E0B",
+    tag: "AMBER_RETRIEVAL",
+    activeClass: "bg-amber-500 text-white shadow-md shadow-amber-500/30",
+    borderHover: "hover:border-amber-500/50 hover:bg-amber-50/20 dark:hover:bg-amber-950/20",
+    iconColor: "text-amber-500",
+    sparkleColor: "text-amber-400",
     skills: [
       "GraphRAG",
       "Neo4j (Knowledge Graphs)",
@@ -238,6 +329,12 @@ export const SKILL_CATEGORIES = [
   },
   {
     name: "DevOps & Infrastructure",
+    color: "#0284C7",
+    tag: "SKY_INFRA",
+    activeClass: "bg-sky-600 text-white shadow-md shadow-sky-600/30",
+    borderHover: "hover:border-sky-500/50 hover:bg-sky-50/20 dark:hover:bg-sky-950/20",
+    iconColor: "text-sky-500",
+    sparkleColor: "text-sky-400",
     skills: [
       "GitHub Actions (CI/CD)",
       "Linux VPS (Ubuntu)",
@@ -249,6 +346,12 @@ export const SKILL_CATEGORIES = [
   },
   {
     name: "Media & Tooling",
+    color: "#F43F5E",
+    tag: "ROSE_STREAM",
+    activeClass: "bg-rose-600 text-white shadow-md shadow-rose-600/30",
+    borderHover: "hover:border-rose-500/50 hover:bg-rose-50/20 dark:hover:bg-rose-950/20",
+    iconColor: "text-rose-500",
+    sparkleColor: "text-rose-400",
     skills: ["FFmpeg", "yt-dlp", "Baileys", "Git"],
   },
 ];
@@ -268,9 +371,11 @@ export const OWNER_INFO = {
     {
       institution: "Universitas Udayana",
       degree: "B.S. in Information Technology",
-      period: "2023 — Present",
+      period: "2023 - Present",
       highlights: "Core focus on Software Engineering, Distributed Systems Architecture, GraphRAG Retrieval, and DevOps Automation.",
       badge: "Higher Education",
+      badgeClass: "bg-blue-500/10 text-blue-500 dark:text-blue-400 border-blue-500/30",
+      accentBorder: "hover:border-blue-500/50",
     },
     {
       institution: "SMAN 3 Klaten",
@@ -278,6 +383,8 @@ export const OWNER_INFO = {
       period: "Alumni",
       highlights: "Analytical reasoning, foundational algorithms, and computational problem solving.",
       badge: "Secondary Education",
+      badgeClass: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/30",
+      accentBorder: "hover:border-teal-500/50",
     },
   ],
   socials: {

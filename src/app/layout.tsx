@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anthonywj.my.id"),
-  title: "Anthony Wisnu Jati — Fullstack & Systems Engineer",
+  title: "Anthony Wisnu Jati | Fullstack & Systems Engineer",
   description:
     "Interactive 3D portfolio of Anthony Wisnu Jati. Information Technology student building practical software systems, multi-tenant automation engines, and GraphRAG architectures.",
   authors: [{ name: "Anthony Wisnu Jati" }],
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   openGraph: {
-    title: "Anthony Wisnu Jati — Developer Portfolio",
+    title: "Anthony Wisnu Jati | Developer Portfolio",
     description:
       "Interactive 3D developer portfolio showcasing verified systems, automation pipelines, and software architectures.",
     images: [

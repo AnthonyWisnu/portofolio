@@ -61,9 +61,9 @@ export function AboutSection() {
 
           {/* Concrete Focus Points */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50">
+            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50 hover:border-emerald-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-2">
-                <Server className="w-5 h-5 text-red-600" />
+                <Server className="w-5 h-5 text-emerald-500" />
                 <h3 className="font-semibold text-neutral-900 dark:text-white text-sm">
                   Systems & Automation
                 </h3>
@@ -73,9 +73,9 @@ export function AboutSection() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50">
+            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50 hover:border-purple-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-2">
-                <GitBranch className="w-5 h-5 text-red-600" />
+                <GitBranch className="w-5 h-5 text-purple-500" />
                 <h3 className="font-semibold text-neutral-900 dark:text-white text-sm">
                   GraphRAG & Retrieval
                 </h3>
@@ -85,9 +85,9 @@ export function AboutSection() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50">
+            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50 hover:border-cyan-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-2">
-                <Layers className="w-5 h-5 text-red-600" />
+                <Layers className="w-5 h-5 text-cyan-500" />
                 <h3 className="font-semibold text-neutral-900 dark:text-white text-sm">
                   Fullstack Web Applications
                 </h3>
@@ -97,9 +97,9 @@ export function AboutSection() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50">
+            <div className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-900/50 hover:border-amber-500/50 transition-colors">
               <div className="flex items-center gap-3 mb-2">
-                <CheckCircle2 className="w-5 h-5 text-red-600" />
+                <CheckCircle2 className="w-5 h-5 text-amber-500" />
                 <h3 className="font-semibold text-neutral-900 dark:text-white text-sm">
                   Rigorous Verification
                 </h3>
@@ -121,10 +121,10 @@ export function AboutSection() {
               {OWNER_INFO.education?.map((edu) => (
                 <div
                   key={edu.institution}
-                  className="p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/60 shadow-xs space-y-2 hover:border-red-500/40 transition-colors"
+                  className={`p-5 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/60 shadow-xs space-y-2 ${edu.accentBorder} transition-colors`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 font-semibold border border-red-200/50 dark:border-red-900/40">
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold border ${edu.badgeClass}`}>
                       {edu.badge}
                     </span>
                     <span className="font-mono text-xs text-neutral-400">{edu.period}</span>
