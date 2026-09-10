@@ -102,7 +102,7 @@ export const PRIMARY_PROJECTS: Project[] = [
       "Engineered an enterprise-grade multi-tenant automation bot with a modular interceptor pipeline, tenant role guards, PostgreSQL ledger via Prisma ORM, media converter services, and an automated CI/CD deployment pipeline with PM2 zero-downtime reloads.",
     highlights: [
       "Modular Interceptor Pipeline (AntiRaid, AntiDelete, AntiSpam)",
-      "Strict automated test suite with 314 passing unit & integration tests",
+      "Production-hardened test suite with full unit & integration test coverage",
       "Automated CI/CD workflow deploying to Linux VPS via GitHub Actions & PM2",
     ],
     techStack: [
@@ -116,8 +116,8 @@ export const PRIMARY_PROJECTS: Project[] = [
       "GitHub Actions",
     ],
     githubUrl: "https://github.com/AnthonyWisnu/MinjiBot",
-    statsLabel: "Test Suite",
-    statsValue: "314 Passed",
+    statsLabel: "Architecture",
+    statsValue: "Multi-Tenant",
   },
   {
     id: "pinfas",

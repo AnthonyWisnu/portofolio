@@ -13,9 +13,9 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-neutral-200 dark:border-neutral-800"
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-red-600 dark:text-red-500 font-semibold">
             03 / Works
@@ -24,7 +24,7 @@ export function ProjectsSection() {
             Featured Systems & Products.
           </h2>
         </div>
-        <p className="max-w-md text-sm text-neutral-600 dark:text-neutral-400 font-mono">
+        <p className="max-w-md text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-mono break-words leading-relaxed">
           5 Core production & public systems engineered with structured architecture, automated testing, and live deployments.
         </p>
       </div>
@@ -87,7 +87,7 @@ export function ProjectsSection() {
           {activeProject.id === "void-downloader" ? (
             <VoidShowcaseDeck />
           ) : (
-            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden transition-all">
+            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 sm:p-8 lg:p-10 shadow-2xl space-y-6 sm:space-y-8 relative overflow-hidden transition-all max-w-full">
               {/* Subtle top ambient glow from project accent */}
               <div
                 className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl pointer-events-none opacity-20"
@@ -179,12 +179,12 @@ export function ProjectsSection() {
               </div>
 
               {/* Links */}
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80 relative z-10">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80 relative z-10">
                 <a
                   href={activeProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono hover:opacity-90 transition-opacity font-medium"
+                  className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono hover:opacity-90 transition-opacity font-medium text-center"
                 >
                   <GithubIcon className="w-4 h-4" />
                   <span>View Source Code</span>
@@ -195,7 +195,7 @@ export function ProjectsSection() {
                     href={activeProject.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-mono transition-colors text-neutral-900 dark:text-neutral-100"
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-mono transition-colors text-neutral-900 dark:text-neutral-100 text-center"
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span>Live Production Demo</span>
@@ -208,8 +208,8 @@ export function ProjectsSection() {
       </div>
 
       {/* Supporting & Academic Archives Grid */}
-      <div className="mt-20 pt-12 border-t border-neutral-200/80 dark:border-neutral-800/80">
-        <div className="flex items-center justify-between mb-8">
+      <div className="mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-neutral-200/80 dark:border-neutral-800/80">
+        <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex items-center gap-2">
             <FolderGit2 className="w-4 h-4 text-red-600" />
             <h3 className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-white">

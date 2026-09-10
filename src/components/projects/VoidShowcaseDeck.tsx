@@ -87,17 +87,17 @@ export function VoidShowcaseDeck() {
   ];
 
   return (
-    <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6 sm:p-8 shadow-2xl text-white relative overflow-hidden space-y-7">
+    <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-4 sm:p-6 lg:p-8 shadow-2xl text-white relative overflow-hidden space-y-6 sm:space-y-7 max-w-full">
       {/* Background Cyber Grid Accent */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-40" />
       <div className="absolute -top-32 -right-32 w-80 h-80 bg-red-600/10 blur-3xl rounded-full pointer-events-none" />
 
       {/* Top Telemetry Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-neutral-800/80 relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="px-3 py-1 rounded-md bg-red-950/70 border border-red-500/40 text-red-400 font-mono text-[11px] font-bold tracking-wider flex items-center gap-2">
-            <Terminal className="w-3 h-3 text-red-500" />
-            <span>[SYS.01 // MEDIA INGESTION ENGINE]</span>
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-neutral-800/80 relative z-10">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="px-2.5 sm:px-3 py-1 rounded-md bg-red-950/70 border border-red-500/40 text-red-400 font-mono text-[10px] sm:text-[11px] font-bold tracking-wider flex items-center gap-1.5 sm:gap-2">
+            <Terminal className="w-3 h-3 text-red-500 shrink-0" />
+            <span className="truncate">[SYS.01 // MEDIA INGESTION ENGINE]</span>
           </div>
           <span className="hidden sm:inline-block font-mono text-xs text-neutral-500">
             UBUNTU VPS // PM2 ORCHESTRATED
@@ -200,11 +200,11 @@ export function VoidShowcaseDeck() {
           </div>
 
           {/* Animated Waveform Visualizer */}
-          <div className="h-16 flex items-end justify-between gap-1 px-2 py-1 bg-neutral-950/80 rounded-xl border border-neutral-800/60">
+          <div className="h-16 flex items-end justify-between gap-0.5 sm:gap-1 px-2 py-1 bg-neutral-950/80 rounded-xl border border-neutral-800/60 overflow-hidden">
             {waveformHeights.map((h, i) => (
               <div
                 key={i}
-                className="w-1.5 rounded-t-sm transition-all duration-500"
+                className="w-1 sm:w-1.5 rounded-t-xs transition-all duration-500 shrink-0"
                 style={{
                   height: `${pulseActive ? Math.max(15, h) : Math.max(15, (h * 1.3) % 100)}%`,
                   backgroundColor:
@@ -215,22 +215,22 @@ export function VoidShowcaseDeck() {
             ))}
           </div>
 
-          <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-neutral-400">
             <span>FFMPEG NORMALIZATION</span>
             <span>44.1 KHZ · LAME ENCODER</span>
           </div>
         </div>
 
         {/* Video Codec Normalizer Specs */}
-        <div className="lg:col-span-6 p-5 rounded-2xl border border-neutral-800 bg-neutral-900/40 flex flex-col justify-between space-y-3">
+        <div className="lg:col-span-6 p-4 sm:p-5 rounded-2xl border border-neutral-800 bg-neutral-900/40 flex flex-col justify-between space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-cyan-400" />
-              <span className="font-mono text-xs font-semibold text-neutral-200 uppercase">
+              <Cpu className="w-4 h-4 text-cyan-400 shrink-0" />
+              <span className="font-mono text-xs font-semibold text-neutral-200 uppercase truncate">
                 Codec Sanitization Pipeline
               </span>
             </div>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-800/40">
+            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-800/40 shrink-0">
               H.264 UNIVERSAL
             </span>
           </div>
@@ -238,46 +238,46 @@ export function VoidShowcaseDeck() {
           <div className="space-y-2 text-xs font-mono text-neutral-300">
             <div className="flex items-center gap-2 p-2 rounded-lg bg-neutral-950/60 border border-neutral-800/50">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span>moov_atom faststart for instant iOS Safari playback</span>
+              <span className="truncate">moov_atom faststart for instant iOS Safari playback</span>
             </div>
             <div className="flex items-center gap-2 p-2 rounded-lg bg-neutral-950/60 border border-neutral-800/50">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span>Chromium user-agent spoofing bypassing bot challenge</span>
+              <span className="truncate">Chromium user-agent spoofing bypassing bot challenge</span>
             </div>
             <div className="flex items-center gap-2 p-2 rounded-lg bg-neutral-950/60 border border-neutral-800/50">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span>Zero-log memory buffer preserving client privacy</span>
+              <span className="truncate">Zero-log memory buffer preserving client privacy</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* CTAs and Links */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-neutral-800/80 relative z-10">
-        <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-5 border-t border-neutral-800/80 relative z-10 w-full">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <a
             href="https://voiddl.my.id"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30 transition-all hover:scale-[1.02]"
+            className="flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30 transition-all hover:scale-[1.02] text-center"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Launch Engine (voiddl.my.id)</span>
-            <ExternalLink className="w-3.5 h-3.5 ml-1" />
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Launch Engine (voiddl.my.id)</span>
+            <ExternalLink className="w-3.5 h-3.5 ml-1 shrink-0" />
           </a>
 
           <a
             href="https://github.com/AnthonyWisnu/void-downloader"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-mono uppercase tracking-wider border border-neutral-700 hover:bg-neutral-900 text-neutral-200 transition-colors"
+            className="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full text-xs font-mono uppercase tracking-wider border border-neutral-700 hover:bg-neutral-900 text-neutral-200 transition-colors text-center"
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="w-4 h-4 shrink-0" />
             <span>Inspect Repository</span>
           </a>
         </div>
 
-        <div className="font-mono text-xs text-neutral-500">
+        <div className="font-mono text-[11px] sm:text-xs text-neutral-500 break-words">
           STACK: NODE.JS · EXPRESS · YT-DLP · FFMPEG · NGINX · PM2
         </div>
       </div>

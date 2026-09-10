@@ -8,9 +8,9 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-neutral-200 dark:border-neutral-800"
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-red-600 dark:text-red-500 font-semibold">
             01 / Narrative
@@ -19,7 +19,7 @@ export function AboutSection() {
             Engineering with Intent.
           </h2>
         </div>
-        <p className="max-w-md text-sm text-neutral-600 dark:text-neutral-400 font-mono">
+        <p className="max-w-md text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-mono break-words leading-relaxed">
           Focusing on concrete software architecture: structured pipelines, data provenance, and performant user interfaces.
         </p>
       </div>

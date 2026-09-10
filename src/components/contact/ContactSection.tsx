@@ -71,9 +71,9 @@ export function ContactSection() {
   return (
     <footer
       id="contact"
-      className="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-neutral-200 dark:border-neutral-800"
+      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
     >
-      <div className="rounded-3xl bg-neutral-950 text-white p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-2xl border border-neutral-800">
+      <div className="rounded-3xl bg-neutral-950 text-white p-5 sm:p-8 lg:p-12 relative overflow-hidden shadow-2xl border border-neutral-800 max-w-full">
         {/* Subtle red accent ambient glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-950/20 rounded-full blur-3xl pointer-events-none" />
@@ -200,7 +200,7 @@ export function ContactSection() {
           </div>
 
           {/* Right Column: Full-Width Professional Interactive Contact Form */}
-          <div className="w-full h-full bg-neutral-900/70 rounded-3xl border border-neutral-800 p-6 sm:p-8 backdrop-blur-md flex flex-col justify-between shadow-xl">
+          <div className="w-full h-full bg-neutral-900/70 rounded-3xl border border-neutral-800 p-5 sm:p-8 backdrop-blur-md flex flex-col justify-between shadow-xl max-w-full">
             <div>
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-800">
                 <div>
@@ -308,11 +308,11 @@ export function ContactSection() {
                   </div>
 
                   {/* Submit Action & Mailto Fallback */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 w-full">
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-lg shadow-red-600/20 hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-lg shadow-red-600/20 hover:scale-[1.02] text-center"
                     >
                       {status === "loading" ? (
                         <>
@@ -329,7 +329,7 @@ export function ContactSection() {
 
                     <a
                       href={mailtoUrl}
-                      className="text-xs font-mono text-neutral-400 hover:text-white underline underline-offset-4 transition-colors"
+                      className="text-xs font-mono text-neutral-400 hover:text-white underline underline-offset-4 transition-colors text-center sm:text-right py-1"
                     >
                       Buka di Email App &rarr;
                     </a>

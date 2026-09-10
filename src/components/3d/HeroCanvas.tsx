@@ -81,12 +81,12 @@ export function HeroCanvas() {
       </Canvas>
 
       {/* Floating status tag */}
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/60 dark:border-neutral-800/60 text-xs font-mono text-neutral-600 dark:text-neutral-400 pointer-events-none">
+      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200/60 dark:border-neutral-800/60 text-xs font-mono text-neutral-600 dark:text-neutral-400 pointer-events-none">
         <span className="flex items-center gap-2 shrink-0">
           <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-          <span className="font-medium text-neutral-900 dark:text-neutral-100 whitespace-nowrap">Interactive 3D Pass</span>
+          <span className="font-medium text-neutral-900 dark:text-neutral-100 text-[11px] sm:text-xs whitespace-nowrap">Interactive 3D Pass</span>
         </span>
-        <span className="text-[11px] text-neutral-400 shrink-0">Tilt & shine</span>
+        <span className="text-[10px] sm:text-[11px] text-neutral-400 shrink-0">Tilt & shine</span>
       </div>
     </div>
   );
