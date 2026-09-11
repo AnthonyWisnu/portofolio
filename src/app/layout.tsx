@@ -60,7 +60,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-300 overflow-x-clip max-w-full">
         <Script
           defer
-          src="https://pulse.anthonywj.my.id/tracker.js"
+          src="https://pulse.anthonywj.my.id/pulse.js"
           data-site-id="portfolio"
           strategy="afterInteractive"
         />
