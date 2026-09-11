@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
@@ -57,6 +58,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased selection:bg-red-500/20 selection:text-red-700 dark:selection:text-red-300`}
     >
       <body className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-300 overflow-x-clip max-w-full">
+        <Script
+          defer
+          src="https://pulse.anthonywj.my.id/tracker.js"
+          data-site-id="portfolio"
+          strategy="afterInteractive"
+        />
         <CustomCursor />
         <SmoothScroll>
           <Navbar />
