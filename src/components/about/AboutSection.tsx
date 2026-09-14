@@ -8,7 +8,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
+      className="py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1536px] mx-auto overflow-x-clip"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
@@ -24,7 +24,7 @@ export function AboutSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-start">
         {/* Visual Card with Authentic Portrait Reference */}
         <div className="lg:col-span-4 lg:sticky lg:top-28">
           <div className="relative group rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 p-3 shadow-lg">

@@ -7,7 +7,6 @@ export function CustomCursor() {
   const reducedMotion = useReducedMotion();
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
-  const [hoverLabel, setHoverLabel] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,17 +19,10 @@ export function CustomCursor() {
       setPos({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
 
-      // Detect interactive targets
+      // Detect interactive targets cleanly
       const target = e.target as HTMLElement | null;
-      const clickable = target?.closest("button, a, [data-cursor]");
-      if (clickable) {
-        setIsHovered(true);
-        const customLabel = clickable.getAttribute("data-cursor");
-        setHoverLabel(customLabel);
-      } else {
-        setIsHovered(false);
-        setHoverLabel(null);
-      }
+      const clickable = target?.closest("button, a, input, textarea, select, [role='button']");
+      setIsHovered(!!clickable);
     };
 
     const onMouseLeave = () => setIsVisible(false);
@@ -51,36 +43,33 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Outer Follower Ring */}
+      {/* Outer Sleek Aura Follower Ring */}
       <div
-        className="fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out hidden md:flex items-center justify-center font-mono text-[9px] uppercase tracking-wider text-white font-bold"
+        className="fixed pointer-events-none z-[9999] transition-transform duration-150 ease-out hidden md:block rounded-full"
         style={{
           transform: `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${
-            isHovered ? 2.4 : 1
+            isHovered ? 1.6 : 1
           })`,
-          width: 32,
-          height: 32,
-          borderRadius: "50%",
-          backgroundColor: isHovered ? "rgba(220, 38, 38, 0.85)" : "transparent",
+          width: 28,
+          height: 28,
+          backgroundColor: isHovered ? "rgba(239, 68, 68, 0.12)" : "transparent",
           border: isHovered
-            ? "1px solid rgba(239, 68, 68, 0.9)"
-            : "1.5px solid rgba(220, 38, 38, 0.6)",
-          boxShadow: isHovered ? "0 0 16px rgba(220, 38, 38, 0.5)" : "none",
+            ? "1.5px solid rgba(239, 68, 68, 0.7)"
+            : "1px solid rgba(239, 68, 68, 0.35)",
+          boxShadow: isHovered ? "0 0 12px rgba(239, 68, 68, 0.25)" : "none",
         }}
-      >
-        {hoverLabel && <span className="scale-[0.55] select-none">{hoverLabel}</span>}
-      </div>
+      />
 
-      {/* Center Dot */}
+      {/* Precision Center Pin Dot */}
       <div
-        className="fixed pointer-events-none z-[9999] hidden md:block"
+        className="fixed pointer-events-none z-[9999] hidden md:block rounded-full"
         style={{
           transform: `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`,
-          width: isHovered ? 0 : 5,
-          height: isHovered ? 0 : 5,
-          borderRadius: "50%",
+          width: isHovered ? 4 : 4,
+          height: isHovered ? 4 : 4,
           backgroundColor: "#ef4444",
-          transition: "width 0.15s, height 0.15s",
+          boxShadow: "0 0 6px rgba(239, 68, 68, 0.8)",
+          transition: "transform 0.1s ease-out, background-color 0.15s ease",
         }}
       />
     </>

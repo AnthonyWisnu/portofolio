@@ -13,7 +13,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
+      className="py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1536px] mx-auto overflow-x-clip"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
@@ -30,7 +30,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Main Interactive Presentation Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Project Selector List */}
         <div className="lg:col-span-5 space-y-3">
           <div className="text-xs font-mono uppercase tracking-wider text-neutral-400 pb-2">
@@ -87,7 +87,7 @@ export function ProjectsSection() {
           {activeProject.id === "void-downloader" ? (
             <VoidShowcaseDeck />
           ) : (
-            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 sm:p-8 lg:p-10 shadow-2xl space-y-6 sm:space-y-8 relative overflow-hidden transition-all max-w-full">
+            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-5 sm:p-8 lg:p-10 shadow-2xl space-y-6 sm:space-y-8 relative overflow-hidden transition-all max-w-full">
               {/* Subtle top ambient glow from project accent */}
               <div
                 className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl pointer-events-none opacity-20"

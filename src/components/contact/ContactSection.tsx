@@ -21,7 +21,7 @@ export function ContactSection() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: "Kerjasama Proyek / Fullstack System",
+    subject: "Fullstack & Distributed Systems Engineering",
     message: "",
   });
 
@@ -43,35 +43,35 @@ export function ContactSection() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Gagal mengirim pesan.");
+        throw new Error(data.error || "Failed to transmit message.");
       }
 
       setStatus("success");
-      setFeedback("Pesan Anda telah berhasil terkirim! Terima kasih telah menghubungi.");
+      setFeedback("Your message has been delivered directly. Anthony will respond within 24 hours.");
       setForm({
         name: "",
         email: "",
-        subject: "Kerjasama Proyek / Fullstack System",
+        subject: "Fullstack & Distributed Systems Engineering",
         message: "",
       });
     } catch (err: unknown) {
       setStatus("error");
-      const errMsg = err instanceof Error ? err.message : "Terjadi kendala jaringan.";
+      const errMsg = err instanceof Error ? err.message : "Network error occurred.";
       setFeedback(errMsg);
     }
   };
 
   // Pre-fill mailto link fallback
   const mailtoUrl = `mailto:${OWNER_INFO.email}?subject=${encodeURIComponent(
-    form.subject || "Pesan dari Portofolio"
+    form.subject || "Inquiry from Portfolio"
   )}&body=${encodeURIComponent(
-    `Halo Anthony,\n\nNama: ${form.name || "[Nama]"}\nEmail: ${form.email || "[Email]"}\n\nPesan:\n${form.message || ""}\n`
+    `Hello Anthony,\n\nName / Organization: ${form.name || "[Name]"}\nEmail: ${form.email || "[Email]"}\n\nMessage:\n${form.message || ""}\n`
   )}`;
 
   return (
     <footer
       id="contact"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
+      className="py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1536px] mx-auto overflow-x-clip"
     >
       <div className="rounded-3xl bg-neutral-950 text-white p-5 sm:p-8 lg:p-12 relative overflow-hidden shadow-2xl border border-neutral-800 max-w-full">
         {/* Subtle red accent ambient glow */}
@@ -88,11 +88,11 @@ export function ContactSection() {
               </div>
 
               <h2 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
-                Mari Berdiskusi & Berkolaborasi.
+                Let&apos;s Connect & Build Systems.
               </h2>
 
               <p className="text-neutral-400 text-sm sm:text-base font-light leading-relaxed">
-                Punya ide sistem perangkat lunak, tawaran proyek, atau ingin berdiskusi seputar arsitektur teknologi? Kirimkan pesan Anda melalui formulir di samping atau hubungi langsung lewat saluran resmi.
+                Have a system architecture challenge, a high-impact software project, or an engineering opportunity to discuss? Drop an inquiry below or reach out directly through verified channels.
               </p>
             </div>
 
@@ -134,7 +134,7 @@ export function ContactSection() {
             <div className="space-y-2.5">
               <div className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5 text-red-500" />
-                <span>Social Presence // Media Sosial</span>
+                <span>Verified Social Presence</span>
               </div>
 
               <div className="grid grid-cols-3 gap-2.5">
@@ -191,10 +191,10 @@ export function ContactSection() {
             <div className="pt-4 space-y-1.5 font-mono text-xs text-neutral-500 border-t border-neutral-800/80">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
-                <span>Universitas Udayana (Bali) &bull; Asal: Klaten, Jawa Tengah</span>
+                <span>Universitas Udayana (Bali) &bull; Origin: Klaten, Central Java</span>
               </div>
               <div className="text-neutral-400 pt-0.5">
-                Domain Resmi: <span className="text-red-400 font-semibold">{OWNER_INFO.domain}</span>
+                Official Production Domain: <span className="text-red-400 font-semibold">{OWNER_INFO.domain}</span>
               </div>
             </div>
           </div>
@@ -205,15 +205,15 @@ export function ContactSection() {
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-800">
                 <div>
                   <h3 className="text-lg font-semibold text-white tracking-tight">
-                    Kirim Pesan ke Anthony
+                    Direct Engineering Inquiry
                   </h3>
                   <p className="text-xs text-neutral-400 font-mono">
-                    Pesan terkirim langsung ke {OWNER_INFO.email}
+                    Direct encrypted delivery to {OWNER_INFO.email}
                   </p>
                 </div>
                 <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Direct Form
+                  Direct Channel
                 </span>
               </div>
 
@@ -221,16 +221,16 @@ export function ContactSection() {
                 <div className="p-8 rounded-2xl bg-emerald-950/40 border border-emerald-500/40 text-center space-y-4 my-8 animate-in fade-in">
                   <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
                   <div className="space-y-1.5">
-                    <h4 className="text-lg font-semibold text-emerald-300">Pesan Berhasil Terkirim!</h4>
+                    <h4 className="text-lg font-semibold text-emerald-300">Message Delivered Successfully!</h4>
                     <p className="text-sm text-neutral-300 leading-relaxed max-w-md mx-auto font-light">
                       {feedback}
                     </p>
                   </div>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="px-5 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-mono text-white transition-colors"
+                    className="px-5 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-mono text-white transition-colors cursor-pointer"
                   >
-                    Kirim Pesan Lainnya
+                    Send Another Message
                   </button>
                 </div>
               ) : (
@@ -246,64 +246,64 @@ export function ContactSection() {
                     {/* Name (Dari Siapa) */}
                     <div className="space-y-1.5">
                       <label className="block text-xs font-mono text-neutral-300">
-                        Nama Lengkap / Dari Siapa <span className="text-red-500">*</span>
+                        Full Name / Organization <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="e.g. John Doe / PT Perusahaan"
+                        placeholder="e.g. Alex Mercer / Tech Corp"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
                       />
                     </div>
 
                     {/* Email */}
                     <div className="space-y-1.5">
                       <label className="block text-xs font-mono text-neutral-300">
-                        Alamat Email Anda <span className="text-red-500">*</span>
+                        Email Address <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
                         required
-                        placeholder="nama@perusahaan.com"
+                        placeholder="alex@domain.com"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
                       />
                     </div>
                   </div>
 
-                  {/* Subject / Topik */}
+                  {/* Subject / Scope */}
                   <div className="space-y-1.5">
                     <label className="block text-xs font-mono text-neutral-300">
-                      Topik / Kebutuhan Proyek
+                      Inquiry Topic / System Scope
                     </label>
                     <select
                       value={form.subject}
                       onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-hidden focus:border-red-500 transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-hidden focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
                     >
-                      <option value="Kerjasama Proyek / Fullstack System">Kerjasama Proyek / Fullstack System</option>
-                      <option value="Pengembangan Bot & Otomasi (WhatsApp / Telegram)">Pengembangan Bot & Otomasi (WhatsApp / Telegram)</option>
+                      <option value="Fullstack & Distributed Systems Engineering">Fullstack & Distributed Systems Engineering</option>
+                      <option value="Multi-Tenant Automation & Bot Infrastructure">Multi-Tenant Automation & Bot Infrastructure</option>
                       <option value="AI & GraphRAG Retrieval Architecture">AI & GraphRAG Retrieval Architecture</option>
-                      <option value="Peluang Karir / Internship / Full-time">Peluang Karir / Internship / Full-time</option>
-                      <option value="Diskusi Teknis / Lainnya">Diskusi Teknis / Lainnya</option>
+                      <option value="Career & Engineering Role Opportunities">Career & Engineering Role Opportunities</option>
+                      <option value="Technical Consultation & Other">Technical Consultation & Other</option>
                     </select>
                   </div>
 
-                  {/* Message (Pesan) */}
+                  {/* Message */}
                   <div className="space-y-1.5">
                     <label className="block text-xs font-mono text-neutral-300">
-                      Pesan Anda <span className="text-red-500">*</span>
+                      Message Details <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       required
                       rows={5}
-                      placeholder="Tuliskan deskripsi proyek, pertanyaan, atau detail kolaborasi yang ingin Anda bahas..."
+                      placeholder="Describe your system requirements, technical challenges, or project scope..."
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white placeholder-neutral-500 text-sm focus:outline-hidden focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors resize-none"
                     />
                   </div>
 
@@ -312,17 +312,17 @@ export function ContactSection() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-lg shadow-red-600/20 hover:scale-[1.02] text-center"
+                      className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-lg shadow-red-600/20 hover:scale-[1.02] text-center cursor-pointer"
                     >
                       {status === "loading" ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Mengirim...</span>
+                          <span>Transmitting...</span>
                         </>
                       ) : (
                         <>
                           <Send className="w-3.5 h-3.5" />
-                          <span>Kirim Pesan Sekarang</span>
+                          <span>Send Message Now</span>
                         </>
                       )}
                     </button>
@@ -331,7 +331,7 @@ export function ContactSection() {
                       href={mailtoUrl}
                       className="text-xs font-mono text-neutral-400 hover:text-white underline underline-offset-4 transition-colors text-center sm:text-right py-1"
                     >
-                      Buka di Email App &rarr;
+                      Open in Mail App &rarr;
                     </a>
                   </div>
                 </form>
@@ -346,7 +346,7 @@ export function ContactSection() {
               </span>
               <span className="flex items-center gap-1.5 text-neutral-500">
                 <Clock className="w-3.5 h-3.5" />
-                <span>Respon cepat dalam 24 jam</span>
+                <span>Fast response within 24 hours</span>
               </span>
             </div>
           </div>

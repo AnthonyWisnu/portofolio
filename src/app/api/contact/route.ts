@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     // Validate inputs
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "Nama, email, dan pesan wajib diisi." },
+        { error: "Name, email, and message are required fields." },
         { status: 400 }
       );
     }
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: "Format alamat email tidak valid." },
+        { error: "Please provide a valid email address." },
         { status: 400 }
       );
     }
@@ -36,10 +36,10 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "Portofolio Contact <onboarding@resend.dev>",
+          from: "Portfolio Contact <onboarding@resend.dev>",
           to: ["jatianthony@gmail.com"],
-          subject: `[Portfolio Contact] ${subject || "Pesan Baru"} dari ${name}`,
-          text: `Nama: ${name}\nEmail: ${email}\nSubjek: ${subject}\n\nPesan:\n${message}\n\nWaktu: ${timestamp}`,
+          subject: `[Portfolio Contact] ${subject || "New Inquiry"} from ${name}`,
+          text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}\n\nTimestamp: ${timestamp}`,
         }),
       });
 
@@ -51,13 +51,13 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "Pesan Anda berhasil diterima! Anthony akan segera membalasnya.",
+      message: "Your message was successfully received! Anthony will respond promptly.",
       data: { name, email, subject, timestamp },
     });
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
-      { error: "Terjadi kendala saat memproses pesan. Silakan gunakan email langsung." },
+      { error: "A server issue occurred while transmitting. Please reach out via direct email." },
       { status: 500 }
     );
   }

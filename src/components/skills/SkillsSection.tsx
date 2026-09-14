@@ -12,7 +12,7 @@ export function SkillsSection() {
   return (
     <section
       id="skills"
-      className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 max-w-7xl mx-auto overflow-x-clip"
+      className="py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1536px] mx-auto overflow-x-clip"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
@@ -44,14 +44,14 @@ export function SkillsSection() {
         </div>
 
         {/* Category Selector Tabs: Clean Balanced Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 pt-4 sm:pt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-4 sm:pt-6">
           {SKILL_CATEGORIES.map((cat, idx) => {
             const isActive = activeCategory === idx;
             return (
               <button
                 key={cat.name}
                 onClick={() => setActiveCategory(idx)}
-                className={`w-full px-2.5 sm:px-3 py-2.5 rounded-xl text-[11px] sm:text-xs font-mono text-center flex items-center justify-center transition-all ${
+                className={`w-full px-3 py-3 sm:py-3.5 rounded-xl text-xs font-mono text-center flex items-center justify-center transition-all min-h-[44px] cursor-pointer ${
                   isActive
                     ? `${cat.activeClass} font-semibold shadow-md ring-1 ring-white/20`
                     : "bg-white/80 dark:bg-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700/70 border border-neutral-200/60 dark:border-neutral-700/60"

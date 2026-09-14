@@ -29,14 +29,14 @@ export function HeroCanvas() {
 
   if (!mounted) {
     return (
-      <div className="w-full h-full min-h-[460px] sm:min-h-[560px] flex items-center justify-center animate-pulse bg-neutral-100 dark:bg-neutral-900 rounded-3xl" />
+      <div className="w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[620px] xl:min-h-[680px] flex items-center justify-center animate-pulse bg-neutral-100 dark:bg-neutral-900 rounded-3xl" />
     );
   }
 
   // Graceful degradation fallback if WebGL is unavailable or user chooses reduced motion
   if (!webglSupported) {
     return (
-      <div className="relative w-full h-full min-h-[460px] sm:min-h-[560px] flex items-center justify-center rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 shadow-xl p-6">
+      <div className="relative w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[620px] xl:min-h-[680px] flex items-center justify-center rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 shadow-xl p-6">
         <div className="relative w-72 h-[420px] rounded-2xl overflow-hidden shadow-2xl border-2 border-red-600/40 bg-neutral-950 p-3 flex flex-col justify-between">
           <div className="flex items-center justify-between text-[11px] font-mono text-red-500 pb-2 border-b border-neutral-800">
             <span>DEV ACCESS PASS</span>
@@ -63,7 +63,7 @@ export function HeroCanvas() {
   }
 
   return (
-    <div className="relative w-full h-full min-h-[460px] sm:min-h-[560px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-gradient-to-b from-neutral-50 via-neutral-100/50 to-neutral-200/30 dark:from-neutral-950 dark:via-neutral-900/70 dark:to-neutral-950 shadow-2xl">
+    <div className="relative w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[620px] xl:min-h-[680px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-gradient-to-b from-neutral-50 via-neutral-100/50 to-neutral-200/30 dark:from-neutral-950 dark:via-neutral-900/70 dark:to-neutral-950 shadow-2xl">
       <Canvas
         camera={{ position: [0, 0, 5.2], fov: 42 }}
         dpr={[1, 2]}

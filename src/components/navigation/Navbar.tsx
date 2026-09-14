@@ -8,8 +8,8 @@ import { InstagramIcon } from "@/components/ui/SocialIcons";
 
 export function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-8 py-3 sm:py-4 pointer-events-none">
-      <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto backdrop-blur-md bg-white/70 dark:bg-neutral-950/70 border border-neutral-200/60 dark:border-neutral-800/60 rounded-full px-3.5 sm:px-5 py-2.5 sm:py-3 shadow-xs">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 xl:px-16 py-3 sm:py-4 pointer-events-none">
+      <div className="max-w-[1536px] mx-auto flex items-center justify-between pointer-events-auto backdrop-blur-md bg-white/70 dark:bg-neutral-950/80 border border-neutral-200/60 dark:border-neutral-800/60 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 shadow-xs">
         {/* Logo / Name */}
         <Link
           href="#hero"
