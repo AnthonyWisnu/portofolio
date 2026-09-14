@@ -6,10 +6,10 @@ import { useTexture, Float } from "@react-three/drei";
 import * as THREE from "three";
 
 interface DeveloperCard3DProps {
-  mouse: { normalizedX: number; normalizedY: number };
+  reducedMotion?: boolean;
 }
 
-export function DeveloperCard3D({ mouse }: DeveloperCard3DProps) {
+export function DeveloperCard3D({ reducedMotion = false }: DeveloperCard3DProps) {
   const cardGroupRef = useRef<THREE.Group>(null);
   const holographicMeshRef = useRef<THREE.Mesh>(null);
   const spotlightRef = useRef<THREE.SpotLight>(null);
@@ -184,14 +184,18 @@ export function DeveloperCard3D({ mouse }: DeveloperCard3DProps) {
     return tex;
   }, []);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (!cardGroupRef.current) return;
 
+    // Use R3F native state.pointer (zero React state re-renders!)
+    const px = reducedMotion ? 0 : state.pointer.x;
+    const py = reducedMotion ? 0 : state.pointer.y;
+
     // Fluid 3D tilt tracking with spring damping
-    const targetRotY = mouse.normalizedX * 0.45;
-    const targetRotX = -mouse.normalizedY * 0.35;
-    const targetPosX = mouse.normalizedX * 0.2;
-    const targetPosY = -mouse.normalizedY * 0.15;
+    const targetRotY = px * 0.45;
+    const targetRotX = -py * 0.35;
+    const targetPosX = px * 0.2;
+    const targetPosY = -py * 0.15;
 
     cardGroupRef.current.rotation.y = THREE.MathUtils.damp(
       cardGroupRef.current.rotation.y,
@@ -222,13 +226,13 @@ export function DeveloperCard3D({ mouse }: DeveloperCard3DProps) {
     if (spotlightRef.current) {
       spotlightRef.current.position.x = THREE.MathUtils.damp(
         spotlightRef.current.position.x,
-        mouse.normalizedX * 4,
+        px * 4,
         4,
         delta
       );
       spotlightRef.current.position.y = THREE.MathUtils.damp(
         spotlightRef.current.position.y,
-        3 - mouse.normalizedY * 3,
+        3 - py * 3,
         4,
         delta
       );
@@ -330,16 +334,12 @@ export function DeveloperCard3D({ mouse }: DeveloperCard3DProps) {
           {/* --- HOLOGRAPHIC FOIL OVERLAY (Specular Sheen Layer) --- */}
           <mesh ref={holographicMeshRef} position={[0, 0, 0.042]}>
             <planeGeometry args={[2.3, 3.48]} />
-            <meshPhysicalMaterial
+            <meshStandardMaterial
               color="#ffffff"
               transparent
-              opacity={0.12}
-              roughness={0.1}
-              metalness={0.1}
-              transmission={0.4}
-              clearcoat={1}
-              clearcoatRoughness={0.1}
-              reflectivity={0.9}
+              opacity={0.14}
+              roughness={0.2}
+              metalness={0.4}
             />
           </mesh>
 

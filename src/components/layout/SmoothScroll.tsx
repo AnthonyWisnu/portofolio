@@ -11,11 +11,14 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (reducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 1.0,
+      syncTouch: false,
     });
 
     function raf(time: number) {

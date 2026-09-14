@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function CustomCursor() {
   const reducedMotion = useReducedMotion();
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -15,61 +14,99 @@ export function CustomCursor() {
       return; // Disable on touch devices
     }
 
-    const onMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isHovered = false;
+    let isVisible = false;
+    let animId: number;
 
-      // Detect interactive targets cleanly
-      const target = e.target as HTMLElement | null;
-      const clickable = target?.closest("button, a, input, textarea, select, [role='button']");
-      setIsHovered(!!clickable);
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) {
+        isVisible = true;
+        if (ringRef.current) ringRef.current.style.opacity = "1";
+        if (dotRef.current) dotRef.current.style.opacity = "1";
+      }
     };
 
-    const onMouseLeave = () => setIsVisible(false);
-    const onMouseEnter = () => setIsVisible(true);
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      isHovered = !!target?.closest("button, a, input, textarea, select, [role='button'], [data-cursor]");
+    };
 
-    window.addEventListener("mousemove", onMouseMove);
+    const onMouseLeave = () => {
+      isVisible = false;
+      if (ringRef.current) ringRef.current.style.opacity = "0";
+      if (dotRef.current) dotRef.current.style.opacity = "0";
+    };
+
+    const onMouseEnter = () => {
+      isVisible = true;
+      if (ringRef.current) ringRef.current.style.opacity = "1";
+      if (dotRef.current) dotRef.current.style.opacity = "1";
+    };
+
+    // Ultra-light 60-144fps animation loop with zero React re-renders
+    const loop = () => {
+      ringX += (mouseX - ringX) * 0.25;
+      ringY += (mouseY - ringY) * 0.25;
+
+      if (ringRef.current) {
+        const scale = isHovered ? 1.6 : 1;
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${scale})`;
+        ringRef.current.style.backgroundColor = isHovered ? "rgba(239, 68, 68, 0.12)" : "transparent";
+        ringRef.current.style.borderColor = isHovered ? "rgba(239, 68, 68, 0.7)" : "rgba(239, 68, 68, 0.35)";
+      }
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      }
+
+      animId = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mouseover", onMouseOver, { passive: true });
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
+    animId = requestAnimationFrame(loop);
 
     return () => {
+      cancelAnimationFrame(animId);
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseover", onMouseOver);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
     };
   }, [reducedMotion]);
 
-  if (reducedMotion || !isVisible) return null;
+  if (reducedMotion) return null;
 
   return (
     <>
       {/* Outer Sleek Aura Follower Ring */}
       <div
-        className="fixed pointer-events-none z-[9999] transition-transform duration-150 ease-out hidden md:block rounded-full"
+        ref={ringRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block rounded-full will-change-transform opacity-0 transition-opacity duration-200"
         style={{
-          transform: `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${
-            isHovered ? 1.6 : 1
-          })`,
           width: 28,
           height: 28,
-          backgroundColor: isHovered ? "rgba(239, 68, 68, 0.12)" : "transparent",
-          border: isHovered
-            ? "1.5px solid rgba(239, 68, 68, 0.7)"
-            : "1px solid rgba(239, 68, 68, 0.35)",
-          boxShadow: isHovered ? "0 0 12px rgba(239, 68, 68, 0.25)" : "none",
+          border: "1px solid rgba(239, 68, 68, 0.35)",
         }}
       />
 
       {/* Precision Center Pin Dot */}
       <div
-        className="fixed pointer-events-none z-[9999] hidden md:block rounded-full"
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block rounded-full will-change-transform opacity-0 transition-opacity duration-200"
         style={{
-          transform: `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`,
-          width: isHovered ? 4 : 4,
-          height: isHovered ? 4 : 4,
+          width: 4,
+          height: 4,
           backgroundColor: "#ef4444",
           boxShadow: "0 0 6px rgba(239, 68, 68, 0.8)",
-          transition: "transform 0.1s ease-out, background-color 0.15s ease",
         }}
       />
     </>

@@ -1,17 +1,17 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { DeveloperCard3D } from "./DeveloperCard3D";
-import { useMousePosition } from "@/hooks/useMousePosition";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import Image from "next/image";
 
 export function HeroCanvas() {
-  const mouse = useMousePosition();
   const reducedMotion = useReducedMotion();
   const [webglSupported, setWebglSupported] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -26,6 +26,18 @@ export function HeroCanvas() {
       setWebglSupported(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
 
   if (!mounted) {
     return (
@@ -63,20 +75,18 @@ export function HeroCanvas() {
   }
 
   return (
-    <div className="relative w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[620px] xl:min-h-[680px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-gradient-to-b from-neutral-50 via-neutral-100/50 to-neutral-200/30 dark:from-neutral-950 dark:via-neutral-900/70 dark:to-neutral-950 shadow-2xl">
+    <div
+      ref={containerRef}
+      className="relative w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-[620px] xl:min-h-[680px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 bg-gradient-to-b from-neutral-50 via-neutral-100/50 to-neutral-200/30 dark:from-neutral-950 dark:via-neutral-900/70 dark:to-neutral-950 shadow-2xl"
+    >
       <Canvas
         camera={{ position: [0, 0, 5.2], fov: 42 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        frameloop={isInView ? "always" : "never"}
       >
         <Suspense fallback={null}>
-          <DeveloperCard3D
-            mouse={
-              reducedMotion
-                ? { normalizedX: 0, normalizedY: 0 }
-                : { normalizedX: mouse.normalizedX, normalizedY: mouse.normalizedY }
-            }
-          />
+          <DeveloperCard3D reducedMotion={reducedMotion} />
         </Suspense>
       </Canvas>
 

@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased selection:bg-red-500/20 selection:text-red-700 dark:selection:text-red-300`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-red-500/20 selection:text-red-700 dark:selection:text-red-300`}
     >
       <body className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-300 overflow-x-clip max-w-full">
         <Script

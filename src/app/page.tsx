@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-clip">
       {/* Unified subtle ambient background lighting mesh */}
-      <div className="fixed top-1/4 -left-48 w-96 h-96 bg-red-600/[0.04] dark:bg-red-600/[0.06] rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed top-1/2 -right-48 w-96 h-96 bg-purple-600/[0.04] dark:bg-purple-600/[0.06] rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-1/4 -left-48 w-96 h-96 bg-emerald-600/[0.03] dark:bg-emerald-600/[0.05] rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed top-1/4 -left-48 w-96 h-96 bg-red-600/[0.04] dark:bg-red-600/[0.06] rounded-full blur-3xl pointer-events-none transform-gpu" />
+      <div className="fixed top-1/2 -right-48 w-96 h-96 bg-purple-600/[0.04] dark:bg-purple-600/[0.06] rounded-full blur-3xl pointer-events-none transform-gpu" />
+      <div className="fixed bottom-1/4 -left-48 w-96 h-96 bg-emerald-600/[0.03] dark:bg-emerald-600/[0.05] rounded-full blur-3xl pointer-events-none transform-gpu" />
 
       <HeroSection />
       <WaveDivider variant="red-emerald" label="01 // NARRATIVE DECK" />
