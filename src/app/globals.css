@@ -1,32 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --obsidian: #0b0d12;
+  --obsidian-surface: #12151e;
+  --obsidian-elevated: #171b26;
+  --obsidian-border: rgba(255, 255, 255, 0.09);
+
+  --stone: #f5f4ef;
+  --stone-surface: #ffffff;
+  --stone-muted: #ebe9e1;
+  --stone-border: #e4e1d8;
+
+  --cobalt: #2f54eb;
+  --cobalt-dark: #2342c8;
+  --cobalt-light: #597ef7;
+  --sage: #0f766e;
+
+  --background: var(--obsidian);
+  --foreground: #f3f4f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #090a0f;
-    --foreground: #ededed;
-  }
+  --color-obsidian: var(--obsidian);
+  --color-stone: var(--stone);
+  --color-cobalt: var(--cobalt);
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-space), var(--font-jakarta), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: clip;
+  background-color: var(--obsidian);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  scroll-behavior: auto;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+::selection {
+  background-color: rgba(47, 84, 235, 0.28);
+  color: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Efek bayangan berlapis halus untuk zona Warm Stone */
+.soft-card-shadow {
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px -4px rgba(15, 23, 42, 0.06),
+    0 24px 48px -12px rgba(15, 23, 42, 0.05);
+}
+
+.soft-tabbar-shadow {
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    0 12px 32px -6px rgba(15, 23, 42, 0.08);
+}
+
+/* Scrollbar kustom ramping agar navigasi tetap jelas tanpa mengganggu estetika */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(47, 84, 235, 0.65);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(47, 84, 235, 0.45) transparent;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

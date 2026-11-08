@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { Navbar } from "@/components/navigation/Navbar";
-import { CustomCursor } from "@/components/layout/CustomCursor";
+import { OWNER_PROFILE } from "@/data/owner";
+import { PreloaderGate } from "@/features/preloader/PreloaderGate";
+import { CustomCursor } from "@/components/motion/CustomCursor";
+import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
+import { ScrollProgressChrome } from "@/components/motion/ScrollProgressChrome";
+import { Navbar } from "@/features/navigation/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
@@ -17,33 +25,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anthonywj.my.id"),
-  title: "Anthony Wisnu Jati | Fullstack & Systems Engineer",
-  description:
-    "Interactive 3D portfolio of Anthony Wisnu Jati. Information Technology student building practical software systems, multi-tenant automation engines, and GraphRAG architectures.",
-  authors: [{ name: "Anthony Wisnu Jati" }],
+  metadataBase: new URL(OWNER_PROFILE.domainUrl),
+  title: `${OWNER_PROFILE.name} | ${OWNER_PROFILE.role}`,
+  description: OWNER_PROFILE.shortBio,
+  authors: [{ name: OWNER_PROFILE.name }],
   keywords: [
     "Anthony Wisnu Jati",
-    "Software Engineer",
-    "Fullstack Developer",
-    "GraphRAG",
+    "Fullstack Engineer",
+    "Systems Engineer",
     "Next.js",
-    "TypeScript",
-    "Portfolio",
+    "NestJS",
+    "GraphRAG",
+    "Portofolio Developer Indonesia",
   ],
   openGraph: {
-    title: "Anthony Wisnu Jati | Developer Portfolio",
-    description:
-      "Interactive 3D developer portfolio showcasing verified systems, automation pipelines, and software architectures.",
+    title: `${OWNER_PROFILE.name} | Portofolio Rekayasa Perangkat Lunak`,
+    description: OWNER_PROFILE.headlineIntro,
+    url: OWNER_PROFILE.domainUrl,
+    locale: "id_ID",
+    type: "website",
     images: [
       {
-        url: "/Foto.jpeg",
-        width: 800,
-        height: 1067,
-        alt: "Anthony Wisnu Jati Portrait",
+        url: "/images/og-portrait.jpg",
+        width: 900,
+        height: 1270,
+        alt: `Potret Resmi ${OWNER_PROFILE.name}`,
       },
     ],
-    type: "website",
   },
 };
 
@@ -52,23 +60,45 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: OWNER_PROFILE.name,
+    url: OWNER_PROFILE.domainUrl,
+    jobTitle: OWNER_PROFILE.role,
+    affiliation: {
+      "@type": "CollegeOrUniversity",
+      name: OWNER_PROFILE.institution,
+    },
+    sameAs: OWNER_PROFILE.socials.map((s) => s.url),
+  };
+
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-red-500/20 selection:text-red-700 dark:selection:text-red-300`}
+      lang="id"
+      className={`${spaceGrotesk.variable} ${plusJakarta.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-300 overflow-x-clip max-w-full">
+      <body className="min-h-screen bg-[#0B0D12] text-[#F3F4F6] font-sans overflow-x-clip max-w-full">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <Script
           defer
           src="https://pulse.anthonywj.my.id/pulse.js"
           data-site-id="portfolio"
           strategy="afterInteractive"
         />
-        <CustomCursor />
-        <SmoothScroll>
-          <Navbar />
-          <main className="relative z-10 overflow-x-clip max-w-full">{children}</main>
-        </SmoothScroll>
+        <SmoothScrollProvider>
+          <ScrollProgressChrome>
+            <PreloaderGate />
+            <CustomCursor />
+            <Navbar />
+            <main className="relative z-10 overflow-x-clip max-w-full">{children}</main>
+          </ScrollProgressChrome>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

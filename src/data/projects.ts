@@ -1,400 +1,286 @@
-export interface ProjectTheme {
-  accent: string;
-  badgeBg: string;
-  badgeText: string;
-  badgeBorder: string;
-  activeBorder: string;
-  activeRing: string;
-  hoverText: string;
-  iconText: string;
-}
+import type { Project } from "@/types/project";
 
-export interface Project {
-  id: string;
-  title: string;
-  tagline: string;
-  category: "Automation & SaaS" | "AI & Data Systems" | "Web Applications" | "DevOps & Utilities";
-  theme: ProjectTheme;
-  problem: string;
-  solution: string;
-  highlights: string[];
-  techStack: string[];
-  githubUrl: string;
-  liveUrl?: string;
-  statsLabel?: string;
-  statsValue?: string;
-}
-
-export interface ArchiveProject {
-  id: string;
-  title: string;
-  description: string;
-  category: "Financial Systems" | "Business & ERP" | "AI & Financial Bots" | string;
-  techStack: string[];
-  githubUrl: string;
-}
-
-// Exactly 5 Primary Showcase Projects in Anthony\'s prioritized sequence:
-// 01. VOID Downloader (Cyber Red)
-// 02. MinjiBot (Emerald Lime)
-// 03. PinFas (Golden Amber)
-// 04. scout-football (Cyber Violet)
-// 05. Hot Dog Watersport (Ocean Cyan)
-export const PRIMARY_PROJECTS: Project[] = [
+export const CURATED_PROJECTS: Project[] = [
   {
-    id: "void-downloader",
-    title: "VOID Downloader",
-    tagline: "High-Performance Cyber-Studio Media Extraction Engine",
-    category: "DevOps & Utilities",
-    theme: {
-      accent: "#EF4444",
-      badgeBg: "bg-red-500/10 dark:bg-red-950/50",
-      badgeText: "text-red-600 dark:text-red-400",
-      badgeBorder: "border-red-500/30",
-      activeBorder: "border-red-500/80 dark:border-red-500/80",
-      activeRing: "ring-red-500/20 shadow-red-500/5",
-      hoverText: "group-hover:text-red-600 dark:group-hover:text-red-400",
-      iconText: "text-red-600 dark:text-red-500",
-    },
+    slug: "sora-wellness",
+    title: "Sora Wellness Studio Platform",
+    shortTitle: "Sora Wellness",
+    tier: "utama",
+    category: "Fullstack & SaaS",
+    year: "2026",
+    tagline: "Platform manajemen, reservasi kelas, dompet saldo, dan event studio kebugaran berbasis API-first.",
+    summary:
+      "Ekosistem operasional lengkap untuk studio Yoga dan Pilates yang memisahkan aturan bisnis backend dari antarmuka klien, lengkap dengan Midtrans Snap dan runner CI/CD produksi.",
     problem:
-      "Extracting media from multi-protocol platforms (YouTube, TikTok, Instagram, X) often fails due to aggressive bot detection, data center IP blocks, and fragmented non-streamable video codecs.",
+      "Operasional studio wellness konvensional kerap mengalami benturan jadwal, penahanan kursi tidak konsisten saat pembayaran tertunda, serta minimnya pemisahan privasi antara resepsionis lobi, pelatih di kelas, dan catatan kesehatan member.",
     solution:
-      "Engineered an ultra-fast Cyber-Studio media ingestion engine with server-side cookie vault management, dynamic browser User-Agent spoofing, and automated FFmpeg H.264 Universal faststart transcoding, deployed with Nginx and PM2 on Ubuntu VPS.",
+      "Membangun backend state-machine berbasis NestJS 11 dan PostgreSQL 16 dengan hold kursi otomatis 15 menit, pembayaran Midtrans Snap tervalidasi SHA-512, dompet double-entry ledger, presensi pelatih 2-tier berizin khusus, serta sistem 9 hak akses RBAC granular.",
     highlights: [
-      "Cyber-Studio Media Deck Console with authentic platform brand matrix",
-      "Botguard challenge bypass with browser header spoofing and server cookie vaults",
-      "Universal codec transcoding (H.264 FastStart + 192k Stereo MP3 audio extraction)",
-      "Zero-log memory buffer proxy architecture ensuring complete user anonymity",
+      "Pembayaran Midtrans Snap berbatas waktu 15 menit dengan dukungan Resume Checkout tanpa membuat tagihan ganda.",
+      "Presensi terpisah: front desk memindai e-ticket QR & mendeteksi loker fisik otomatis, sementara pelatih fokus pada absensi matras & catatan kesehatan berizin.",
+      "Modul Event Komunitas lengkap dengan brosur QR digital, tautan pin Google Maps presisi, dan terminal check-in acara.",
+      "Aktif di produksi pada domain publik dengan Docker Compose dan runner GitHub Actions di VPS Linux.",
     ],
-    techStack: [
-      "React",
-      "Node.js",
-      "Express",
-      "yt-dlp",
-      "FFmpeg",
-      "Nginx",
-      "PM2",
-      "Ubuntu VPS",
+    architecture: [
+      { layer: "Frontend SPA", detail: "React 19, Vite 6, sistem tipografi Japandi & QR generator" },
+      { layer: "API & State Machine", detail: "NestJS 11, PostgreSQL 16, CSRF protection, Helmet, MCP Server" },
+      { layer: "Pembayaran & Dompet", detail: "Midtrans Snap Webhook SHA-512, Server Key AES-256, Wallet Ledger" },
+      { layer: "Infrastruktur", detail: "Docker Compose, Nginx, GitHub Actions self-hosted runner" },
     ],
+    techStack: ["TypeScript", "NestJS 11", "React 19", "Vite 6", "PostgreSQL 16", "Docker Compose", "Midtrans Snap", "GitHub Actions"],
+    githubUrl: "https://github.com/AnthonyWisnu/sora-wellness",
+    liveUrl: "https://wellness.anthonywj.my.id",
+    coverImage: "/projects/sora-admin.webp",
+    screenshots: [
+      {
+        src: "/projects/sora-admin.webp",
+        alt: "Dasbor Admin Sora Wellness Studio",
+        caption: "Dasbor admin studio untuk memantau sesi terdekat, metrik kelas, dan kontrol operasional.",
+      },
+      {
+        src: "/projects/sora-coach.webp",
+        alt: "Ruang Pelatih Sora Wellness Studio",
+        caption: "Antarmuka khusus pelatih untuk melihat sesi ditugaskan serta roster peserta.",
+      },
+      {
+        src: "/projects/sora-checkout.webp",
+        alt: "Alur Checkout Kelas Sora Wellness",
+        caption: "Ringkasan reservasi kelas dengan penahanan kursi sementara dan integrasi pembayaran.",
+      },
+    ],
+    verificationNote: "Terverifikasi langsung dari repositori sora-wellness dan deployment aktif wellness.anthonywj.my.id.",
+  },
+  {
+    slug: "kemitraan-mebel",
+    title: "Kemitraan Eksportir & Operasional UMKM Mebel",
+    shortTitle: "Kemitraan Mebel",
+    tier: "utama",
+    category: "Fullstack & SaaS",
+    year: "2026",
+    tagline: "Sistem informasi multi-tenant Make-to-Order dengan akuntansi presisi desimal, state-locking produksi, dan ekspor PDF/XLSX.",
+    summary:
+      "Menghubungkan pengelolaan Purchase Order eksportir mebel (PT Amalia Surya Cemerlang, Klaten) dengan operasional bengkel UMKM mitra dari bahan baku hingga perhitungan HPP aktual.",
+    problem:
+      "Kolaborasi subkontrak mebel tradisional sering bermasalah akibat data harga beli bahan & margin UMKM bocor ke pihak lain, galat pembulatan kalkulasi upah/HPP, serta proses produksi berjalan tanpa verifikasi DP yang jelas.",
+    solution:
+      "Merancang Modular Monolith Next.js 16 dan PostgreSQL dengan isolasi RBAC 4 peran asimetris, kalkulasi decimal.js berpresisi 40 digit, metode Moving Weighted Average (MWA) gudang, dan alur state-locking 6 tahap produksi hingga Quality Control.",
+    highlights: [
+      "Presisi keuangan 40 digit via decimal.js untuk MWA stok kayu, hari kerja desimal (misal 4,50 hari), piutang, HPP, dan margin laba bersih.",
+      "Penyimpanan berkas privat di luar public/ dengan validasi magic bytes, penghapusan EXIF, dan konversi WebP otomatis melalui Sharp.",
+      "Ekspor 5 templat PDF A4 melalui PDFKit dan 9 laporan spreadsheet terproteksi formula via ExcelJS.",
+      "Teruji secara sistematis melalui 374 unit/integration test Vitest dan verifikasi alur Playwright E2E.",
+    ],
+    architecture: [
+      { layer: "App Router & RSC", detail: "Next.js 16.4, React 19.3, Tailwind CSS 4, optimasi timezone WIB" },
+      { layer: "Service & Guard Layer", detail: "Zod controller validation, isolasi tenantId, state-locking DP -> QC -> Selesai" },
+      { layer: "Finance & Document Engine", detail: "decimal.js 40 digit, PDFKit (Noto Sans embedded), ExcelJS, Sharp storage" },
+      { layer: "Database & QA", detail: "PostgreSQL 16/18, Prisma 7.10, 374 Vitest tests, Playwright E2E" },
+    ],
+    techStack: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "Prisma 7", "decimal.js", "PDFKit", "ExcelJS", "Vitest", "Playwright"],
+    githubUrl: "https://github.com/AnthonyWisnu/kemitraan-mebel",
+    coverImage: "/projects/mebel-exporter.webp",
+    screenshots: [
+      {
+        src: "/projects/mebel-exporter.webp",
+        alt: "Beranda Eksportir Kemitraan Mebel",
+        caption: "Dasbor eksportir untuk memantau progres PO dan ketepatan pengiriman tiap mitra UMKM.",
+      },
+      {
+        src: "/projects/mebel-hpp.webp",
+        alt: "Evaluasi Biaya Produksi dan HPP UMKM",
+        caption: "Kalkulasi HPP aktual, margin bersih, dan rekap upah tukang mingguan berbasis presisi desimal.",
+      },
+      {
+        src: "/projects/mebel-wizard.webp",
+        alt: "Wizard Penawaran PO 3 Langkah",
+        caption: "Formulir pembuatan penawaran PO 3 tahap lengkap dengan ringkasan nilai kontrak langsung.",
+      },
+    ],
+    verificationNote: "Terverifikasi dari repositori kemitraan-mebel termasuk dokumentasi UAT dan suite Vitest.",
+  },
+  {
+    slug: "void-downloader",
+    title: "VOID Downloader",
+    shortTitle: "VOID Downloader",
+    tier: "utama",
+    category: "Automation & Media",
+    year: "2026",
+    tagline: "Mesin ekstraksi dan normalisasi media 10 platform plus konverter video lokal ke MP3 siap produksi.",
+    summary:
+      "Aplikasi web cepat untuk mengekstrak video, foto carousel HD, dan audio dari 10 platform populer sekaligus menyediakan konverter file video lokal hingga 400 MB dengan proteksi VPS hemat memori.",
+    problem:
+      "Layanan pengunduh media publik umumnya lambat, dipenuhi iklan, gagal memutar hasil unduhan di iOS/Safari akibat codec AV1/VP9, serta rentan crash (OOM) saat beberapa proses FFmpeg berjalan bersamaan di VPS 2 GB RAM.",
+    solution:
+      "Mengembangkan backend Express + yt-dlp + gallery-dl dengan Concurrency Semaphore (maksimal 2 tugas berat paralel), normalisasi H.264 +faststart, cache SHA-256 LRU otomatis, serta Safe Socket Agent anti-SSRF DNS rebinding.",
+    highlights: [
+      "Matriks 10 platform (YouTube, TikTok, Instagram, X, Pinterest, Facebook, SoundCloud, Reddit, Dailymotion, Vimeo) plus Local Video-to-MP3 Converter.",
+      "Normalisasi video otomatis ke AVC1 YUV420p + MOOV atom faststart untuk streaming instan di iOS dan peramban modern.",
+      "Dukungan HTTP 206 Byte-Range streaming dan pembersihan kuota cache LRU otomatis saat melampaui batas 5 GB.",
+      "Antarmuka reaktif VOID Brutalist yang menyesuaikan aksen tema otomatis sesuai platform yang sedang diproses.",
+    ],
+    architecture: [
+      { layer: "Frontend Interface", detail: "React 18, Vite 5, tema dinamis per platform, audio/video preview" },
+      { layer: "Ingestion & Queue", detail: "Node.js 20, Express, ConcurrencyLimiter Semaphore, Multer streaming" },
+      { layer: "Media Processing", detail: "yt-dlp, gallery-dl, FFmpeg, FFprobe (+faststart + libmp3lame)" },
+      { layer: "Security & Cache", detail: "Anti-SSRF DNS lookup socket guard, SHA-256 cache dengan LRU eviction" },
+    ],
+    techStack: ["React 18", "Vite 5", "Node.js", "Express", "yt-dlp", "gallery-dl", "FFmpeg", "Multer", "Nginx", "PM2"],
     githubUrl: "https://github.com/AnthonyWisnu/void-downloader",
     liveUrl: "https://voiddl.my.id",
-    statsLabel: "Style",
-    statsValue: "Cyber Deck",
+    screenshots: [],
+    consoleVariant: "void",
+    verificationNote: "Terverifikasi langsung dari repositori void-downloader dan layanan aktif voiddl.my.id.",
   },
   {
-    id: "minjibot",
-    title: "MinjiBot",
-    tagline: "Multi-Tenant WhatsApp Bot & Automation SaaS Platform",
-    category: "Automation & SaaS",
-    theme: {
-      accent: "#10B981",
-      badgeBg: "bg-emerald-500/10 dark:bg-emerald-950/50",
-      badgeText: "text-emerald-600 dark:text-emerald-400",
-      badgeBorder: "border-emerald-500/30",
-      activeBorder: "border-emerald-500/80 dark:border-emerald-500/80",
-      activeRing: "ring-emerald-500/20 shadow-emerald-500/5",
-      hoverText: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
-      iconText: "text-emerald-600 dark:text-emerald-500",
-    },
+    slug: "minjibot",
+    title: "MinjiBot V2",
+    shortTitle: "MinjiBot V2",
+    tier: "utama",
+    category: "Automation & Media",
+    year: "2026",
+    tagline: "Platform bot WhatsApp multi-tenant berarsitektur sewa grup, ekonomi persisten, dan proteksi anti-raid.",
+    summary:
+      "Mesin otomasi WhatsApp berskala produksi di atas Baileys dan TypeScript ketat yang mengisolasi hak akses, saldo, serta moderasi per penyewaan grup dengan dukungan deployment CI/CD otomatis.",
     problem:
-      "Managing community WhatsApp groups requires continuous moderation, anti-raid defense, and activity tracking without risking server downtime or code coupling.",
+      "Mengelola puluhan grup komunitas WhatsApp secara bersamaan rentan mengalami kebocoran state antar grup, serangan raid anggota spam, penghapusan pesan sepihak, serta kegagalan pengiriman video besar melebihi batas 100 MB.",
     solution:
-      "Engineered an enterprise-grade multi-tenant automation bot with a modular interceptor pipeline, tenant role guards, PostgreSQL ledger via Prisma ORM, media converter services, and an automated CI/CD deployment pipeline with PM2 zero-downtime reloads.",
+      "Mengkonstruksi arsitektur multi-tenant dengan siklus sewa formal, operasi limit atomik PostgreSQL via Prisma ORM, routing video HD hingga 400 MB sebagai document stream, serta mesin grafis Sharp lokal tanpa beban headless browser.",
     highlights: [
-      "Modular Interceptor Pipeline (AntiRaid, AntiDelete, AntiSpam)",
-      "Production-hardened test suite with full unit & integration test coverage",
-      "Automated CI/CD workflow deploying to Linux VPS via GitHub Actions & PM2",
+      "Isolasi sewa per grup (PENDING -> ACTIVE -> EXPIRED -> REMOVED) dan hierarki izin 4 tingkat dari Super Owner hingga Member.",
+      "Pertahanan grup real-time: Anti-Raid sliding window detector, Anti-Delete LRU cache (500 pesan), Anti-Link, dan warning bertingkat.",
+      "Pipeline media hingga 400 MB plus pemrosesan gambar lokal menggunakan Sharp (Super-Clarity .hd dan kartu profil 800x450).",
+      "Keandalan kode tervalidasi melalui 398 automated test yang lulus penuh dan deployment PM2 via GitHub Actions.",
     ],
-    techStack: [
-      "TypeScript",
-      "Node.js",
-      "Prisma ORM",
-      "PostgreSQL",
-      "Baileys",
-      "FFmpeg",
-      "yt-dlp",
-      "GitHub Actions",
+    architecture: [
+      { layer: "Messaging Core", detail: "Node.js 20+, TypeScript Strict, Baileys socket manager, interceptor pipeline" },
+      { layer: "Tenant Ledger", detail: "PostgreSQL, Prisma ORM, transaksi saldo atomik Reserve -> Execute -> Consume" },
+      { layer: "Media & Graphics", detail: "ffmpeg-static, yt-dlp/gallery-dl, Sharp CLAHE + LAB sharpening" },
+      { layer: "Telemetry & Ops", detail: "Host telemetry monitor (WIB), PM2 reload, 398 passing tests" },
     ],
+    techStack: ["TypeScript", "Node.js 20", "PostgreSQL", "Prisma ORM", "Baileys", "Sharp", "FFmpeg", "PM2", "GitHub Actions"],
     githubUrl: "https://github.com/AnthonyWisnu/MinjiBot",
-    statsLabel: "Architecture",
-    statsValue: "Multi-Tenant",
+    screenshots: [],
+    consoleVariant: "minji",
+    verificationNote: "Terverifikasi langsung dari repositori MinjiBot dan status suite pengujian.",
   },
   {
-    id: "pinfas",
-    title: "PinFas",
-    tagline: "Public Village & Kelurahan Facility Asset Booking Platform",
-    category: "Web Applications",
-    theme: {
-      accent: "#F59E0B",
-      badgeBg: "bg-amber-500/10 dark:bg-amber-950/50",
-      badgeText: "text-amber-600 dark:text-amber-400",
-      badgeBorder: "border-amber-500/30",
-      activeBorder: "border-amber-500/80 dark:border-amber-500/80",
-      activeRing: "ring-amber-500/20 shadow-amber-500/5",
-      hoverText: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
-      iconText: "text-amber-600 dark:text-amber-500",
-    },
+    slug: "hotdog-watersport",
+    title: "PT Hotdog Water Sport",
+    shortTitle: "Hotdog Water Sport",
+    tier: "utama",
+    category: "Web Komersial",
+    year: "2026",
+    tagline: "Platform company profile, katalog wahana wisata bahari dwibahasa, dan CMS admin untuk operator Tanjung Benoa.",
+    summary:
+      "Website resmi untuk operator wisata bahari di Bali dengan dukungan penuh dua bahasa (/en dan /id), keranjang pemesanan WhatsApp tanpa login, serta panel CMS berkeamanan tinggi.",
     problem:
-      "Traditional public facility reservations in local villages (Banjar/Desa) are hindered by bureaucratic paperwork, unverified resident identities, and fragmented physical payment proofs.",
+      "Bisnis wisata bahari membutuhkan situs yang cepat dibuka wisatawan internasional di ponsel, mudah mengubah jadwal/foto wahana sendiri lewat admin panel, sekaligus mengonversi minat menjadi pesanan WhatsApp yang rapi.",
     solution:
-      "Developed a comprehensive public asset borrowing web app supporting no-login citizen requests, KTP verification workflows, dynamic official PDF authorization permit generation with QR code verification, and multi-tier role access (Admin Desa, Lurah, Kelian Banjar).",
+      "Membangun platform Next.js 16 App Router dengan Drizzle ORM dan PostgreSQL yang menyatukan etalase publik dwibahasa, pustaka media terkompresi WebP otomatis via Sharp, dan autentikasi admin terproteksi cookie httpOnly + argon2id.",
     highlights: [
-      "Role-Based Access Control (RLS) and custom Postgres RPC in Supabase",
-      "Dynamic PDF permit generator with tamper-resistant verification QR",
-      "Full audit trail for 35 village and Banjar public assets",
+      "Routing publik dwibahasa terstruktur (/en dan /id) lengkap dengan katalog kategori Adrenalin, Scuba Diving, dan wahana keluarga.",
+      "Keranjang pilihan lokal di browser wisatawan yang otomatis menyusun format pesan reservasi terstruktur ke WhatsApp operator.",
+      "Panel admin terpusat untuk mengatur Hero slide, Bento Grid keunggulan, FAQ, galeri, serta pemilih media teroptimasi Sharp WebP.",
+      "Skema validasi sinkron klien-server dengan Zod dan hashing password @node-rs/argon2 di VPS Linux + Nginx.",
     ],
-    techStack: [
-      "React 18",
-      "Vite",
-      "Tailwind CSS",
-      "Supabase",
-      "PostgreSQL",
-      "@react-pdf/renderer",
-      "Recharts",
+    architecture: [
+      { layer: "Public Routes [locale]", detail: "Next.js 16 App Router (en/id), katalis SEO, Next Image WebP optimization" },
+      { layer: "Admin CMS Protected", detail: "Cookie httpOnly session, @node-rs/argon2, editor konten & MediaPickerModal" },
+      { layer: "Database Layer", detail: "PostgreSQL, Drizzle ORM, drizzle-kit migrations, Zod schema validation" },
+      { layer: "Media Processing", detail: "Sharp resize & kompresi WebP kualitas 82 otomatis pada upload" },
     ],
-    githubUrl: "https://github.com/AnthonyWisnu/PinFas",
-    statsLabel: "Public Assets",
-    statsValue: "35 Managed",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "PostgreSQL", "Drizzle ORM", "Argon2id", "Sharp", "Zod"],
+    githubUrl: "https://github.com/watersportshotdog/hot-dog",
+    coverImage: "/projects/hotdog-diving.webp",
+    screenshots: [
+      {
+        src: "/projects/hotdog-diving.webp",
+        alt: "Dokumentasi aktivitas selam PT Hotdog Water Sport di Tanjung Benoa",
+        caption: "Salah satu aset dokumentasi maritim asli yang dikelola ke dalam pustaka media dan katalog wahana.",
+      },
+    ],
+    verificationNote: "Terverifikasi langsung dari repositori resmi watersportshotdog/hot-dog.",
   },
   {
-    id: "scout-football",
-    title: "scout-football (RAG-STKI)",
-    tagline: "Hybrid GraphRAG & Vector Retrieval Valuation System",
-    category: "AI & Data Systems",
-    theme: {
-      accent: "#A855F7",
-      badgeBg: "bg-purple-500/10 dark:bg-purple-950/50",
-      badgeText: "text-purple-600 dark:text-purple-400",
-      badgeBorder: "border-purple-500/30",
-      activeBorder: "border-purple-500/80 dark:border-purple-500/80",
-      activeRing: "ring-purple-500/20 shadow-purple-500/5",
-      hoverText: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
-      iconText: "text-purple-600 dark:text-purple-500",
-    },
+    slug: "scout-rag",
+    title: "ScoutRAG: STKI Football KG-RAG",
+    shortTitle: "ScoutRAG (KG-RAG)",
+    tier: "pendukung",
+    category: "AI & Knowledge Graph",
+    year: "2026",
+    tagline: "Sistem tanya-jawab dan estimasi rentang valuasi pemain sepak bola berbasis Knowledge Graph Neo4j dan ChromaDB.",
+    summary:
+      "Proyek riset Sistem Temu Kembali Informasi (STKI) untuk 5 liga top Eropa yang memadukan kueri Cypher terstruktur dan semantic search vektor guna menjaga jawaban tetap berdasar kutipan data.",
     problem:
-      "Traditional scouting systems either suffer from LLM hallucinations or lack relational reasoning when comparing multi-dimensional player statistics and market values across top European leagues.",
+      "LLM murni sering mengarang angka statistik pemain, sementara pencarian teks tradisional tidak mampu menjawab kueri relasional seperti perbandingan kontribusi atau kemiripan profil antar klub dan musim.",
     solution:
-      "Built a hybrid GraphRAG scouting and valuation platform combining a Neo4j Knowledge Graph for relational ranking queries with ChromaDB vector search for unstructured scouting profiles, evaluated with a 20-query gold standard rubric using RAGAS.",
+      "Merancang arsitektur hibrida FastAPI + Neo4j 5.27 + ChromaDB 0.5 dengan Agentic Router yang memilih otomatis strategi kg_only, vector_only, hybrid, atau valuation_reasoning disertai deteksi bahasa ID/EN dan scope guard.",
     highlights: [
-      "Knowledge Graph ETL pipeline scraping FBref & Transfermarkt datasets",
-      "100% pass rate on 20 gold query evaluation metrics",
-      "Interactive comparison radar and valuation reasoning engine",
+      "Pipeline ETL dari dataset FBref (via soccerdata) dan Transfermarkt dengan pelestarian nilai null agar tidak memalsukan data kosong menjadi nol.",
+      "Embedding dokumen menggunakan model multilingual-e5-base di ChromaDB dipadukan graf relasi Pemain-Klub-Liga-Musim di Neo4j.",
+      "Antarmuka analitik dark editorial di Next.js 14 dengan visualisasi radar/perbandingan statistik Recharts dan kutipan sumber eksplisit.",
     ],
-    techStack: [
-      "Next.js",
-      "Python",
-      "FastAPI",
-      "Neo4j",
-      "ChromaDB",
-      "OpenAI",
-      "RAGAS",
-      "Tailwind CSS",
+    architecture: [
+      { layer: "Analytics Frontend", detail: "Next.js 14, TypeScript, Tailwind CSS, Recharts, Framer Motion" },
+      { layer: "Agentic Router API", detail: "FastAPI, Scope Guard (Big 5 Europe), deteksi bahasa ID/EN" },
+      { layer: "Hybrid Storage", detail: "Neo4j 5.27 (Cypher KG) + ChromaDB 0.5 (multilingual-e5-base vectors)" },
+      { layer: "Reasoning & ETL", detail: "OpenAI GPT-4o-mini synthesis, Pandas/Parquet ETL snapshot" },
     ],
-    githubUrl: "https://github.com/AnthonyWisnu/scout-football",
-    statsLabel: "Eval Pass Rate",
-    statsValue: "100%",
+    techStack: ["Next.js 14", "FastAPI", "Python 3.11", "Neo4j 5.27", "ChromaDB", "OpenAI API", "SentenceTransformers", "Recharts"],
+    githubUrl: "https://github.com/AnthonyWisnu/RAG-STKI",
+    screenshots: [],
+    consoleVariant: "scout",
+    verificationNote: "Terverifikasi langsung dari repositori RAG-STKI beserta arsitektur ETL dan router kueri.",
   },
   {
-    id: "hotdog-watersport",
-    title: "Hot Dog Watersport",
-    tagline: "Commercial Web Platform for Water Sports Rental",
-    category: "Web Applications",
-    theme: {
-      accent: "#06B6D4",
-      badgeBg: "bg-cyan-500/10 dark:bg-cyan-950/50",
-      badgeText: "text-cyan-600 dark:text-cyan-400",
-      badgeBorder: "border-cyan-500/30",
-      activeBorder: "border-cyan-500/80 dark:border-cyan-500/80",
-      activeRing: "ring-cyan-500/20 shadow-cyan-500/5",
-      hoverText: "group-hover:text-cyan-600 dark:group-hover:text-cyan-400",
-      iconText: "text-cyan-600 dark:text-cyan-500",
-    },
+    slug: "bali-smart-pricing",
+    title: "Bali Smart Villa & Homestay Pricing Engine",
+    shortTitle: "Bali Smart Pricing",
+    tier: "pendukung",
+    category: "Machine Learning & Data",
+    year: "2026",
+    tagline: "Mesin estimasi tarif sewa harian properti Bali menggunakan CatBoost, jarak geospasial Haversine, dan SHAP Explainable AI.",
+    summary:
+      "Pipeline data science 6 tahap yang membersihkan distorsi data mentah akomodasi Bali, membandingkan 3 algoritma Gradient Boosting & Random Forest, dan menyajikan kalkulator harga interaktif transparan.",
     problem:
-      "Local marine tourism businesses require fast, high-converting mobile web experiences with direct booking pathways and discoverable local SEO.",
+      "Data pencarian penginapan mentah di Bali mengandung distorsi akumulasi harga 5 malam, salah label 32% wilayah kabupaten akibat radius pencarian, serta ketidakcocokan kapasitas kamar pada vila multi-kamar.",
     solution:
-      "Designed and deployed a responsive commercial website for PT Hot Dog Water Sport and Dive Center in Benoa, Bali featuring direct WhatsApp booking pipelines, filterable media galleries, and structured JSON-LD SEO schema.",
+      "Menyusun pipeline pembersihan dan kanonisasi 42 kecamatan baku Bali, rekayasa fitur jarak Haversine ke 6 sentra wisata utama, benchmarking 5-Fold Cross Validation (CatBoost unggul dengan skor uji R2 71,68%), dan penjelasan kontribusi fitur via SHAP TreeExplainer.",
     highlights: [
-      "Sub-second load times with next/image responsive optimization",
-      "One-click WhatsApp booking conversion flow",
-      "Full JSON-LD structured schema for search engine indexing",
+      "Koreksi 402 baris kesalahan label kabupaten silang serta dekonvolusi akurat dari tarif akumulasi 5 malam ke tarif 1 malam murni.",
+      "Performa model CatBoost Regressor (R2 uji 71,68%, akurasi relatif 72,48% pada segmen Villa Reguler dengan MedAE Rp 365.058).",
+      "Visualisasi SHAP TreeExplainer 300 DPI berbahasa Indonesia (Feature Importance, Beeswarm Summary, dan Waterfall per properti).",
+      "Aplikasi Streamlit interaktif dilengkapi peta OpenStreetMap dan kalkulator kewajaran tarif berdasarkan fasilitas fisik.",
     ],
-    techStack: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Framer Motion",
-      "Lucide React",
+    architecture: [
+      { layer: "Harvester & Canonicalizer", detail: "Skrip Python pengkoreksi 42 kecamatan Bali & dekonvolusi tarif" },
+      { layer: "Geospatial Features", detail: "Kalkulasi jarak fisik Haversine ke 6 pusat wisata tanpa data leakage" },
+      { layer: "ML Benchmark Engine", detail: "5-Fold CV komparasi CatBoost, XGBoost, dan Random Forest (38 fitur)" },
+      { layer: "Explainable Web UI", detail: "SHAP TreeExplainer plots, Streamlit, Plotly, OpenStreetMap" },
     ],
-    githubUrl: "https://github.com/AnthonyWisnu/hotdog-watersport",
-    statsLabel: "Location",
-    statsValue: "Benoa, Bali",
+    techStack: ["Python", "CatBoost", "XGBoost", "Scikit-Learn", "SHAP", "Pandas", "Streamlit", "Plotly"],
+    githubUrl: "https://github.com/AnthonyWisnu/bali-smart-pricing",
+    coverImage: "/projects/pricing-shap-importance.webp",
+    screenshots: [
+      {
+        src: "/projects/pricing-shap-importance.webp",
+        alt: "Grafik SHAP Feature Importance Harga Villa Bali",
+        caption: "Peringkat faktor dominan pembentuk estimasi tarif harian properti di Bali berdasarkan nilai SHAP.",
+      },
+      {
+        src: "/projects/pricing-shap-beeswarm.webp",
+        alt: "SHAP Beeswarm Summary Plot",
+        caption: "Sebaran arah pengaruh setiap fitur seperti kolam renang pribadi, jumlah kamar, dan kawasan wisata.",
+      },
+      {
+        src: "/projects/pricing-shap-waterfall.webp",
+        alt: "SHAP Waterfall Individual Prediction",
+        caption: "Penelusuran langkah demi langkah kontribusi fitur dari harga dasar pulau Bali ke estimasi satu unit vila.",
+      },
+    ],
+    verificationNote: "Terverifikasi langsung dari repositori bali-smart-pricing dan laporan benchmark model.",
   },
 ];
 
-// Alias for backwards-compatibility
-export const PROJECTS = PRIMARY_PROJECTS;
-
-// Supporting & Academic Archive Projects
-export const ARCHIVED_PROJECTS: ArchiveProject[] = [
-  {
-    id: "stock-screener",
-    title: "IDX Stock Screener",
-    description:
-      "Indonesian stock exchange (IDX) screener utilizing an asynchronous pre-computed flat-table architecture with scheduled OHLCV data pipelines and candlestick charts.",
-    category: "Financial Systems",
-    techStack: ["React", "FastAPI", "Python", "Supabase", "APScheduler", "yfinance"],
-    githubUrl: "https://github.com/AnthonyWisnu/Stock-Screener",
-  },
-  {
-    id: "mebel-management",
-    title: "Mebel Management System",
-    description:
-      "Integrated operational & financial management system for custom furniture businesses: order pipelines, automated receivables, attendance, payroll, and cashflow analytics.",
-    category: "Business & ERP",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "SheetJS"],
-    githubUrl: "https://github.com/AnthonyWisnu/Mebel-Management",
-  },
-  {
-    id: "bot-telegram-finance",
-    title: "Telegram AI Finance Assistant",
-    description:
-      "Privacy-first personal finance system via Telegram bot with multimodal AI parsing (Whisper voice & GPT-4 Vision receipt extraction) and dual React dashboards with Supabase RLS.",
-    category: "AI & Financial Bots",
-    techStack: ["FastAPI", "Python", "Telegram Bot API", "OpenAI Whisper/Vision", "Supabase RLS", "React"],
-    githubUrl: "https://github.com/AnthonyWisnu/Bot-Telegram-Finance",
-  },
-];
-
-export const SKILL_CATEGORIES = [
-  {
-    name: "Languages",
-    color: "#06B6D4",
-    tag: "CYAN_DECODER",
-    activeClass: "bg-cyan-600 text-white shadow-md shadow-cyan-600/30",
-    borderHover: "hover:border-cyan-500/50 hover:bg-cyan-50/20 dark:hover:bg-cyan-950/20",
-    iconColor: "text-cyan-500",
-    sparkleColor: "text-cyan-400",
-    skills: ["TypeScript", "JavaScript", "Python", "SQL", "HTML/CSS"],
-  },
-  {
-    name: "Frontend Engineering",
-    color: "#A855F7",
-    tag: "VIOLET_CANVAS",
-    activeClass: "bg-purple-600 text-white shadow-md shadow-purple-600/30",
-    borderHover: "hover:border-purple-500/50 hover:bg-purple-50/20 dark:hover:bg-purple-950/20",
-    iconColor: "text-purple-500",
-    sparkleColor: "text-purple-400",
-    skills: [
-      "React",
-      "Next.js (App Router)",
-      "Three.js / React Three Fiber",
-      "Tailwind CSS",
-      "GSAP / ScrollTrigger",
-      "Vite",
-    ],
-  },
-  {
-    name: "Backend & Systems",
-    color: "#10B981",
-    tag: "EMERALD_DAEMON",
-    activeClass: "bg-emerald-600 text-white shadow-md shadow-emerald-600/30",
-    borderHover: "hover:border-emerald-500/50 hover:bg-emerald-50/20 dark:hover:bg-emerald-950/20",
-    iconColor: "text-emerald-500",
-    sparkleColor: "text-emerald-400",
-    skills: [
-      "Node.js",
-      "Express",
-      "FastAPI",
-      "Prisma ORM",
-      "PostgreSQL",
-      "RESTful APIs",
-    ],
-  },
-  {
-    name: "AI & Graph Systems",
-    color: "#F59E0B",
-    tag: "AMBER_RETRIEVAL",
-    activeClass: "bg-amber-500 text-white shadow-md shadow-amber-500/30",
-    borderHover: "hover:border-amber-500/50 hover:bg-amber-50/20 dark:hover:bg-amber-950/20",
-    iconColor: "text-amber-500",
-    sparkleColor: "text-amber-400",
-    skills: [
-      "GraphRAG",
-      "Neo4j (Knowledge Graphs)",
-      "ChromaDB (Vector Database)",
-      "RAGAS Evaluation",
-      "OpenAI API",
-    ],
-  },
-  {
-    name: "DevOps & Infrastructure",
-    color: "#0284C7",
-    tag: "SKY_INFRA",
-    activeClass: "bg-sky-600 text-white shadow-md shadow-sky-600/30",
-    borderHover: "hover:border-sky-500/50 hover:bg-sky-50/20 dark:hover:bg-sky-950/20",
-    iconColor: "text-sky-500",
-    sparkleColor: "text-sky-400",
-    skills: [
-      "GitHub Actions (CI/CD)",
-      "Linux VPS (Ubuntu)",
-      "Docker",
-      "PM2 Process Manager",
-      "Nginx Reverse Proxy",
-      "Supabase (Auth, RLS, Storage)",
-    ],
-  },
-  {
-    name: "Media & Tooling",
-    color: "#F43F5E",
-    tag: "ROSE_STREAM",
-    activeClass: "bg-rose-600 text-white shadow-md shadow-rose-600/30",
-    borderHover: "hover:border-rose-500/50 hover:bg-rose-50/20 dark:hover:bg-rose-950/20",
-    iconColor: "text-rose-500",
-    sparkleColor: "text-rose-400",
-    skills: ["FFmpeg", "yt-dlp", "Baileys", "Git"],
-  },
-];
-
-export const OWNER_INFO = {
-  name: "Anthony Wisnu Jati",
-  shortName: "Anthony Wisnu",
-  title: "Fullstack & Systems Engineer",
-  institution: "Universitas Udayana",
-  highSchool: "SMAN 3 Klaten",
-  domain: "anthonywj.my.id",
-  domainUrl: "https://anthonywj.my.id",
-  bio: "Information Technology undergraduate at Universitas Udayana specializing in real-world software engineering: multi-tenant daemon architectures, GraphRAG retrieval systems, and production-ready modern web applications.",
-  github: "https://github.com/AnthonyWisnu",
-  email: "jatianthony@gmail.com",
-  education: [
-    {
-      institution: "Universitas Udayana",
-      degree: "B.S. in Information Technology",
-      period: "2023 - Present",
-      highlights: "Core focus on Software Engineering, Distributed Systems Architecture, GraphRAG Retrieval, and DevOps Automation.",
-      badge: "Higher Education",
-      badgeClass: "bg-blue-500/10 text-blue-500 dark:text-blue-400 border-blue-500/30",
-      accentBorder: "hover:border-blue-500/50",
-    },
-    {
-      institution: "SMAN 3 Klaten",
-      degree: "Natural Sciences & Mathematics (MIPA)",
-      period: "Alumni",
-      highlights: "Analytical reasoning, foundational algorithms, and computational problem solving.",
-      badge: "Secondary Education",
-      badgeClass: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/30",
-      accentBorder: "hover:border-teal-500/50",
-    },
-  ],
-  socials: {
-    github: "https://github.com/AnthonyWisnu",
-    githubHandle: "AnthonyWisnu",
-    instagram: "https://www.instagram.com/anthony.w.j/",
-    instagramHandle: "@anthony.w.j",
-    threads: "https://www.threads.net/@anthony.w.j",
-    threadsHandle: "@anthony.w.j",
-    facebook: "https://www.facebook.com/anthony.275983/?locale=id_ID",
-    facebookHandle: "Anthony Wisnu",
-  },
-};
+export const FEATURED_PROJECTS = CURATED_PROJECTS.filter((p) => p.tier === "utama");
+export const SUPPORTING_PROJECTS = CURATED_PROJECTS.filter((p) => p.tier === "pendukung");
