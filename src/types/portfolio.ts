@@ -20,6 +20,7 @@ export interface ContactFormPayload {
   topic: string;
   message: string;
   website?: string;
+  formStartedAt?: number;
 }
 
 export interface ContactApiResponse {

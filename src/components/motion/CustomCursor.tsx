@@ -7,8 +7,8 @@ export function CustomCursor() {
   const reducedMotion = useReducedMotion();
   const ringRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const pressedRef = useRef(false);
   const [cursorLabel, setCursorLabel] = useState<string>("");
-  const [isPressed, setIsPressed] = useState(false);
 
   useEffect(() => {
     if (reducedMotion || typeof window === "undefined") return;
@@ -22,6 +22,19 @@ export function CustomCursor() {
     let isVisible = false;
     let rafId = 0;
 
+    const applyDotTransform = () => {
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      }
+    };
+
+    const applyRingTransform = () => {
+      if (ringRef.current) {
+        const scale = pressedRef.current ? 0.88 : isHovering ? 1.32 : 1;
+        ringRef.current.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%) scale(${scale})`;
+      }
+    };
+
     const updateVisibility = (visible: boolean) => {
       isVisible = visible;
       const opacity = visible ? "1" : "0";
@@ -29,39 +42,70 @@ export function CustomCursor() {
       if (dotRef.current) dotRef.current.style.opacity = opacity;
     };
 
+    const animate = () => {
+      const dx = mouseX - ringX;
+      const dy = mouseY - ringY;
+      ringX += dx * 0.24;
+      ringY += dy * 0.24;
+
+      applyRingTransform();
+
+      // Tidurkan loop RAF otomatis ketika cincin kursor sudah menyusul posisi pointer
+      if (Math.abs(dx) < 0.18 && Math.abs(dy) < 0.18) {
+        ringX = mouseX;
+        ringY = mouseY;
+        applyRingTransform();
+        rafId = 0;
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const wakeLoop = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(animate);
+      }
+    };
+
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (!isVisible) updateVisibility(true);
+      if (!isVisible) {
+        ringX = mouseX;
+        ringY = mouseY;
+        updateVisibility(true);
+      }
+      applyDotTransform();
+      wakeLoop();
     };
 
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       const labeled = target?.closest("[data-cursor-label]") as HTMLElement | null;
-      const interactive = target?.closest("a, button, input, textarea, select, [role='button'], [data-cursor]");
+      const interactive = target?.closest("a, button, input, textarea, select, [role='button']");
       isHovering = Boolean(interactive || labeled);
       const nextLabel = labeled?.getAttribute("data-cursor-label") || "";
       setCursorLabel((prev) => (prev === nextLabel ? prev : nextLabel));
+      applyRingTransform();
     };
 
-    const onMouseDown = () => setIsPressed(true);
-    const onMouseUp = () => setIsPressed(false);
-    const onLeave = () => updateVisibility(false);
+    const onMouseDown = () => {
+      pressedRef.current = true;
+      applyRingTransform();
+    };
 
-    const animate = () => {
-      ringX += (mouseX - ringX) * 0.22;
-      ringY += (mouseY - ringY) * 0.22;
+    const onMouseUp = () => {
+      pressedRef.current = false;
+      applyRingTransform();
+    };
 
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${
-          isPressed ? 0.88 : isHovering ? 1.35 : 1
-        })`;
+    const onLeave = () => {
+      updateVisibility(false);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
       }
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-      }
-
-      rafId = window.requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -69,17 +113,16 @@ export function CustomCursor() {
     window.addEventListener("mousedown", onMouseDown, { passive: true });
     window.addEventListener("mouseup", onMouseUp, { passive: true });
     document.addEventListener("mouseleave", onLeave);
-    rafId = window.requestAnimationFrame(animate);
 
     return () => {
-      window.cancelAnimationFrame(rafId);
+      if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseover", onMouseOver);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mouseleave", onLeave);
     };
-  }, [reducedMotion, isPressed]);
+  }, [reducedMotion]);
 
   if (reducedMotion) return null;
 
@@ -90,8 +133,8 @@ export function CustomCursor() {
         aria-hidden="true"
         className={`fixed top-0 left-0 z-[9998] hidden md:flex items-center justify-center rounded-full pointer-events-none opacity-0 transition-[width,height,background-color,border-color,opacity] duration-200 will-change-transform ${
           cursorLabel
-            ? "w-20 h-20 bg-[#2F54EB]/90 border border-[#597EF7] text-white shadow-lg"
-            : "w-7 h-7 bg-transparent border border-[#597EF7]/55"
+            ? "w-20 h-20 bg-[#2F54EB]/90 border border-[#708FFF] text-white shadow-lg"
+            : "w-7 h-7 bg-transparent border border-[#708FFF]/60"
         }`}
       >
         {cursorLabel && (
@@ -105,7 +148,7 @@ export function CustomCursor() {
         <div
           ref={dotRef}
           aria-hidden="true"
-          className="fixed top-0 left-0 z-[9999] hidden md:block w-1.5 h-1.5 rounded-full bg-[#2F54EB] pointer-events-none opacity-0 transition-opacity duration-150 will-change-transform shadow-[0_0_8px_rgba(47,84,235,0.65)]"
+          className="fixed top-0 left-0 z-[9999] hidden md:block w-1.5 h-1.5 rounded-full bg-[#708FFF] pointer-events-none opacity-0 transition-opacity duration-150 will-change-transform shadow-[0_0_8px_rgba(112,143,255,0.7)]"
         />
       )}
     </>

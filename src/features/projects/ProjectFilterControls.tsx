@@ -28,13 +28,13 @@ export function ProjectFilterControls({
   return (
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
       <div className="space-y-2.5">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#2F54EB] font-semibold">
+        <span className="font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
           03 / Pameran Proyek
         </span>
-        <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-[#141519]">
+        <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
           Karya Terkurasi &amp; Arsitektur Nyata.
         </h2>
-        <p className="text-sm text-[#52555E] max-w-xl leading-relaxed">
+        <p className="text-sm text-[#A1A8B8] max-w-xl leading-relaxed">
           Tujuh proyek pilihan dari sistem SaaS produksi, mesin otomasi media, hingga riset GraphRAG dan pemodelan harga.
         </p>
       </div>
@@ -43,7 +43,7 @@ export function ProjectFilterControls({
         <div
           role="tablist"
           aria-label="Filter Tingkat Proyek"
-          className="inline-flex items-center gap-1 p-1.5 rounded-full bg-white border border-[#E4E1D8] soft-tabbar-shadow"
+          className="inline-flex items-center gap-1 p-1.5 rounded-full bg-[#121620] border border-white/12"
         >
           {FILTER_TABS.map((tab) => {
             const active = activeFilter === tab.key;
@@ -56,7 +56,7 @@ export function ProjectFilterControls({
                 onClick={() => onSelectFilter(tab.key)}
                 className={cn(
                   "relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer",
-                  active ? "text-white" : "text-[#52555E] hover:text-[#141519]"
+                  active ? "text-white" : "text-[#A1A8B8] hover:text-white"
                 )}
               >
                 {active && (
@@ -78,7 +78,7 @@ export function ProjectFilterControls({
               type="button"
               onClick={() => onStep(-1)}
               aria-label="Geser ke proyek sebelumnya"
-              className="w-10 h-10 rounded-full bg-[#2F54EB] hover:bg-[#2342C8] text-white flex items-center justify-center transition-colors shadow-sm cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -86,7 +86,7 @@ export function ProjectFilterControls({
               type="button"
               onClick={() => onStep(1)}
               aria-label="Geser ke proyek berikutnya"
-              className="w-10 h-10 rounded-full bg-[#2F54EB] hover:bg-[#2342C8] text-white flex items-center justify-center transition-colors shadow-sm cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

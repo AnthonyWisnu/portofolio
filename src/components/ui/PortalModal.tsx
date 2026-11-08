@@ -63,15 +63,15 @@ export function PortalModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl rounded-2xl bg-[#12151E] border border-white/15 overflow-hidden shadow-2xl"
+        className="relative w-full max-w-5xl rounded-2xl bg-[#121620] border border-white/15 overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10">
           <div className="min-w-0">
-            <div className="text-xs font-mono text-[#597EF7] uppercase tracking-wider truncate">
+            <div className="text-xs font-mono text-[#708FFF] uppercase tracking-wider truncate">
               {title}
             </div>
-            <div className="text-xs text-[#9CA3AF] truncate">{active.alt}</div>
+            <div className="text-xs text-[#A1A8B8] truncate">{active.alt}</div>
           </div>
 
           <button
@@ -116,9 +116,9 @@ export function PortalModal({
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 sm:px-6 py-3.5 border-t border-white/10 text-xs text-[#9CA3AF]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 sm:px-6 py-3.5 border-t border-white/10 text-xs text-[#A1A8B8]">
           <p className="leading-relaxed">{active.caption}</p>
-          <span className="font-mono text-[#64748B] shrink-0">
+          <span className="font-mono text-[#A1A8B8] shrink-0">
             {index + 1} / {screenshots.length}
           </span>
         </div>

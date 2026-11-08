@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
   return (
-    <article className="w-[310px] sm:w-[390px] lg:w-[440px] shrink-0 rounded-2xl bg-white border border-[#E4E1D8] p-4 sm:p-5 soft-card-shadow flex flex-col justify-between gap-4 transition-transform duration-300 hover:-translate-y-1">
+    <article className="w-[310px] sm:w-[390px] lg:w-[440px] shrink-0 rounded-2xl bg-[#121620] border border-white/12 p-4 sm:p-5 obsidian-card-shadow obsidian-card-glow flex flex-col justify-between gap-4 hover:-translate-y-1">
       <div className="space-y-4">
         <ProjectVisualPreview
           project={project}
@@ -21,19 +21,19 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
         />
 
         <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
-          <span className="px-2.5 py-0.5 rounded-full bg-[#2F54EB]/10 text-[#2F54EB] font-semibold border border-[#2F54EB]/20">
+          <span className="px-2.5 py-0.5 rounded-full bg-[#2F54EB]/20 text-[#9FB4FF] font-semibold border border-[#708FFF]/30">
             {project.tier === "utama" ? "Proyek Utama" : "Proyek Pendukung"}
           </span>
-          <span className="text-[#71717A]">
+          <span className="text-[#A1A8B8]">
             {project.category} · {project.year}
           </span>
         </div>
 
         <div className="space-y-1.5">
-          <h3 className="font-display text-lg sm:text-xl font-bold text-[#141519] leading-snug">
+          <h3 className="font-display text-lg sm:text-xl font-bold text-white leading-snug">
             {project.title}
           </h3>
-          <p className="text-xs sm:text-sm text-[#52555E] leading-relaxed line-clamp-2">
+          <p className="text-xs sm:text-sm text-[#A1A8B8] leading-relaxed line-clamp-2">
             {project.tagline}
           </p>
         </div>
@@ -42,13 +42,13 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
           {project.techStack.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-lg bg-[#F5F4EF] border border-[#E4E1D8] font-mono text-[11px] text-[#374151]"
+              className="px-2.5 py-1 rounded-lg bg-[#181D2B] border border-white/10 font-mono text-[11px] text-[#D1D5DB]"
             >
               {tech}
             </span>
           ))}
           {project.techStack.length > 4 && (
-            <span className="px-2.5 py-1 rounded-lg bg-[#F5F4EF] font-mono text-[11px] text-[#71717A]">
+            <span className="px-2.5 py-1 rounded-lg bg-[#181D2B] border border-white/10 font-mono text-[11px] text-[#A1A8B8]">
               +{project.techStack.length - 4}
             </span>
           )}
@@ -56,7 +56,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
       </div>
 
       {/* Tombol Aksi */}
-      <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-[#ECEAE3]">
+      <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-white/10">
         <Link
           href={`/projects/${project.slug}`}
           data-cursor-label="Detail"
@@ -71,10 +71,10 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#D4D1C7] hover:border-[#2F54EB]/50 text-xs font-medium text-[#141519] hover:text-[#2F54EB] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 hover:border-[#708FFF]/55 text-xs font-medium text-[#F3F4F6] hover:text-[#9FB4FF] transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
-            <span>Demo Langsung</span>
+            <span>Demo</span>
           </a>
         )}
 
@@ -83,7 +83,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Repositori GitHub ${project.title}`}
-          className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#F5F4EF] hover:bg-[#EAE7DF] text-xs font-mono text-[#141519] transition-colors"
+          className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#181D2B] border border-white/10 hover:border-[#708FFF]/45 text-xs font-mono text-[#F3F4F6] transition-colors"
         >
           <GithubIcon className="w-3.5 h-3.5" />
           <span>Repo</span>

@@ -12,12 +12,12 @@ interface FooterProps {
   variant?: "light" | "dark";
 }
 
-export function Footer({ variant = "light" }: FooterProps) {
+export function Footer({ variant = "dark" }: FooterProps) {
   const { scrollTo } = useSmoothScroll();
   const isDark = variant === "dark";
 
   const handleBackToTop = () => {
-    scrollTo(0, { duration: 1.1 });
+    scrollTo(0, { duration: 1.0 });
   };
 
   return (
@@ -26,7 +26,7 @@ export function Footer({ variant = "light" }: FooterProps) {
         "px-4 sm:px-8 lg:px-12 xl:px-16 pt-12 pb-10 border-t transition-colors",
         isDark
           ? "bg-[#0B0D12] text-[#F3F4F6] border-white/10"
-          : "bg-[#F5F4EF] text-[#141519] border-[#E4E1D8]"
+          : "bg-[#F4F2EC] text-[#141519] border-[#DFDCD2]"
       )}
     >
       <div className="max-w-7xl mx-auto space-y-10">
@@ -34,7 +34,7 @@ export function Footer({ variant = "light" }: FooterProps) {
           {/* Identitas Pemilik */}
           <div className="md:col-span-5 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <MonogramMark className="w-7 h-7 text-[#2F54EB] transition-transform duration-300 group-hover:scale-105" />
+              <MonogramMark className="w-7 h-7 text-[#708FFF] transition-transform duration-300 group-hover:scale-105" />
               <span className="font-display text-lg font-bold tracking-tight">
                 {OWNER_PROFILE.name}
               </span>
@@ -42,7 +42,7 @@ export function Footer({ variant = "light" }: FooterProps) {
             <p
               className={cn(
                 "text-sm leading-relaxed max-w-sm",
-                isDark ? "text-[#9CA3AF]" : "text-[#52555E]"
+                isDark ? "text-[#A1A8B8]" : "text-[#4E5361]"
               )}
             >
               {OWNER_PROFILE.headlineIntro}
@@ -50,7 +50,7 @@ export function Footer({ variant = "light" }: FooterProps) {
             <div
               className={cn(
                 "text-xs font-mono",
-                isDark ? "text-[#64748B]" : "text-[#71717A]"
+                isDark ? "text-[#A1A8B8]" : "text-[#4E5361]"
               )}
             >
               {OWNER_PROFILE.institution} · {OWNER_PROFILE.location}
@@ -62,7 +62,7 @@ export function Footer({ variant = "light" }: FooterProps) {
             <div
               className={cn(
                 "font-mono text-[11px] uppercase tracking-widest",
-                isDark ? "text-[#85A5FF]" : "text-[#2F54EB]"
+                isDark ? "text-[#708FFF]" : "text-[#2545D8]"
               )}
             >
               Navigasi
@@ -73,7 +73,7 @@ export function Footer({ variant = "light" }: FooterProps) {
                   <Link
                     href={isDark ? `/${item.href}` : item.href}
                     className={cn(
-                      "transition-colors hover:text-[#2F54EB]",
+                      "transition-colors hover:text-[#708FFF]",
                       isDark ? "text-[#D1D5DB]" : "text-[#374151]"
                     )}
                   >
@@ -89,7 +89,7 @@ export function Footer({ variant = "light" }: FooterProps) {
             <div
               className={cn(
                 "font-mono text-[11px] uppercase tracking-widest",
-                isDark ? "text-[#85A5FF]" : "text-[#2F54EB]"
+                isDark ? "text-[#708FFF]" : "text-[#2545D8]"
               )}
             >
               Proyek Utama
@@ -100,12 +100,12 @@ export function Footer({ variant = "light" }: FooterProps) {
                   <Link
                     href={`/projects/${project.slug}`}
                     className={cn(
-                      "inline-flex items-center gap-1 transition-colors hover:text-[#2F54EB]",
+                      "inline-flex items-center gap-1 transition-colors hover:text-[#708FFF]",
                       isDark ? "text-[#D1D5DB]" : "text-[#374151]"
                     )}
                   >
                     <span>{project.shortTitle}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-65" />
                   </Link>
                 </li>
               ))}
@@ -118,8 +118,8 @@ export function Footer({ variant = "light" }: FooterProps) {
           className={cn(
             "pt-6 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono",
             isDark
-              ? "border-white/10 text-[#64748B]"
-              : "border-[#E4E1D8] text-[#71717A]"
+              ? "border-white/10 text-[#A1A8B8]"
+              : "border-[#DFDCD2] text-[#4E5361]"
           )}
         >
           <span>
@@ -134,7 +134,7 @@ export function Footer({ variant = "light" }: FooterProps) {
               className={cn(
                 "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-colors cursor-pointer",
                 isDark
-                  ? "border-white/15 text-[#D1D5DB] hover:border-[#597EF7] hover:text-white"
+                  ? "border-white/15 text-[#F3F4F6] hover:border-[#708FFF] hover:text-white"
                   : "border-[#D4D1C7] text-[#141519] hover:border-[#2F54EB] hover:text-[#2F54EB]"
               )}
             >

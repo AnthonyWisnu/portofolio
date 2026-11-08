@@ -1,35 +1,41 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { LazyMotion, domAnimation, m, useScroll, useSpring } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const PROGRESS_SECTIONS = ["hero", "about", "skills", "projects", "contact"];
+function TopScrollBar() {
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 240,
+    damping: 32,
+    restDelta: 0.001,
+  });
+
+  return (
+    <div
+      aria-hidden="true"
+      className="fixed top-0 left-0 right-0 h-[2.5px] z-[60] pointer-events-none bg-transparent"
+    >
+      <m.div
+        className="h-full origin-left bg-[#708FFF]"
+        style={{
+          scaleX: reducedMotion ? scrollYProgress : smoothProgress,
+        }}
+      />
+    </div>
+  );
+}
 
 export function ScrollProgressChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const { progress, isLightSurface } = useScrollSpy(PROGRESS_SECTIONS);
 
   return (
     <LazyMotion features={domAnimation} strict>
-      {/* Indikator progres scroll tipis di puncak layar (tidak memblokir klik) */}
-      {isHome && (
-        <div
-          aria-hidden="true"
-          className="fixed top-0 left-0 right-0 h-[2.5px] z-[60] pointer-events-none"
-        >
-          <m.div
-            className="h-full origin-left"
-            style={{
-              scaleX: Math.max(0.015, progress),
-              backgroundColor: isLightSurface ? "#2F54EB" : "#597EF7",
-            }}
-            transition={{ duration: 0.08, ease: "linear" }}
-          />
-        </div>
-      )}
+      {isHome && <TopScrollBar />}
       {children}
     </LazyMotion>
   );

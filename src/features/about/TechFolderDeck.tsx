@@ -1,17 +1,21 @@
 "use client";
 
-import { useState, useRef } from "react";
+import Image from "next/image";
 import { ArrowUpRight, Cpu, FolderKanban, Layers } from "lucide-react";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useSmoothScroll } from "@/components/motion/SmoothScrollProvider";
 import { cn } from "@/utils/cn";
+
+interface FolderPreviewSheet {
+  title: string;
+  image?: string;
+}
 
 interface QuickFolder {
   id: string;
   label: string;
   countLabel: string;
   subtitle: string;
-  previewTitles: string[];
+  sheets: FolderPreviewSheet[];
   targetHash: string;
   filterKey?: "utama" | "pendukung";
   icon: typeof Layers;
@@ -23,7 +27,11 @@ const FOLDERS: QuickFolder[] = [
     label: "Proyek Utama",
     countLabel: "05 Sistem",
     subtitle: "Aplikasi produksi dan arsitektur inti",
-    previewTitles: ["Sora Wellness", "Kemitraan Mebel", "VOID Downloader", "MinjiBot V2"],
+    sheets: [
+      { title: "Sora Wellness", image: "/projects/sora-admin.webp" },
+      { title: "Kemitraan Mebel", image: "/projects/mebel-exporter.webp" },
+      { title: "Hotdog Water Sport", image: "/projects/hotdog-diving.webp" },
+    ],
     targetHash: "#projects-showcase",
     filterKey: "utama",
     icon: FolderKanban,
@@ -32,8 +40,12 @@ const FOLDERS: QuickFolder[] = [
     id: "pendukung",
     label: "Riset & AI",
     countLabel: "02 Sistem",
-    subtitle: "Knowledge Graph RAG & Machine Learning",
-    previewTitles: ["ScoutRAG KG-RAG", "Bali Smart Pricing", "Neo4j + SHAP"],
+    subtitle: "Knowledge Graph RAG & Explainable ML",
+    sheets: [
+      { title: "SHAP Beeswarm", image: "/projects/pricing-shap-beeswarm.webp" },
+      { title: "Bali Pricing Model", image: "/projects/pricing-shap-waterfall.webp" },
+      { title: "ScoutRAG Neo4j" },
+    ],
     targetHash: "#projects-showcase",
     filterKey: "pendukung",
     icon: Cpu,
@@ -42,8 +54,12 @@ const FOLDERS: QuickFolder[] = [
     id: "skills",
     label: "Peta Keahlian",
     countLabel: "06 Modul",
-    subtitle: "Teknologi terverifikasi dari repositori",
-    previewTitles: ["Next.js & NestJS", "PostgreSQL & Prisma", "Docker & CI/CD"],
+    subtitle: "Teknologi terverifikasi dari kode nyata",
+    sheets: [
+      { title: "Next.js & React 19" },
+      { title: "NestJS & PostgreSQL" },
+      { title: "Docker & CI/CD" },
+    ],
     targetHash: "#skills",
     icon: Layers,
   },
@@ -56,86 +72,70 @@ function FolderCard({
   folder: QuickFolder;
   onSelect: (folder: QuickFolder) => void;
 }) {
-  const reducedMotion = useReducedMotion();
-  const cardRef = useRef<HTMLButtonElement>(null);
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50, hovered: false });
-
   const Icon = folder.icon;
-
-  const onMouseMove = (e: React.PointerEvent<HTMLButtonElement>) => {
-    if (reducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    setTilt({
-      rx: (0.5 - py) * 10,
-      ry: (px - 0.5) * 12,
-      gx: px * 100,
-      gy: py * 100,
-      hovered: true,
-    });
-  };
 
   return (
     <button
-      ref={cardRef}
       type="button"
       onClick={() => onSelect(folder)}
-      onPointerMove={onMouseMove}
-      onPointerLeave={() => setTilt({ rx: 0, ry: 0, gx: 50, gy: 50, hovered: false })}
       data-cursor-label="Buka"
-      style={{
-        transform: reducedMotion
-          ? undefined
-          : `perspective(1200px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-      }}
-      className="group relative w-full text-left rounded-2xl border border-white/12 bg-[#12151E] p-5 transition-all duration-300 hover:border-[#2F54EB]/60 cursor-pointer overflow-hidden"
+      className="group relative w-full text-left pt-5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#708FFF] rounded-2xl"
     >
-      {/* Sorotan Specular Mengikuti Pointer */}
-      {!reducedMotion && (
-        <div
-          aria-hidden="true"
-          className={cn(
-            "absolute inset-0 pointer-events-none transition-opacity duration-300",
-            tilt.hovered ? "opacity-100" : "opacity-0"
-          )}
-          style={{
-            background: `radial-gradient(220px circle at ${tilt.gx}% ${tilt.gy}%, rgba(89, 126, 247, 0.16), transparent 70%)`,
-          }}
-        />
-      )}
+      {/* Telinga tab folder kiri atas */}
+      <div
+        aria-hidden="true"
+        className="absolute top-1.5 left-4 w-28 h-5 rounded-t-xl bg-[#181D2B] border-t border-x border-white/14 transition-colors group-hover:border-[#708FFF]/50"
+      />
 
-      {/* Lembaran Kartu Preview Mengintip di Dalam Folder */}
-      <div className="relative h-16 mb-4 flex items-end gap-1.5 overflow-hidden">
-        {folder.previewTitles.slice(0, 3).map((title, idx) => (
-          <div
-            key={title}
-            className={cn(
-              "flex-1 rounded-t-lg border border-white/10 bg-[#1B2030] px-2 py-2 text-[10px] font-mono text-[#D1D5DB] truncate transition-transform duration-300",
-              idx === 0 && "group-hover:-translate-y-2.5",
-              idx === 1 && "group-hover:-translate-y-4 bg-[#22283C]",
-              idx === 2 && "group-hover:-translate-y-1.5"
-            )}
-          >
-            {title}
-          </div>
-        ))}
-      </div>
-
-      {/* Kantong Depan Folder */}
-      <div className="relative z-10 flex items-start justify-between gap-3 pt-2 border-t border-white/10">
-        <div className="space-y-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <Icon className="w-4 h-4 text-[#597EF7] shrink-0" />
-            <span className="font-mono text-[11px] text-[#85A5FF]">{folder.countLabel}</span>
-          </div>
-          <h4 className="font-display text-base font-bold text-white truncate">{folder.label}</h4>
-          <p className="text-xs text-[#9CA3AF] truncate">{folder.subtitle}</p>
+      <div className="relative rounded-2xl border border-white/12 bg-[#121620] p-4 sm:p-5 overflow-hidden obsidian-card-glow group-hover:-translate-y-1">
+        {/* Kisi lembaran pratinjau mengintip di dalam bibir folder */}
+        <div className="relative h-24 sm:h-28 mb-4 flex items-end justify-center gap-2 px-1">
+          {folder.sheets.map((sheet, idx) => (
+            <div
+              key={sheet.title}
+              className={cn(
+                "relative flex-1 h-20 sm:h-24 rounded-t-xl border border-white/15 bg-[#1B2132] overflow-hidden shadow-md transition-transform duration-300 ease-out",
+                idx === 0 && "-rotate-3 translate-y-2 group-hover:-translate-y-1.5 group-hover:-rotate-6",
+                idx === 1 && "z-10 translate-y-0.5 group-hover:-translate-y-3",
+                idx === 2 && "rotate-3 translate-y-2 group-hover:-translate-y-1 group-hover:rotate-6"
+              )}
+            >
+              {sheet.image ? (
+                <Image
+                  src={sheet.image}
+                  alt={sheet.title}
+                  fill
+                  sizes="140px"
+                  className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                />
+              ) : (
+                <div className="h-full w-full p-2.5 flex flex-col justify-between bg-gradient-to-b from-[#1E263B] to-[#141926]">
+                  <span className="w-5 h-1 rounded-full bg-[#708FFF]/60" />
+                  <span className="font-mono text-[10px] leading-tight text-[#E2E8F0] line-clamp-2">
+                    {sheet.title}
+                  </span>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D12]/65 via-transparent to-transparent" />
+            </div>
+          ))}
         </div>
 
-        <span className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-[#2F54EB] text-[#9CA3AF] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
-          <ArrowUpRight className="w-4 h-4" />
-        </span>
+        {/* Saku depan folder */}
+        <div className="relative z-20 flex items-center justify-between gap-3 pt-3 border-t border-white/12 bg-[#121620]/95">
+          <div className="space-y-0.5 min-w-0">
+            <div className="flex items-center gap-2">
+              <Icon className="w-3.5 h-3.5 text-[#708FFF] shrink-0" />
+              <span className="font-mono text-[11px] text-[#9FB4FF]">{folder.countLabel}</span>
+            </div>
+            <h4 className="font-display text-base font-bold text-white truncate">{folder.label}</h4>
+            <p className="text-xs text-[#A1A8B8] truncate">{folder.subtitle}</p>
+          </div>
+
+          <span className="w-8 h-8 rounded-full bg-[#181D2B] border border-white/10 group-hover:bg-[#2F54EB] group-hover:border-[#2F54EB] text-[#A1A8B8] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+            <ArrowUpRight className="w-4 h-4" />
+          </span>
+        </div>
       </div>
     </button>
   );
@@ -150,16 +150,18 @@ export function TechFolderDeck() {
         new CustomEvent("portfolio:select-tier", { detail: { tier: folder.filterKey } })
       );
     }
-    scrollTo(folder.targetHash, { offset: -16, duration: 1.05 });
+    scrollTo(folder.targetHash, { offset: -16, duration: 1.0 });
   };
 
   return (
-    <div className="space-y-4 pt-4">
-      <div className="flex items-center justify-between text-xs font-mono text-[#64748B]">
-        <span className="uppercase tracking-widest text-[#85A5FF]">Pintasan Direktori</span>
+    <div className="space-y-4 pt-2">
+      <div className="flex items-center justify-between text-xs font-mono text-[#A1A8B8]">
+        <span className="uppercase tracking-widest text-[#708FFF] font-semibold">
+          Pintasan Direktori Karya
+        </span>
         <span>Klik folder untuk lompat cepat</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {FOLDERS.map((folder) => (
           <FolderCard key={folder.id} folder={folder} onSelect={handleSelect} />
         ))}

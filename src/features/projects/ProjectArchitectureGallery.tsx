@@ -23,29 +23,29 @@ export function ProjectArchitectureGallery({
     <div className="space-y-8">
       {/* Matriks Arsitektur & Sorotan Teknis */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-6 rounded-2xl bg-[#12151E] border border-white/10 p-6 space-y-4">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#85A5FF]">
-            <Layers className="w-4 h-4 text-[#597EF7]" />
+        <div className="lg:col-span-6 rounded-2xl bg-[#121620] border border-white/10 p-6 space-y-4">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#9FB4FF]">
+            <Layers className="w-4 h-4 text-[#708FFF]" />
             <span>Lapisan Arsitektur Sistem</span>
           </div>
 
           <div className="space-y-3">
             {project.architecture.map((node, idx) => (
               <div key={node.layer} className="p-4 rounded-xl bg-[#0B0D12] border border-white/10 flex items-start gap-3">
-                <span className="font-mono text-xs text-[#597EF7] font-semibold mt-0.5 shrink-0">{String(idx + 1).padStart(2, "0")}</span>
+                <span className="font-mono text-xs text-[#708FFF] font-semibold mt-0.5 shrink-0">{String(idx + 1).padStart(2, "0")}</span>
                 <div className="space-y-1 min-w-0">
                   <h3 className="font-display text-sm font-semibold text-white">{node.layer}</h3>
-                  <p className="text-xs text-[#9CA3AF] leading-relaxed">{node.detail}</p>
+                  <p className="text-xs text-[#A1A8B8] leading-relaxed">{node.detail}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="lg:col-span-6 rounded-2xl bg-[#12151E] border border-white/10 p-6 flex flex-col justify-between gap-6">
+        <div className="lg:col-span-6 rounded-2xl bg-[#121620] border border-white/10 p-6 flex flex-col justify-between gap-6">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#85A5FF]">
-              <ShieldCheck className="w-4 h-4 text-[#597EF7]" />
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#9FB4FF]">
+              <ShieldCheck className="w-4 h-4 text-[#708FFF]" />
               <span>Sorotan Implementasi Utama</span>
             </div>
             <ul className="space-y-3">
@@ -57,7 +57,7 @@ export function ProjectArchitectureGallery({
               ))}
             </ul>
           </div>
-          <div className="p-3.5 rounded-xl bg-[#0B0D12] border border-emerald-500/20 text-xs font-mono text-emerald-300/90 leading-relaxed">
+          <div className="p-3.5 rounded-xl bg-[#0B0D12] border border-emerald-500/25 text-xs font-mono text-emerald-300 leading-relaxed">
             {project.verificationNote}
           </div>
         </div>
@@ -66,8 +66,8 @@ export function ProjectArchitectureGallery({
       {project.screenshots.length > 0 ? (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <div className="font-mono text-xs uppercase tracking-widest text-[#85A5FF]">Dokumentasi Antarmuka &amp; Evaluasi Model</div>
-            <span className="font-mono text-[11px] text-[#64748B]">Klik gambar untuk memperbesar</span>
+            <div className="font-mono text-xs uppercase tracking-widest text-[#9FB4FF]">Dokumentasi Antarmuka &amp; Evaluasi Model</div>
+            <span className="font-mono text-[11px] text-[#A1A8B8]">Klik gambar untuk memperbesar</span>
           </div>
           <div className={cn("grid gap-5", project.screenshots.length === 1 ? "grid-cols-1 max-w-3xl" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3")}>
             {project.screenshots.map((shot, idx) => (
@@ -76,27 +76,27 @@ export function ProjectArchitectureGallery({
                 type="button"
                 onClick={() => onOpenLightbox(idx)}
                 data-cursor-label="Pratinjau"
-                className="group text-left rounded-2xl bg-[#12151E] border border-white/10 hover:border-[#597EF7]/50 overflow-hidden transition-colors cursor-pointer"
+                className="group text-left rounded-2xl bg-[#121620] border border-white/10 hover:border-[#708FFF]/50 overflow-hidden transition-colors cursor-pointer"
               >
                 <div className="relative aspect-[16/10] w-full bg-[#0B0D12] overflow-hidden">
                   <Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                  <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#0B0D12]/80 border border-white/15 flex items-center justify-center text-white opacity-80 group-hover:bg-[#2F54EB] transition-colors">
+                  <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#0B0D12]/80 border border-white/15 flex items-center justify-center text-white opacity-85 group-hover:bg-[#2F54EB] transition-colors">
                     <Expand className="w-3.5 h-3.5" />
                   </span>
                 </div>
                 <div className="p-4 space-y-1">
                   <div className="text-xs font-mono text-white font-medium">{shot.alt}</div>
-                  <p className="text-xs text-[#9CA3AF] leading-relaxed">{shot.caption}</p>
+                  <p className="text-xs text-[#A1A8B8] leading-relaxed">{shot.caption}</p>
                 </div>
               </button>
             ))}
           </div>
         </div>
       ) : project.consoleVariant === "void" ? (
-        <div className="rounded-2xl bg-[#12151E] border border-white/10 p-6 space-y-5">
+        <div className="rounded-2xl bg-[#121620] border border-white/10 p-6 space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#85A5FF]">
-              <Radio className="w-4 h-4 text-[#597EF7]" />
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#9FB4FF]">
+              <Radio className="w-4 h-4 text-[#708FFF]" />
               <span>Eksplorer Profil Platform VOID Downloader</span>
             </div>
             <span className="font-mono text-[11px] text-emerald-400">
@@ -113,37 +113,37 @@ export function ProjectArchitectureGallery({
                 className={cn(
                   "px-3 py-2.5 rounded-xl border text-left font-mono text-xs transition-colors cursor-pointer",
                   idx === selectedVoidIndex
-                    ? "bg-[#2F54EB]/25 border-[#597EF7] text-white"
-                    : "bg-[#0B0D12] border-white/10 text-[#9CA3AF] hover:text-white"
+                    ? "bg-[#2F54EB]/25 border-[#708FFF] text-white"
+                    : "bg-[#0B0D12] border-white/10 text-[#A1A8B8] hover:text-white"
                 )}
               >
                 <div className="font-semibold truncate">{spec.name}</div>
-                <div className="text-[10px] text-[#64748B] truncate mt-0.5">{spec.codec}</div>
+                <div className="text-[10px] text-[#A1A8B8] truncate mt-0.5">{spec.codec}</div>
               </button>
             ))}
           </div>
 
           <div className="p-4 rounded-xl bg-[#0B0D12] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-1">
-              <div className="font-mono text-xs text-[#597EF7]">{activeVoidSpec.badge}</div>
+              <div className="font-mono text-xs text-[#708FFF]">{activeVoidSpec.badge}</div>
               <p className="text-sm text-[#D1D5DB] leading-relaxed">{activeVoidSpec.description}</p>
             </div>
-            <span className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 font-mono text-xs text-white shrink-0">
+            <span className="px-3 py-1.5 rounded-lg bg-[#181D2B] border border-white/10 font-mono text-xs text-white shrink-0">
               {activeVoidSpec.codec}
             </span>
           </div>
         </div>
       ) : (
-        <div className="rounded-2xl bg-[#12151E] border border-white/10 p-6 space-y-4">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#85A5FF]">
+        <div className="rounded-2xl bg-[#121620] border border-white/10 p-6 space-y-4">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#9FB4FF]">
             {project.consoleVariant === "scout" ? (
-              <GitBranch className="w-4 h-4 text-[#597EF7]" />
+              <GitBranch className="w-4 h-4 text-[#708FFF]" />
             ) : (
-              <Cpu className="w-4 h-4 text-[#597EF7]" />
+              <Cpu className="w-4 h-4 text-[#708FFF]" />
             )}
             <span>Cetak Biru Eksekusi Sistem</span>
           </div>
-          <p className="text-sm text-[#9CA3AF] leading-relaxed">
+          <p className="text-sm text-[#A1A8B8] leading-relaxed">
             Layanan ini berjalan di lapisan backend dan orkestrasi proses sehingga tidak mengekspos antarmuka publik statis, namun seluruh alur state, antrean, dan validasinya terdokumentasi langsung pada lapisan arsitektur di atas.
           </p>
         </div>

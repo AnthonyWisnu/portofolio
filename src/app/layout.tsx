@@ -3,7 +3,6 @@ import Script from "next/script";
 import { Geist_Mono, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { OWNER_PROFILE } from "@/data/owner";
-import { PreloaderGate } from "@/features/preloader/PreloaderGate";
 import { CustomCursor } from "@/components/motion/CustomCursor";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { ScrollProgressChrome } from "@/components/motion/ScrollProgressChrome";
@@ -12,16 +11,19 @@ import { Navbar } from "@/features/navigation/Navbar";
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -93,7 +95,6 @@ export default function RootLayout({
         />
         <SmoothScrollProvider>
           <ScrollProgressChrome>
-            <PreloaderGate />
             <CustomCursor />
             <Navbar />
             <main className="relative z-10 overflow-x-clip max-w-full">{children}</main>

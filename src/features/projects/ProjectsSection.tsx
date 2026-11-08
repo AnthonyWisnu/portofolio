@@ -109,7 +109,7 @@ export function ProjectsSection() {
       id="projects-showcase"
       ref={sectionRef}
       style={useStickyHorizontal ? { height: `calc(100vh + ${Math.round(maxTravel * 1.05)}px)` } : undefined}
-      className="relative bg-[#F5F4EF] text-[#141519]"
+      className="relative bg-[#0F131C] text-[#F3F4F6] border-t border-white/10"
     >
       <div
         className={cn(

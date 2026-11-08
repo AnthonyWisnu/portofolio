@@ -43,22 +43,22 @@ export function TypographyPortal() {
     mass: 0.35,
   });
 
-  // Zoom eksponensial mulus ke dalam huruf O lalu membuka panggung Warm Stone (#F5F4EF)
-  const wordScale = useTransform(smoothProgress, [0.08, 0.78], [1, 24]);
-  const wordRotate = useTransform(smoothProgress, [0.08, 0.78], [0, -3]);
-  const wordOpacity = useTransform(smoothProgress, [0.68, 0.88], [1, 0]);
-  const stoneFloodScale = useTransform(smoothProgress, [0.16, 0.76], [0.02, 2.8]);
-  const stoneFloodOpacity = useTransform(smoothProgress, [0.14, 0.56], [0, 1]);
+  // Zoom tipografi 2D senada palet Obsidian (#0D1119 -> #0F131C, tanpa kilatan putih)
+  const wordScale = useTransform(smoothProgress, [0.08, 0.78], [1, 22]);
+  const wordRotate = useTransform(smoothProgress, [0.08, 0.78], [0, -2.5]);
+  const wordOpacity = useTransform(smoothProgress, [0.65, 0.88], [1, 0]);
+  const stageFloodScale = useTransform(smoothProgress, [0.16, 0.76], [0.02, 2.8]);
+  const stageFloodOpacity = useTransform(smoothProgress, [0.14, 0.56], [0, 1]);
   const captionOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
 
   if (reducedMotion) {
     return (
       <div
         id="projects"
-        className="bg-gradient-to-b from-[#0B0D12] to-[#F5F4EF] py-16 px-4 text-center"
+        className="bg-gradient-to-b from-[#0D1119] to-[#0F131C] py-14 px-4 text-center border-t border-white/10"
       >
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#597EF7]">
-          03 / Transisi Karya
+        <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#708FFF]">
+          03 / Etalase Karya Terkurasi
         </span>
       </div>
     );
@@ -68,33 +68,32 @@ export function TypographyPortal() {
     <div
       id="projects"
       ref={containerRef}
-      className="relative h-[165vh] bg-[#0B0D12] select-none"
+      className="relative h-[150vh] bg-[#0D1119] select-none"
       aria-label="Transisi menuju pameran proyek"
     >
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden flex flex-col items-center justify-center bg-[#0B0D12]">
-        {/* Lapisan latar tipis sebelum portal terbuka */}
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden flex flex-col items-center justify-center bg-[#0D1119]">
         <m.div
           style={{ opacity: captionOpacity }}
           className="absolute top-24 sm:top-28 inset-x-0 text-center px-4 z-10 pointer-events-none"
         >
-          <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#85A5FF]">
+          <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#9FB4FF]">
             03 / Etalase Karya Terkurasi
           </span>
-          <p className="text-xs text-[#9CA3AF] mt-2">
-            Terus gulir untuk memasuki ruang terang
+          <p className="text-xs text-[#A1A8B8] mt-2">
+            Terus gulir untuk memasuki ruang karya
           </p>
         </m.div>
 
-        {/* Cakram Warm Stone yang memancar keluar dari dalam huruf O */}
+        {/* Cakram Obsidian sekunder (#0F131C) berpinggir halo cobalt lembut */}
         <m.div
           aria-hidden="true"
           style={{
-            scale: stoneFloodScale,
-            opacity: stoneFloodOpacity,
+            scale: stageFloodScale,
+            opacity: stageFloodOpacity,
             left: `${originPct.x}%`,
             top: `${originPct.y}%`,
           }}
-          className="absolute w-[120vmax] h-[120vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F5F4EF] pointer-events-none z-20 will-change-transform"
+          className="absolute w-[120vmax] h-[120vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0F131C] ring-1 ring-[#708FFF]/35 shadow-[0_0_90px_rgba(47,84,235,0.22)] pointer-events-none z-20 will-change-transform"
         />
 
         {/* Tipografi Display PROYEK */}
@@ -108,7 +107,7 @@ export function TypographyPortal() {
           }}
           className="relative z-10 flex items-center justify-center px-4 will-change-transform"
         >
-          <div className="font-display font-black tracking-tight text-[17vw] sm:text-[14vw] lg:text-[12vw] leading-none text-[#F5F4EF] flex items-center">
+          <div className="font-display font-black tracking-tight text-[17vw] sm:text-[14vw] lg:text-[12vw] leading-none text-[#F3F4F6] flex items-center">
             {PORTAL_LETTERS.map((letter, idx) => {
               const isFocusGlyph = idx === 2;
               return (
@@ -117,7 +116,7 @@ export function TypographyPortal() {
                   ref={isFocusGlyph ? targetGlyphRef : undefined}
                   className={cn(
                     "inline-block transition-colors duration-300",
-                    isFocusGlyph ? "text-[#2F54EB]" : "text-[#F5F4EF]"
+                    isFocusGlyph ? "text-[#708FFF]" : "text-[#F3F4F6]"
                   )}
                 >
                   {letter}

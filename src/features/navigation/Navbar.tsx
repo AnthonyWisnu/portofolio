@@ -10,42 +10,36 @@ import { GithubIcon, MonogramMark } from "@/components/ui/Icons";
 import { cn } from "@/utils/cn";
 
 const SECTION_IDS = NAV_ITEMS.map((item) => item.id);
+const SECTION_ALIAS_MAP: Record<string, string> = {
+  "projects-showcase": "projects",
+};
 
 export function Navbar() {
   const pathname = usePathname();
   const isDetailPage = pathname.startsWith("/projects/");
-  const { activeId, isLightSurface } = useScrollSpy(SECTION_IDS);
-
-  const navContainerClass = isLightSurface && !isDetailPage
-    ? "bg-white/80 text-[#141519] border-[#E4E1D8] shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
-    : "bg-[#11141C]/80 text-[#F3F4F6] border-white/12 shadow-[0_8px_30px_rgba(0,0,0,0.4)]";
+  const activeId = useScrollSpy(SECTION_IDS, SECTION_ALIAS_MAP);
 
   return (
     <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 px-3 sm:px-6 pointer-events-none">
-      <div className="max-w-6xl mx-auto flex items-center justify-center">
-        <div
-          className={cn(
-            "pointer-events-auto flex items-center justify-between gap-1.5 sm:gap-4 rounded-full px-2 sm:px-4 py-1.5 sm:py-2 border backdrop-blur-xl transition-colors duration-300 w-full sm:w-auto max-w-full",
-            navContainerClass
-          )}
-        >
+      <div className="max-w-5xl mx-auto flex items-center justify-center">
+        <div className="pointer-events-auto flex items-center justify-between gap-1.5 sm:gap-4 rounded-full px-2 sm:px-4 py-1.5 sm:py-2 border border-white/12 bg-[#0F131C]/92 text-[#F3F4F6] backdrop-blur-md shadow-[0_10px_32px_rgba(0,0,0,0.45)] w-full sm:w-auto max-w-full">
           {/* Identitas Monogram */}
           <Link
             href="/"
             className="flex items-center gap-2 pl-1 pr-1 sm:pl-1.5 sm:pr-2 py-1 rounded-full shrink-0 group"
             aria-label="Beranda Anthony Wisnu Jati"
           >
-            <MonogramMark className="w-5 h-5 sm:w-6 sm:h-6 text-[#2F54EB] transition-transform duration-300 group-hover:scale-105" />
-            <span className="hidden lg:inline font-display text-xs font-bold tracking-wide">
+            <MonogramMark className="w-5 h-5 sm:w-6 sm:h-6 text-[#708FFF] transition-transform duration-300 group-hover:scale-105" />
+            <span className="hidden lg:inline font-display text-xs font-bold tracking-wide text-[#F3F4F6]">
               {OWNER_PROFILE.shortName}
             </span>
           </Link>
 
-          {/* Tautan Navigasi Utama (Tetap Tampil di Mobile dan Desktop) */}
+          {/* Tautan Navigasi Utama */}
           {isDetailPage ? (
             <nav aria-label="Navigasi Halaman Detail" className="flex items-center gap-2">
               <Link
-                href="/#projects"
+                href="/#projects-showcase"
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#2F54EB] text-white hover:bg-[#2342C8] transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
@@ -64,19 +58,15 @@ export function Navbar() {
                     key={item.id}
                     href={item.href}
                     className={cn(
-                      "relative px-2 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium whitespace-nowrap transition-colors",
-                      isActive
-                        ? "text-white"
-                        : isLightSurface
-                        ? "text-[#52555E] hover:text-[#141519]"
-                        : "text-[#9CA3AF] hover:text-white"
+                      "relative px-2.5 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium whitespace-nowrap transition-colors",
+                      isActive ? "text-white" : "text-[#A1A8B8] hover:text-white"
                     )}
                   >
                     {isActive && (
                       <m.span
                         layoutId="nav-active-pill"
                         transition={{ type: "spring", stiffness: 320, damping: 32 }}
-                        className="absolute inset-0 rounded-full bg-[#2F54EB] -z-10 shadow-[0_2px_10px_rgba(47,84,235,0.4)]"
+                        className="absolute inset-0 rounded-full bg-[#2F54EB] -z-10 shadow-[0_2px_12px_rgba(47,84,235,0.45)]"
                       />
                     )}
                     <span className="sm:hidden">{item.shortLabel}</span>
@@ -94,27 +84,17 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Profil GitHub Anthony Wisnu"
-              className={cn(
-                "hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-colors border",
-                isLightSurface && !isDetailPage
-                  ? "border-[#E4E1D8] bg-[#F5F4EF] text-[#141519] hover:border-[#2F54EB]/40"
-                  : "border-white/10 bg-white/5 text-[#E5E7EB] hover:bg-white/10"
-              )}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-colors border border-white/12 bg-white/[0.04] text-[#F3F4F6] hover:border-[#708FFF]/50 hover:bg-white/[0.08]"
             >
               <GithubIcon className="w-3.5 h-3.5" />
               <span className="hidden md:inline">GitHub</span>
-              <ArrowUpRight className="w-3 h-3 opacity-60" />
+              <ArrowUpRight className="w-3 h-3 opacity-70" />
             </a>
 
             <a
               href={isDetailPage ? "/#contact" : "#contact"}
               aria-label="Kirim Pesan"
-              className={cn(
-                "hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors",
-                isLightSurface && !isDetailPage
-                  ? "bg-[#141519] text-white hover:bg-[#2F54EB]"
-                  : "bg-white text-[#0B0D12] hover:bg-[#E5E7EB]"
-              )}
+              className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors bg-[#2F54EB] text-white hover:bg-[#2342C8]"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Hubungi</span>

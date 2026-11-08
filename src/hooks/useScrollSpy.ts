@@ -2,88 +2,80 @@
 
 import { useEffect, useState } from "react";
 
-export interface ScrollSpyState {
-  activeId: string;
-  isLightSurface: boolean;
-  progress: number;
-}
-
-export function useScrollSpy(sectionIds: string[], lightTriggerId = "projects-showcase"): ScrollSpyState {
-  const [state, setState] = useState<ScrollSpyState>({
-    activeId: sectionIds[0] || "hero",
-    isLightSurface: false,
-    progress: 0,
-  });
+export function useScrollSpy(
+  sectionIds: string[],
+  aliasMap: Record<string, string> = {}
+): string {
+  const [activeId, setActiveId] = useState<string>(sectionIds[0] || "hero");
+  const idsKey = sectionIds.join(",");
+  const aliasKey = JSON.stringify(aliasMap);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let rafId = 0;
+    const parsedAliases = JSON.parse(aliasKey) as Record<string, string>;
+    const observedIds = Array.from(
+      new Set([...(idsKey ? idsKey.split(",") : []), ...Object.keys(parsedAliases)])
+    );
+    const elements = observedIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
 
-    const computeState = () => {
-      rafId = 0;
-      const scrollY = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
+    if (elements.length === 0) return;
 
-      // Deteksi section aktif berdasarkan posisi viewport (sepertiga atas layar)
-      const pivot = scrollY + window.innerHeight * 0.34;
-      let currentActive = sectionIds[0] || "hero";
+    const visibleScores = new Map<string, number>();
 
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top + scrollY;
-        if (pivot >= top) {
-          currentActive = id;
+    const updateActive = () => {
+      if (window.scrollY < 100 && observedIds[0]) {
+        const mapped = parsedAliases[observedIds[0]] || observedIds[0];
+        setActiveId((prev) => (prev === mapped ? prev : mapped));
+        return;
+      }
+
+      let bestRawId = "";
+      let bestScore = -1;
+      for (const el of elements) {
+        const isVisible = (visibleScores.get(el.id) ?? 0) > 0;
+        if (!isVisible) continue;
+        // Gunakan tinggi irisan aktual di layar sehingga section tinggi seperti sticky carousel tetap menang
+        const rect = el.getBoundingClientRect();
+        const visibleHeight = Math.max(
+          0,
+          Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
+        );
+        if (visibleHeight > bestScore) {
+          bestScore = visibleHeight;
+          bestRawId = el.id;
         }
       }
 
-      // Cek apakah navbar kini melayang di atas zona terang (#F5F4EF)
-      const lightAnchor = document.getElementById(lightTriggerId);
-      const portalAnchor = document.getElementById("projects");
-      let isLightSurface = false;
-
-      if (lightAnchor) {
-        const rect = lightAnchor.getBoundingClientRect();
-        if (rect.top <= 96) {
-          isLightSurface = true;
-        }
-      } else if (portalAnchor) {
-        const rect = portalAnchor.getBoundingClientRect();
-        if (rect.top <= 96) {
-          isLightSurface = true;
-        }
-      }
-
-      setState((prev) => {
-        if (
-          prev.activeId === currentActive &&
-          prev.isLightSurface === isLightSurface &&
-          Math.abs(prev.progress - progress) < 0.002
-        ) {
-          return prev;
-        }
-        return { activeId: currentActive, isLightSurface, progress };
-      });
-    };
-
-    const scheduleUpdate = () => {
-      if (!rafId) {
-        rafId = window.requestAnimationFrame(computeState);
+      if (bestRawId) {
+        const nextActive = parsedAliases[bestRawId] || bestRawId;
+        setActiveId((prev) => (prev === nextActive ? prev : nextActive));
       }
     };
 
-    computeState();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate, { passive: true });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visibleScores.set(entry.target.id, entry.isIntersecting ? 1 : 0);
+        }
+        updateActive();
+      },
+      {
+        rootMargin: "-20% 0px -30% 0px",
+        threshold: [0, 0.05, 0.25],
+      }
+    );
+
+    for (const el of elements) {
+      observer.observe(el);
+    }
 
     return () => {
-      if (rafId) window.cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      observer.disconnect();
     };
-  }, [sectionIds, lightTriggerId]);
+  }, [idsKey, aliasKey]);
 
-  return state;
+  return activeId;
 }

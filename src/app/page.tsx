@@ -8,14 +8,14 @@ import { Footer } from "@/features/contact/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen relative overflow-x-clip">
+    <div className="flex flex-col min-h-screen relative overflow-x-clip bg-[#0B0D12]">
       <HeroSection />
       <AboutSection />
       <SkillsSection />
       <TypographyPortal />
       <ProjectsSection />
       <ContactSection />
-      <Footer variant="light" />
+      <Footer variant="dark" />
     </div>
   );
 }
