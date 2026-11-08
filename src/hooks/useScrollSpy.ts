@@ -23,7 +23,7 @@ export function useScrollSpy(
 
     if (elements.length === 0) return;
 
-    const visibleScores = new Map<string, number>();
+    const visibleHeights = new Map<string, number>();
 
     const updateActive = () => {
       if (window.scrollY < 100 && observedIds[0]) {
@@ -35,14 +35,8 @@ export function useScrollSpy(
       let bestRawId = "";
       let bestScore = -1;
       for (const el of elements) {
-        const isVisible = (visibleScores.get(el.id) ?? 0) > 0;
-        if (!isVisible) continue;
-        // Gunakan tinggi irisan aktual di layar sehingga section tinggi seperti sticky carousel tetap menang
-        const rect = el.getBoundingClientRect();
-        const visibleHeight = Math.max(
-          0,
-          Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
-        );
+        const visibleHeight = visibleHeights.get(el.id) ?? 0;
+        if (visibleHeight <= 0) continue;
         if (visibleHeight > bestScore) {
           bestScore = visibleHeight;
           bestRawId = el.id;
@@ -58,7 +52,11 @@ export function useScrollSpy(
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          visibleScores.set(entry.target.id, entry.isIntersecting ? 1 : 0);
+          // Gunakan intersectionRect dari browser tanpa memicu layout reflow manual
+          visibleHeights.set(
+            entry.target.id,
+            entry.isIntersecting ? Math.max(1, entry.intersectionRect.height) : 0
+          );
         }
         updateActive();
       },

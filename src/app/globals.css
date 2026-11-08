@@ -115,3 +115,16 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+@keyframes heroSlideUp {
+  from {
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-enter {
+  animation: heroSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

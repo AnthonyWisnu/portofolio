@@ -8,10 +8,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useSmoothScroll } from "@/components/motion/SmoothScrollProvider";
 import { PortalModal } from "@/components/ui/PortalModal";
 import { ProjectCard } from "@/features/projects/ProjectCard";
-import {
-  ProjectFilterControls,
-  type FilterTier,
-} from "@/features/projects/ProjectFilterControls";
+import { ProjectFilterControls, type FilterTier } from "@/features/projects/ProjectFilterControls";
 import { cn } from "@/utils/cn";
 
 export function ProjectsSection() {
@@ -57,40 +54,50 @@ export function ProjectsSection() {
     return () => window.removeEventListener("portfolio:select-tier", handleFolderFilter);
   }, []);
 
-  // Pantau lebar track agar jarak scroll horizontal selalu tepat di semua ukuran layar
+  // Pantau lebar track hanya pada desktop (>= 1024px) via rAF agar mobile 0% layout reflow
   useEffect(() => {
-    const measure = () => {
-      const desktop = window.innerWidth >= 1024;
-      setIsDesktop(desktop);
-      if (trackRef.current && viewportRef.current) {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    let ro: ResizeObserver | null = null;
+    let rafId = 0;
+
+    const measureDesktop = () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(() => {
+        if (!trackRef.current || !viewportRef.current) return;
         const travel = Math.max(0, trackRef.current.scrollWidth - viewportRef.current.clientWidth + 48);
         setMaxTravel(travel);
-      }
+      });
     };
 
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (trackRef.current) ro.observe(trackRef.current);
-    if (viewportRef.current) ro.observe(viewportRef.current);
-    window.addEventListener("resize", measure);
+    const syncViewportMode = () => {
+      ro?.disconnect();
+      ro = null;
+
+      if (!mql.matches) {
+        setIsDesktop(false);
+        setMaxTravel(0);
+        return;
+      }
+
+      setIsDesktop(true);
+      measureDesktop();
+      ro = new ResizeObserver(measureDesktop);
+      if (trackRef.current) ro.observe(trackRef.current);
+      if (viewportRef.current) ro.observe(viewportRef.current);
+    };
+
+    syncViewportMode();
+    mql.addEventListener("change", syncViewportMode);
 
     return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", measure);
+      if (rafId) window.cancelAnimationFrame(rafId);
+      ro?.disconnect();
+      mql.removeEventListener("change", syncViewportMode);
     };
   }, [filteredProjects]);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 170,
-    damping: 28,
-    mass: 0.35,
-  });
-
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 170, damping: 28, mass: 0.35 });
   const xTransform = useTransform(smoothProgress, [0, 1], [0, -maxTravel]);
 
   const scrollStep = (direction: -1 | 1) => {
@@ -135,7 +142,7 @@ export function ProjectsSection() {
             <m.div
               ref={trackRef}
               style={useStickyHorizontal ? { x: xTransform } : undefined}
-              className="flex w-max gap-5 sm:gap-7 will-change-transform"
+              className={cn("flex w-max gap-5 sm:gap-7", useStickyHorizontal && "will-change-transform")}
             >
               {filteredProjects.map((project) => (
                 <ProjectCard

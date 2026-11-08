@@ -1,5 +1,3 @@
-"use client";
-
 import { ContactChannels } from "@/features/contact/ContactChannels";
 import { ContactForm } from "@/features/contact/ContactForm";
 

@@ -22,7 +22,7 @@ export function Navbar() {
   return (
     <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 px-3 sm:px-6 pointer-events-none">
       <div className="max-w-5xl mx-auto flex items-center justify-center">
-        <div className="pointer-events-auto flex items-center justify-between gap-1.5 sm:gap-4 rounded-full px-2 sm:px-4 py-1.5 sm:py-2 border border-white/12 bg-[#0F131C]/92 text-[#F3F4F6] backdrop-blur-md shadow-[0_10px_32px_rgba(0,0,0,0.45)] w-full sm:w-auto max-w-full">
+        <div className="pointer-events-auto flex items-center justify-between gap-1.5 sm:gap-4 rounded-full px-2 sm:px-4 py-1.5 sm:py-2 border border-white/12 bg-[#0F131C]/96 sm:bg-[#0F131C]/90 text-[#F3F4F6] sm:backdrop-blur-md shadow-[0_10px_32px_rgba(0,0,0,0.45)] w-full sm:w-auto max-w-full">
           {/* Identitas Monogram */}
           <Link
             href="/"

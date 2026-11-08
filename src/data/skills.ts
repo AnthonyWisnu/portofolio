@@ -19,7 +19,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       "React 18 & 19",
       "Tailwind CSS v4",
       "SVG & UI Interaktif",
-      "GSAP & ScrollTrigger",
+      "Lenis Smooth Scroll",
       "Framer Motion",
       "Vite",
       "Recharts & Plotly",

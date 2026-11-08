@@ -14,22 +14,44 @@ export function TypographyPortal() {
   const targetGlyphRef = useRef<HTMLSpanElement>(null);
   const [originPct, setOriginPct] = useState({ x: 42, y: 50 });
 
-  // Ukur posisi akurat huruf "O" sebagai titik pusat zoom portal
+  // Ukur posisi huruf "O" hanya saat mendekati viewport agar tidak memicu layout reflow saat load awal
   useEffect(() => {
-    const measureGlyph = () => {
-      if (!wordWrapRef.current || !targetGlyphRef.current) return;
-      const wordRect = wordWrapRef.current.getBoundingClientRect();
-      const letterRect = targetGlyphRef.current.getBoundingClientRect();
-      if (!wordRect.width || !wordRect.height) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-      const x = ((letterRect.left + letterRect.width / 2 - wordRect.left) / wordRect.width) * 100;
-      const y = ((letterRect.top + letterRect.height / 2 - wordRect.top) / wordRect.height) * 100;
-      setOriginPct({ x, y });
+    let rafId = 0;
+    let isNearViewport = false;
+    const measureGlyph = () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(() => {
+        if (!wordWrapRef.current || !targetGlyphRef.current) return;
+        const wordRect = wordWrapRef.current.getBoundingClientRect();
+        const letterRect = targetGlyphRef.current.getBoundingClientRect();
+        if (!wordRect.width || !wordRect.height) return;
+
+        const x = ((letterRect.left + letterRect.width / 2 - wordRect.left) / wordRect.width) * 100;
+        const y = ((letterRect.top + letterRect.height / 2 - wordRect.top) / wordRect.height) * 100;
+        setOriginPct({ x, y });
+      });
     };
 
-    measureGlyph();
-    window.addEventListener("resize", measureGlyph);
-    return () => window.removeEventListener("resize", measureGlyph);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isNearViewport = Boolean(entry?.isIntersecting);
+        if (isNearViewport) measureGlyph();
+      },
+      { rootMargin: "200px 0px" }
+    );
+    const handleResize = () => {
+      if (isNearViewport) measureGlyph();
+    };
+    observer.observe(container);
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({

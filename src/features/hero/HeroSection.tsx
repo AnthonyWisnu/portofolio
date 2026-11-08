@@ -1,15 +1,7 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowDown, ArrowUpRight, Cpu, Layers, Terminal } from "lucide-react";
 import { OWNER_PROFILE } from "@/data/owner";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { HeroBackdrop } from "@/features/hero/HeroBackdrop";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const PILLARS = [
   { icon: Layers, label: "Fullstack", title: "Next.js & NestJS" },
@@ -18,53 +10,16 @@ const PILLARS = [
 ];
 
 export function HeroSection() {
-  const reducedMotion = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (reducedMotion || !sectionRef.current || !contentRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Animasi masuk transform tanpa menyembunyikan LCP SSR pada frame awal
-      gsap.from(".hero-enter", {
-        y: 18,
-        duration: 0.65,
-        stagger: 0.06,
-        ease: "power3.out",
-        clearProps: "transform",
-      });
-
-      gsap.to(contentRef.current, {
-        yPercent: -10,
-        opacity: 0.35,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [reducedMotion]);
-
   return (
     <section
       id="hero"
-      ref={sectionRef}
       className="relative min-h-[100svh] bg-[#0B0D12] text-[#F3F4F6] pt-24 sm:pt-28 pb-8 px-4 sm:px-8 lg:px-12 xl:px-16 overflow-x-clip flex flex-col justify-between"
     >
       <HeroBackdrop />
 
       {/* Konten Utama Terpusat Bersih Gaya Editorial Atmosferik */}
-      <div
-        ref={contentRef}
-        className="max-w-5xl mx-auto w-full flex-1 flex flex-col items-center justify-center text-center space-y-7 relative z-10 py-8"
-      >
-        <div className="hero-enter inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/12 bg-[#121620]/85 text-xs font-mono max-w-full">
+      <div className="max-w-5xl mx-auto w-full flex-1 flex flex-col items-center justify-center text-center space-y-7 relative z-10 py-8">
+        <div className="hero-enter inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/12 bg-[#121620]/90 text-xs font-mono max-w-full">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
           <span className="text-[#D1D5DB] truncate">{OWNER_PROFILE.availabilityText}</span>
         </div>
@@ -113,7 +68,7 @@ export function HeroSection() {
 
           <MagneticButton
             href="#about"
-            className="px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider border border-white/15 hover:border-[#708FFF]/60 bg-[#121620]/80 hover:bg-[#181D2B] text-[#F3F4F6]"
+            className="px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider border border-white/15 hover:border-[#708FFF]/60 bg-[#121620]/85 hover:bg-[#181D2B] text-[#F3F4F6]"
           >
             <span>Kenali Profil Saya</span>
           </MagneticButton>

@@ -1,12 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useCallback, type ReactNode } from "react";
-import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type Lenis from "lenis";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollContextValue {
   scrollTo: (target: string | number | HTMLElement, options?: { offset?: number; duration?: number }) => void;
@@ -25,35 +21,38 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || reducedMotion) return;
+    // Hanya muat Lenis pada desktop pointer presisi agar CPU mobile tetap 0% overhead
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024) return;
 
-    if (reducedMotion) {
-      ScrollTrigger.refresh();
-      return;
-    }
+    let cancelled = false;
+    let rafId = 0;
+    let instance: Lenis | null = null;
 
-    const lenis = new Lenis({
-      duration: 1.05,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.0,
-      syncTouch: false,
-    });
+    const initDesktopLenis = async () => {
+      const { default: LenisCtor } = await import("lenis");
+      if (cancelled) return;
 
-    lenisRef.current = lenis;
-    lenis.on("scroll", ScrollTrigger.update);
+      instance = new LenisCtor({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        syncTouch: false,
+      });
 
-    const tickerFn = (time: number) => {
-      lenis.raf(time * 1000);
+      lenisRef.current = instance;
+
+      const raf = (time: number) => {
+        if (cancelled) return;
+        instance?.raf(time);
+        rafId = window.requestAnimationFrame(raf);
+      };
+      rafId = window.requestAnimationFrame(raf);
     };
 
-    gsap.ticker.add(tickerFn);
-    gsap.ticker.lagSmoothing(0);
-
-    // Intersep klik tautan hash lokal agar berpindah mulus melalui Lenis
     const handleHashClick = (event: MouseEvent) => {
       const target = (event.target as HTMLElement | null)?.closest("a");
       if (!target) return;
@@ -63,17 +62,23 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       if (!el) return;
 
       event.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -20, duration: 1.0 });
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(el as HTMLElement, { offset: -20, duration: 1.0 });
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
       window.history.replaceState(null, "", href);
     };
 
     document.addEventListener("click", handleHashClick);
+    const idleTimer = window.setTimeout(initDesktopLenis, 180);
 
     return () => {
+      cancelled = true;
+      window.clearTimeout(idleTimer);
+      if (rafId) window.cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleHashClick);
-      gsap.ticker.remove(tickerFn);
-      lenis.off("scroll", ScrollTrigger.update);
-      lenis.destroy();
+      instance?.destroy();
       lenisRef.current = null;
     };
   }, [reducedMotion]);
@@ -84,18 +89,19 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       if (lenis && !reducedMotion) {
         lenis.scrollTo(target, {
           offset: options?.offset ?? -20,
-          duration: options?.duration ?? 1.05,
+          duration: options?.duration ?? 1.0,
         });
         return;
       }
 
+      const behavior = reducedMotion ? "auto" : "smooth";
       if (typeof target === "number") {
-        window.scrollTo({ top: target, behavior: "auto" });
+        window.scrollTo({ top: target, behavior });
       } else if (typeof target === "string") {
         const el = document.querySelector(target);
-        if (el) el.scrollIntoView({ behavior: "auto" });
+        if (el) el.scrollIntoView({ behavior });
       } else {
-        target.scrollIntoView({ behavior: "auto" });
+        target.scrollIntoView({ behavior });
       }
     },
     [reducedMotion]

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { ArrowUpRight, Code2, Mail } from "lucide-react";
 import { OWNER_PROFILE } from "@/data/owner";
@@ -21,7 +19,7 @@ export function AboutIntroHero() {
       {/* Komposisi 3 Kolom Simetris: Judul Kiri, Potret Cutout Tengah, Narasi Kanan */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-4">
         {/* Kolom Kiri */}
-        <div className="about-reveal lg:col-span-4 space-y-5 text-center lg:text-left order-2 lg:order-1">
+        <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-2 lg:order-1">
           <div className="space-y-2">
             <div className="font-display text-2xl sm:text-3xl font-bold text-[#708FFF]">
               Halo, Saya
@@ -48,7 +46,7 @@ export function AboutIntroHero() {
         </div>
 
         {/* Kolom Tengah: Potret Transparan Menyatu ke Latar Obsidian */}
-        <div className="about-reveal lg:col-span-4 flex justify-center order-1 lg:order-2">
+        <div className="lg:col-span-4 flex justify-center order-1 lg:order-2">
           <div className="relative w-full max-w-[300px] sm:max-w-[340px] aspect-[4/5] flex items-end justify-center group">
             <div
               aria-hidden="true"
@@ -73,7 +71,7 @@ export function AboutIntroHero() {
         </div>
 
         {/* Kolom Kanan: Narasi Singkat & Tombol Kontak */}
-        <div className="about-reveal lg:col-span-4 space-y-5 text-center lg:text-left order-3">
+        <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-3">
           <div className="space-y-3 text-sm sm:text-base text-[#D1D5DB] leading-relaxed">
             <p>{OWNER_PROFILE.extendedBio[0]}</p>
             <p className="text-xs sm:text-sm text-[#A1A8B8] leading-relaxed">
