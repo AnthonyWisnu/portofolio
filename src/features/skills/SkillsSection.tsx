@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { CheckCircle2, Code2, Terminal } from "lucide-react";
+import { CheckCircle2, Code2 } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/data/skills";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/utils/cn";
@@ -18,36 +18,14 @@ export function SkillsSection() {
       className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 xl:px-16 bg-gradient-to-b from-[#0B0D12] to-[#0D1119] text-[#F3F4F6] border-t border-white/10 overflow-x-clip"
     >
       <div className="max-w-7xl mx-auto space-y-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
-              02 / Peta Keahlian
-            </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Pemindai Teknologi Terpakai.
-            </h2>
-          </div>
-          <p className="max-w-md text-xs sm:text-sm text-[#A1A8B8] font-mono leading-relaxed">
-            Seluruh daftar teknologi diturunkan langsung dari kode produksi, pipeline pengujian, dan server nyata pada portofolio ini.
-          </p>
+        <div>
+          <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
+            Keahlian Teknis
+          </h2>
         </div>
 
-        {/* Rangka Utama Pemindai */}
+        {/* Rangka Utama Pilihan Teknologi */}
         <div className="rounded-3xl border border-white/10 bg-[#121620] p-4 sm:p-7 lg:p-10 obsidian-card-shadow space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-white/10 font-mono text-xs text-[#A1A8B8]">
-            <div className="flex items-center gap-2.5">
-              <Terminal className="w-4 h-4 text-[#708FFF]" />
-              <span className="font-semibold text-[#F3F4F6]">
-                PEMINDAI STACK // {current.code}
-              </span>
-            </div>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/12 border border-emerald-500/30 text-emerald-300 text-[11px]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>{current.skills.length} Teknologi Aktif</span>
-            </div>
-          </div>
-
           {/* Tab Kategori dengan Indikator Framer layoutId */}
           <div
             role="tablist"
@@ -85,7 +63,7 @@ export function SkillsSection() {
             })}
           </div>
 
-          {/* Area Hasil Pindai Aktif */}
+          {/* Detail Kategori Terpilih */}
           <AnimatePresence mode="wait">
             <m.div
               key={current.id}
@@ -110,7 +88,7 @@ export function SkillsSection() {
                   </p>
                 </div>
 
-                {/* Sumber Pembuktian di Proyek Nyata */}
+                {/* Proyek Terkait */}
                 <div className="flex flex-wrap items-center gap-1.5 shrink-0">
                   <span className="text-[11px] font-mono text-[#A1A8B8] mr-1">Dipakai di:</span>
                   {current.verifiedIn.map((proj) => (

@@ -16,12 +16,11 @@ export const OWNER_PROFILE: OwnerProfile = {
   role: "Fullstack & Systems Engineer",
   headlineIntro: "Membangun sistem perangkat lunak yang terstruktur, cepat, dan siap produksi.",
   institution: "Universitas Udayana",
-  location: "Jimbaran, Bali",
-  origin: "Klaten, Jawa Tengah",
+  location: "",
+  origin: "",
   domain: "anthonywj.my.id",
   domainUrl: "https://anthonywj.my.id",
   email: "jatianthony@gmail.com",
-  availabilityText: "Terbuka untuk kolaborasi rekayasa sistem dan pengembangan aplikasi web",
   shortBio:
     "Mahasiswa Teknologi Informasi Universitas Udayana yang merancang aplikasi web fullstack, mesin otomasi multi-tenant, dan sistem temu kembali data.",
   extendedBio: [
@@ -64,7 +63,7 @@ export const OWNER_PROFILE: OwnerProfile = {
       institution: "Universitas Udayana",
       degree: "S1 Teknologi Informasi, Fakultas Teknik",
       period: "2023 - Sekarang",
-      location: "Jimbaran, Bali",
+      location: "",
       badge: "Perguruan Tinggi",
       highlights: [
         "Fokus utama pada Rekayasa Perangkat Lunak, Arsitektur Sistem Terdistribusi, Machine Learning, dan Sistem Temu Kembali Informasi.",
@@ -76,7 +75,7 @@ export const OWNER_PROFILE: OwnerProfile = {
       institution: "SMAN 3 Klaten",
       degree: "Matematika dan Ilmu Pengetahuan Alam (MIPA)",
       period: "Alumni",
-      location: "Klaten, Jawa Tengah",
+      location: "",
       badge: "Pendidikan Menengah",
       highlights: [
         "Memperkuat fondasi logika matematika, pemecahan masalah algoritmik, dan analisis kuantitatif sebelum mendalami teknik informatika.",

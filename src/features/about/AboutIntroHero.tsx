@@ -6,13 +6,9 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 export function AboutIntroHero() {
   return (
     <div className="relative space-y-6">
-      {/* Penanda Section & Judul Dekoratif Atas */}
-      <div className="text-center space-y-2">
-        <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#708FFF] font-semibold">
-          01 / Tentang Saya
-        </span>
+      <div className="text-center">
         <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white/90">
-          Profil &amp; Pendekatan
+          Tentang Saya
         </h2>
       </div>
 
@@ -28,7 +24,7 @@ export function AboutIntroHero() {
               {OWNER_PROFILE.name}
             </h3>
             <div className="font-mono text-xs text-[#A1A8B8]">
-              {OWNER_PROFILE.institution} · {OWNER_PROFILE.location}
+              {OWNER_PROFILE.institution}
             </div>
           </div>
 

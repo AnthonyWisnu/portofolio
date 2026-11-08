@@ -14,14 +14,9 @@ export function EducationTimeline({ entries }: EducationTimelineProps) {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
-          <GraduationCap className="w-4 h-4" />
-          <span>Pendidikan</span>
-        </div>
-        <span className="font-mono text-[11px] text-[#A1A8B8]">
-          Pilih untuk menyorot
-        </span>
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
+        <GraduationCap className="w-4 h-4" />
+        <span>Pendidikan</span>
       </div>
 
       <div className="relative pl-6 space-y-4">
@@ -72,10 +67,12 @@ export function EducationTimeline({ entries }: EducationTimelineProps) {
 
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-[#D1D5DB] mt-1">
                 <span>{item.degree}</span>
-                <span className="text-[#A1A8B8] inline-flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-[#708FFF]" />
-                  {item.location}
-                </span>
+                {item.location && (
+                  <span className="text-[#A1A8B8] inline-flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-[#708FFF]" />
+                    {item.location}
+                  </span>
+                )}
               </div>
 
               <ul className="mt-3 space-y-1.5 text-xs text-[#A1A8B8] leading-relaxed">

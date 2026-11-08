@@ -1,11 +1,8 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { NAV_ITEMS, OWNER_PROFILE } from "@/data/owner";
 import { FEATURED_PROJECTS } from "@/data/projects";
 import { MonogramMark } from "@/components/ui/Icons";
-import { useSmoothScroll } from "@/components/motion/SmoothScrollProvider";
 import { cn } from "@/utils/cn";
 
 interface FooterProps {
@@ -13,12 +10,7 @@ interface FooterProps {
 }
 
 export function Footer({ variant = "dark" }: FooterProps) {
-  const { scrollTo } = useSmoothScroll();
   const isDark = variant === "dark";
-
-  const handleBackToTop = () => {
-    scrollTo(0, { duration: 1.0 });
-  };
 
   return (
     <footer
@@ -53,7 +45,7 @@ export function Footer({ variant = "dark" }: FooterProps) {
                 isDark ? "text-[#A1A8B8]" : "text-[#4E5361]"
               )}
             >
-              {OWNER_PROFILE.institution} · {OWNER_PROFILE.location}
+              {OWNER_PROFILE.institution}
             </div>
           </div>
 
@@ -113,35 +105,15 @@ export function Footer({ variant = "dark" }: FooterProps) {
           </div>
         </div>
 
-        {/* Garis Penutup Bawah */}
         <div
           className={cn(
-            "pt-6 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono",
+            "pt-6 border-t text-xs font-mono",
             isDark
               ? "border-white/10 text-[#A1A8B8]"
               : "border-[#DFDCD2] text-[#4E5361]"
           )}
         >
-          <span>
-            &copy; {new Date().getFullYear()} {OWNER_PROFILE.name}. Seluruh karya bersumber dari repositori nyata.
-          </span>
-
-          <div className="flex items-center gap-4">
-            <span>{OWNER_PROFILE.domain}</span>
-            <button
-              type="button"
-              onClick={handleBackToTop}
-              className={cn(
-                "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-colors cursor-pointer",
-                isDark
-                  ? "border-white/15 text-[#F3F4F6] hover:border-[#708FFF] hover:text-white"
-                  : "border-[#D4D1C7] text-[#141519] hover:border-[#2F54EB] hover:text-[#2F54EB]"
-              )}
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-              <span>Ke Atas</span>
-            </button>
-          </div>
+          &copy; {new Date().getFullYear()} {OWNER_PROFILE.name}
         </div>
       </div>
     </footer>

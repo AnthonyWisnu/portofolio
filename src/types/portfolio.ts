@@ -1,7 +1,6 @@
 export interface SkillCategory {
   id: string;
   name: string;
-  code: string;
   summary: string;
   skills: string[];
   verifiedIn: string[];

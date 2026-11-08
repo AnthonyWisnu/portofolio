@@ -7,20 +7,10 @@ export function ContactSection() {
       id="contact"
       className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 xl:px-16 bg-gradient-to-b from-[#0F131C] to-[#0B0D12] text-[#F3F4F6] border-t border-white/10"
     >
-      <div className="max-w-7xl mx-auto space-y-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
-              04 / Kanal Kontak
-            </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Diskusi &amp; Kolaborasi Sistem.
-            </h2>
-          </div>
-          <p className="max-w-md text-sm text-[#A1A8B8] leading-relaxed">
-            Punya kebutuhan arsitektur web, otomasi operasional, atau ingin meninjau salah satu repositori di atas? Kirim pesan langsung melalui formulir atau email.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto space-y-10">
+        <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
+          Hubungi Saya
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           <div className="lg:col-span-5">

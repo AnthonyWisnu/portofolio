@@ -71,16 +71,15 @@ export function TypographyPortal() {
   const wordOpacity = useTransform(smoothProgress, [0.65, 0.88], [1, 0]);
   const stageFloodScale = useTransform(smoothProgress, [0.16, 0.76], [0.02, 2.8]);
   const stageFloodOpacity = useTransform(smoothProgress, [0.14, 0.56], [0, 1]);
-  const captionOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
 
   if (reducedMotion) {
     return (
       <div
         id="projects"
-        className="bg-gradient-to-b from-[#0D1119] to-[#0F131C] py-14 px-4 text-center border-t border-white/10"
+        className="bg-gradient-to-b from-[#0D1119] to-[#0F131C] py-12 px-4 text-center border-t border-white/10"
       >
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#708FFF]">
-          03 / Etalase Karya Terkurasi
+        <span className="font-display text-2xl font-bold tracking-tight text-white/90">
+          PROYEK
         </span>
       </div>
     );
@@ -94,17 +93,6 @@ export function TypographyPortal() {
       aria-label="Transisi menuju pameran proyek"
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden flex flex-col items-center justify-center bg-[#0D1119]">
-        <m.div
-          style={{ opacity: captionOpacity }}
-          className="absolute top-24 sm:top-28 inset-x-0 text-center px-4 z-10 pointer-events-none"
-        >
-          <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#9FB4FF]">
-            03 / Etalase Karya Terkurasi
-          </span>
-          <p className="text-xs text-[#A1A8B8] mt-2">
-            Terus gulir untuk memasuki ruang karya
-          </p>
-        </m.div>
 
         {/* Cakram Obsidian sekunder (#0F131C) berpinggir halo cobalt lembut */}
         <m.div

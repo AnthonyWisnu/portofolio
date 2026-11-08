@@ -82,7 +82,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Repositori GitHub ${project.title}`}
+          aria-label={`Repo GitHub ${project.title}`}
           className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#181D2B] border border-white/10 hover:border-[#708FFF]/45 text-xs font-mono text-[#F3F4F6] transition-colors"
         >
           <GithubIcon className="w-3.5 h-3.5" />

@@ -52,9 +52,9 @@ const FOLDERS: QuickFolder[] = [
   },
   {
     id: "skills",
-    label: "Peta Keahlian",
+    label: "Keahlian Teknis",
     countLabel: "06 Modul",
-    subtitle: "Teknologi terverifikasi dari kode nyata",
+    subtitle: "Bahasa, framework, dan infrastruktur",
     sheets: [
       { title: "Next.js & React 19" },
       { title: "NestJS & PostgreSQL" },
@@ -154,13 +154,7 @@ export function TechFolderDeck() {
   };
 
   return (
-    <div className="space-y-4 pt-2">
-      <div className="flex items-center justify-between text-xs font-mono text-[#A1A8B8]">
-        <span className="uppercase tracking-widest text-[#708FFF] font-semibold">
-          Pintasan Direktori Karya
-        </span>
-        <span>Klik folder untuk lompat cepat</span>
-      </div>
+    <div className="pt-2">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {FOLDERS.map((folder) => (
           <FolderCard key={folder.id} folder={folder} onSelect={handleSelect} />

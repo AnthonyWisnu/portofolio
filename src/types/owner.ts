@@ -34,7 +34,6 @@ export interface OwnerProfile {
   domain: string;
   domainUrl: string;
   email: string;
-  availabilityText: string;
   shortBio: string;
   extendedBio: string[];
   focusAreas: FocusArea[];

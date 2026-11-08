@@ -27,16 +27,10 @@ export function ProjectFilterControls({
 }: ProjectFilterControlsProps) {
   return (
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
-      <div className="space-y-2.5">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
-          03 / Pameran Proyek
-        </span>
+      <div>
         <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
-          Karya Terkurasi &amp; Arsitektur Nyata.
+          Proyek Pilihan
         </h2>
-        <p className="text-sm text-[#A1A8B8] max-w-xl leading-relaxed">
-          Tujuh proyek pilihan dari sistem SaaS produksi, mesin otomasi media, hingga riset GraphRAG dan pemodelan harga.
-        </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-3 shrink-0">

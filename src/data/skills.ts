@@ -4,7 +4,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "languages",
     name: "Bahasa Pemrograman",
-    code: "MOD_01 // CORE LANG",
     summary: "Bahasa utama yang digunakan sehari-hari pada layanan backend, frontend web, dan skrip data science.",
     skills: ["TypeScript", "JavaScript (ES2023+)", "Python 3", "SQL (PostgreSQL)", "HTML5 & CSS3"],
     verifiedIn: ["Sora Wellness", "Kemitraan Mebel", "MinjiBot V2", "ScoutRAG", "Bali Smart Pricing"],
@@ -12,7 +11,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "frontend",
     name: "Frontend & Visual",
-    code: "MOD_02 // INTERFACE",
     summary: "Membangun antarmuka editorial responsif, grafis vektor SVG presisi, serta animasi interaksi berbasis scroll.",
     skills: [
       "Next.js (App Router)",
@@ -29,7 +27,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "backend",
     name: "Backend & Database",
-    code: "MOD_03 // SERVER & ORM",
     summary: "Layanan API modular, kontrol transaksi atomik, isolasi multi-tenant, serta skema relasional ketat.",
     skills: [
       "NestJS",
@@ -46,7 +43,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "ai-data",
     name: "AI, Graph & ML",
-    code: "MOD_04 // INTELLIGENCE",
     summary: "Arsitektur temu kembali data hibrida, rekayasa fitur geospasial, dan interpretabilitas model prediktif.",
     skills: [
       "Neo4j Knowledge Graph",
@@ -63,7 +59,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "devops-security",
     name: "DevOps & Keamanan",
-    code: "MOD_05 // INFRASTRUCTURE",
     summary: "Menjalankan aplikasi di VPS Linux secara stabil dengan otomatisasi pengujian, kontainerisasi, dan proteksi sesi.",
     skills: [
       "Docker & Compose",
@@ -80,7 +75,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "media-automation",
     name: "Media & Otomasi",
-    code: "MOD_06 // PIPELINES",
     summary: "Pemrosesan berkas media berkapasitas besar, konversi codec universal, dan mesin otomasi percakapan.",
     skills: [
       "FFmpeg & FFprobe",

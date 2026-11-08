@@ -93,7 +93,7 @@ export function Navbar() {
 
             <a
               href={isDetailPage ? "/#contact" : "#contact"}
-              aria-label="Kirim Pesan"
+              aria-label="Hubungi lewat formulir kontak"
               className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors bg-[#2F54EB] text-white hover:bg-[#2342C8]"
             >
               <Mail className="w-3.5 h-3.5" />

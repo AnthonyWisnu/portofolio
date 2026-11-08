@@ -16,14 +16,9 @@ export function FocusPillarsPanel({ items }: FocusPillarsPanelProps) {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
-          <Cpu className="w-4 h-4" />
-          <span>Fokus Rekayasa</span>
-        </div>
-        <span className="font-mono text-[11px] text-[#A1A8B8]">
-          Berbasis repositori nyata
-        </span>
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#708FFF] font-semibold">
+        <Cpu className="w-4 h-4" />
+        <span>Fokus Rekayasa</span>
       </div>
 
       <div className="relative pl-6 space-y-3.5">
