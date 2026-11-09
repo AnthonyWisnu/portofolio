@@ -14,7 +14,7 @@ export const OWNER_PROFILE: OwnerProfile = {
   shortName: "Anthony Wisnu",
   monogram: "AWJ",
   role: "Fullstack & Systems Engineer",
-  headlineIntro: "Membangun sistem perangkat lunak yang terstruktur, cepat, dan siap produksi.",
+  headlineIntro: "Membangun aplikasi web fullstack, otomasi sistem, dan eksplorasi data.",
   institution: "Universitas Udayana",
   location: "",
   origin: "",
@@ -22,64 +22,47 @@ export const OWNER_PROFILE: OwnerProfile = {
   domainUrl: "https://anthonywj.my.id",
   email: "jatianthony@gmail.com",
   shortBio:
-    "Mahasiswa Teknologi Informasi Universitas Udayana yang merancang aplikasi web fullstack, mesin otomasi multi-tenant, dan sistem temu kembali data.",
+    "Mahasiswa Teknologi Informasi Universitas Udayana yang membangun aplikasi web fullstack, layanan otomasi, dan sistem berbasis data.",
   extendedBio: [
-    "Saya menaruh perhatian besar pada arsitektur sistem dari hulu ke hilir: mulai dari perancangan skema database yang ketat, validasi API yang tahan galat, pipeline deployment di server Linux, hingga antarmuka pengguna yang ringan dan komunikatif.",
-    "Setiap karya yang saya tampilkan lahir dari kebutuhan nyata: sistem kemitraan pabrik mebel dan eksportir berbasis presisi akuntansi desimal, platform reservasi studio kebugaran dengan gateway pembayaran Midtrans, mesin ingest media multi-platform, hingga riset GraphRAG serta pemodelan harga properti berbasis Explainable AI.",
+    "Sebagai mahasiswa Teknologi Informasi Universitas Udayana, saya senang membangun perangkat lunak yang langsung dipakai untuk kebutuhan nyata, mulai dari platform reservasi studio dan sistem kemitraan bisnis, layanan otomasi media, hingga eksplorasi Knowledge Graph dan machine learning.",
   ],
   focusAreas: [
     {
       id: "fullstack-architecture",
-      title: "Arsitektur Fullstack & SaaS",
+      title: "Pengembangan Web Fullstack",
       subtitle: "Next.js, NestJS, PostgreSQL",
-      description:
-        "Merancang aplikasi web produksi dengan isolasi peran (RBAC), state-machine transaksi aman, integrasi Midtrans, serta pelaporan PDF dan spreadsheet.",
+      badge: "SaaS & Sistem Bisnis",
     },
     {
       id: "systems-automation",
       title: "Otomasi & Pipeline Media",
       subtitle: "Node.js, TypeScript, FFmpeg",
-      description:
-        "Mengembangkan layanan background multi-tenant, interceptor anti-raid, pembatas antrean proses (semaphore), dan proteksi keamanan jaringan.",
+      badge: "Bot & Ekstraksi Media",
     },
     {
       id: "ai-data-retrieval",
-      title: "AI, Knowledge Graph & ML",
+      title: "Knowledge Graph & Machine Learning",
       subtitle: "FastAPI, Neo4j, ChromaDB, CatBoost",
-      description:
-        "Mengintegrasikan pengambilan data graf relasional dan vektor untuk mengurangi halusinasi LLM, serta memodelkan prediksi tarif dengan interpretasi SHAP.",
-    },
-    {
-      id: "engineering-rigor",
-      title: "Pengujian & Infrastruktur VPS",
-      subtitle: "Vitest, Playwright, Docker, Nginx",
-      description:
-        "Menjaga keandalan kode lewat ratusan unit dan E2E test, proses latar belakang PM2, serta alur CI/CD otomatis via GitHub Actions.",
+      badge: "GraphRAG & Explainable AI",
     },
   ],
   education: [
     {
       id: "unud",
       institution: "Universitas Udayana",
-      degree: "S1 Teknologi Informasi, Fakultas Teknik",
+      degree: "S1 Teknologi Informasi",
+      faculty: "Fakultas Teknik",
       period: "2023 - Sekarang",
-      location: "",
-      badge: "Perguruan Tinggi",
-      highlights: [
-        "Fokus utama pada Rekayasa Perangkat Lunak, Arsitektur Sistem Terdistribusi, Machine Learning, dan Sistem Temu Kembali Informasi.",
-        "Mengembangkan berbagai proyek produksi dan riset terapan mulai dari sistem kemitraan industri mebel hingga GraphRAG sepak bola.",
-      ],
+      badge: "Sarjana",
+      logo: "/images/logo-unud.webp",
     },
     {
       id: "smaga-klaten",
       institution: "SMAN 3 Klaten",
-      degree: "Matematika dan Ilmu Pengetahuan Alam (MIPA)",
+      degree: "Matematika dan Ilmu Pengetahuan Alam",
+      faculty: "SMA Negeri",
       period: "Alumni",
-      location: "",
-      badge: "Pendidikan Menengah",
-      highlights: [
-        "Memperkuat fondasi logika matematika, pemecahan masalah algoritmik, dan analisis kuantitatif sebelum mendalami teknik informatika.",
-      ],
+      badge: "MIPA",
     },
   ],
   socials: [

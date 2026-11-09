@@ -8,7 +8,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "utama",
     category: "Fullstack & SaaS",
     year: "2026",
-    tagline: "Platform manajemen, reservasi kelas, dompet saldo, dan event studio kebugaran berbasis API-first.",
+    tagline: "Platform reservasi kelas, dompet saldo, dan operasional studio kebugaran.",
     summary:
       "Ekosistem operasional lengkap untuk studio Yoga dan Pilates yang memisahkan aturan bisnis backend dari antarmuka klien, lengkap dengan Midtrans Snap dan runner CI/CD produksi.",
     problem:
@@ -57,7 +57,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "utama",
     category: "Fullstack & SaaS",
     year: "2026",
-    tagline: "Sistem informasi multi-tenant Make-to-Order dengan akuntansi presisi desimal, state-locking produksi, dan ekspor PDF/XLSX.",
+    tagline: "Sistem produksi Make-to-Order dengan akuntansi desimal dan laporan PDF/XLSX.",
     summary:
       "Menghubungkan pengelolaan Purchase Order eksportir mebel (PT Amalia Surya Cemerlang, Klaten) dengan operasional bengkel UMKM mitra dari bahan baku hingga perhitungan HPP aktual.",
     problem:
@@ -105,7 +105,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "utama",
     category: "Automation & Media",
     year: "2026",
-    tagline: "Mesin ekstraksi dan normalisasi media 10 platform plus konverter video lokal ke MP3 siap produksi.",
+    tagline: "Ekstraktor media 10 platform dan konverter video lokal ke MP3.",
     summary:
       "Aplikasi web cepat untuk mengekstrak video, foto carousel HD, dan audio dari 10 platform populer sekaligus menyediakan konverter file video lokal hingga 400 MB dengan proteksi VPS hemat memori.",
     problem:
@@ -138,7 +138,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "utama",
     category: "Automation & Media",
     year: "2026",
-    tagline: "Platform bot WhatsApp multi-tenant berarsitektur sewa grup, ekonomi persisten, dan proteksi anti-raid.",
+    tagline: "Bot WhatsApp multi-tenant dengan manajemen sewa grup dan anti-raid.",
     summary:
       "Mesin otomasi WhatsApp berskala produksi di atas Baileys dan TypeScript ketat yang mengisolasi hak akses, saldo, serta moderasi per penyewaan grup dengan dukungan deployment CI/CD otomatis.",
     problem:
@@ -170,7 +170,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "utama",
     category: "Web Komersial",
     year: "2026",
-    tagline: "Platform company profile, katalog wahana wisata bahari dwibahasa, dan CMS admin untuk operator Tanjung Benoa.",
+    tagline: "Katalog wahana wisata bahari dwibahasa dan CMS admin Tanjung Benoa.",
     summary:
       "Website resmi untuk operator wisata bahari di Bali dengan dukungan penuh dua bahasa (/en dan /id), keranjang pemesanan WhatsApp tanpa login, serta panel CMS berkeamanan tinggi.",
     problem:
@@ -208,7 +208,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "pendukung",
     category: "AI & Knowledge Graph",
     year: "2026",
-    tagline: "Sistem tanya-jawab dan estimasi rentang valuasi pemain sepak bola berbasis Knowledge Graph Neo4j dan ChromaDB.",
+    tagline: "Pencarian hibrida dan valuasi pemain sepak bola berbasis GraphRAG.",
     summary:
       "Proyek riset Sistem Temu Kembali Informasi (STKI) untuk 5 liga top Eropa yang memadukan kueri Cypher terstruktur dan semantic search vektor guna menjaga jawaban tetap berdasar kutipan data.",
     problem:
@@ -239,7 +239,7 @@ export const CURATED_PROJECTS: Project[] = [
     tier: "pendukung",
     category: "Machine Learning & Data",
     year: "2026",
-    tagline: "Mesin estimasi tarif sewa harian properti Bali menggunakan CatBoost, jarak geospasial Haversine, dan SHAP Explainable AI.",
+    tagline: "Prediksi tarif sewa vila Bali dengan CatBoost dan SHAP Explainable AI.",
     summary:
       "Pipeline data science 6 tahap yang membersihkan distorsi data mentah akomodasi Bali, membandingkan 3 algoritma Gradient Boosting & Random Forest, dan menyajikan kalkulator harga interaktif transparan.",
     problem:

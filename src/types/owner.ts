@@ -2,17 +2,17 @@ export interface EducationEntry {
   id: string;
   institution: string;
   degree: string;
+  faculty: string;
   period: string;
-  location: string;
-  highlights: string[];
   badge: string;
+  logo?: string;
 }
 
 export interface FocusArea {
   id: string;
   title: string;
   subtitle: string;
-  description: string;
+  badge: string;
 }
 
 export interface SocialLinkItem {

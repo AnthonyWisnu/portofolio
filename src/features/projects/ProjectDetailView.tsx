@@ -41,10 +41,9 @@ export function ProjectDetailView({
             <span className="text-[#A1A8B8] ml-1">{project.year}</span>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.06]">{project.title}</h1>
             <p className="text-base sm:text-xl text-[#D1D5DB] max-w-3xl leading-relaxed">{project.tagline}</p>
-            <p className="text-sm sm:text-base text-[#A1A8B8] max-w-3xl leading-relaxed">{project.summary}</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">

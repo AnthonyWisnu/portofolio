@@ -1,50 +1,95 @@
-import { ArrowUpRight } from "lucide-react";
-import { OWNER_PROFILE } from "@/data/owner";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import { HeroBackdrop } from "@/features/hero/HeroBackdrop";
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { m, useScroll, useTransform } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const titleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.04, 0.2, 0.65, 0.92],
+    [0, 0.25, 1, 1, 0]
+  );
+  const titleY = useTransform(
+    scrollYProgress,
+    [0, 0.22, 0.65, 0.95],
+    [76, 0, -14, -56]
+  );
+  const titleScale = useTransform(
+    scrollYProgress,
+    [0, 0.22, 0.7],
+    [0.94, 1, 1.02]
+  );
+
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] bg-[#0B0D12] text-[#F3F4F6] pt-24 sm:pt-28 pb-12 px-4 sm:px-8 lg:px-12 xl:px-16 overflow-x-clip flex flex-col justify-center"
+      ref={sectionRef}
+      className="relative h-[165vh] bg-[#0B0D12] text-[#F3F4F6] select-none"
     >
-      <HeroBackdrop />
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
+        {/* Layer 1 (z-0): Latar Penuh Lanskap Pegunungan */}
+        <Image
+          src="/images/hero-landscape.webp"
+          alt="Anthony Wisnu Jati menghadap lanskap pegunungan berkabut"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-center z-0"
+        />
 
-      {/* Konten Utama Terpusat */}
-      <div className="max-w-5xl mx-auto w-full flex flex-col items-center justify-center text-center space-y-6 relative z-10 py-8">
-        <div className="space-y-4">
-          <div className="hero-enter font-mono text-xs sm:text-sm uppercase tracking-[0.26em] text-[#708FFF] font-semibold">
-            {OWNER_PROFILE.role}
-          </div>
+        {/* Vignette Atas Halus untuk Keterbacaan Navbar */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0B0D12]/45 via-[#0B0D12]/15 to-transparent z-10 pointer-events-none"
+        />
 
-          <h1 className="hero-enter font-display text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold tracking-tight leading-[1.01] text-white">
-            ANTHONY WISNU <span className="text-[#A1A8B8]">JATI</span>
+        {/* Layer 2 (z-10): Teks WELCOME TO MY PORTFOLIO di Belakang Subjek */}
+        <m.div
+          style={
+            reducedMotion
+              ? undefined
+              : {
+                  opacity: titleOpacity,
+                  y: titleY,
+                  scale: titleScale,
+                }
+          }
+          className="absolute inset-x-0 top-[24%] sm:top-[22%] lg:top-[21%] z-10 flex justify-center px-4 pointer-events-none"
+        >
+          <h1 className="font-display text-[2.35rem] sm:text-6xl md:text-7xl lg:text-[5.4rem] xl:text-[6.25rem] font-extrabold uppercase tracking-tight leading-[0.98] text-center text-white/90 drop-shadow-[0_8px_28px_rgba(11,13,18,0.32)]">
+            WELCOME TO MY
+            <br />
+            PORTFOLIO
           </h1>
+        </m.div>
 
-          <p className="hero-enter text-sm sm:text-base lg:text-lg text-[#A1A8B8] max-w-2xl mx-auto leading-relaxed">
-            {OWNER_PROFILE.shortBio}
-          </p>
-        </div>
+        {/* Layer 3 (z-20): Cutout Subjek di Depan Teks */}
+        <Image
+          src="/images/hero-subject-cutout.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center z-20 pointer-events-none"
+        />
 
-        {/* Tombol Aksi Utama */}
-        <div className="hero-enter flex flex-wrap items-center justify-center gap-3 pt-2">
-          <MagneticButton
-            href="#projects-showcase"
-            cursorLabel="Lihat"
-            className="px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider bg-[#2F54EB] hover:bg-[#2342C8] text-white font-semibold shadow-lg shadow-[#2F54EB]/25"
-          >
-            <span>Lihat Proyek</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </MagneticButton>
-
-          <MagneticButton
-            href="#about"
-            className="px-6 py-3.5 rounded-full text-xs font-mono uppercase tracking-wider border border-white/15 hover:border-[#708FFF]/60 bg-[#121620]/85 hover:bg-[#181D2B] text-[#F3F4F6]"
-          >
-            <span>Tentang Saya</span>
-          </MagneticButton>
-        </div>
+        {/* Layer 4 (z-30): Gradasi Bawah Menyatu ke Bagian Tentang Saya (#0B0D12) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-36 sm:h-48 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/65 to-transparent z-30 pointer-events-none"
+        />
       </div>
     </section>
   );

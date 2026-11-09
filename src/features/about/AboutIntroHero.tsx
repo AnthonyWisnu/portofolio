@@ -12,20 +12,17 @@ export function AboutIntroHero() {
         </h2>
       </div>
 
-      {/* Komposisi 3 Kolom Simetris: Judul Kiri, Potret Cutout Tengah, Narasi Kanan */}
+      {/* Komposisi 3 Kolom Simetris: Nama Kiri, Potret Cutout Tengah, Narasi Singkat Kanan */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-4">
         {/* Kolom Kiri */}
         <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-2 lg:order-1">
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="font-display text-2xl sm:text-3xl font-bold text-[#708FFF]">
               Halo, Saya
             </div>
             <h3 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight leading-[1.06] text-white">
               {OWNER_PROFILE.name}
             </h3>
-            <div className="font-mono text-xs text-[#A1A8B8]">
-              {OWNER_PROFILE.institution}
-            </div>
           </div>
 
           <div className="pt-1 flex justify-center lg:justify-start">
@@ -66,22 +63,19 @@ export function AboutIntroHero() {
           </div>
         </div>
 
-        {/* Kolom Kanan: Narasi Singkat & Tombol Kontak */}
+        {/* Kolom Kanan: Satu Paragraf Natural & Tombol Kontak */}
         <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-3">
-          <div className="space-y-3 text-sm sm:text-base text-[#D1D5DB] leading-relaxed">
-            <p>{OWNER_PROFILE.extendedBio[0]}</p>
-            <p className="text-xs sm:text-sm text-[#A1A8B8] leading-relaxed">
-              {OWNER_PROFILE.extendedBio[1]}
-            </p>
-          </div>
+          <p className="text-sm sm:text-base text-[#D1D5DB] leading-relaxed">
+            {OWNER_PROFILE.extendedBio[0]}
+          </p>
 
           <div className="pt-1 flex justify-center lg:justify-start">
             <MagneticButton
               href="#contact"
               cursorLabel="Kontak"
-              className="px-5 py-3 rounded-xl bg-[#181D2B] border border-white/14 hover:border-[#708FFF]/60 hover:bg-[#1E2536] text-[#F3F4F6] text-xs font-mono uppercase tracking-wider font-semibold"
+              className="px-5 py-3 rounded-xl bg-[#2F54EB] hover:bg-[#2342C8] text-white text-xs font-mono uppercase tracking-wider font-semibold shadow-lg shadow-[#2F54EB]/25"
             >
-              <Mail className="w-4 h-4 text-[#708FFF]" />
+              <Mail className="w-4 h-4" />
               <span>Hubungi Saya</span>
             </MagneticButton>
           </div>

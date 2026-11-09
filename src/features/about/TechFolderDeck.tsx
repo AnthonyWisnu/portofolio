@@ -129,7 +129,6 @@ function FolderCard({
               <span className="font-mono text-[11px] text-[#9FB4FF]">{folder.countLabel}</span>
             </div>
             <h4 className="font-display text-base font-bold text-white truncate">{folder.label}</h4>
-            <p className="text-xs text-[#A1A8B8] truncate">{folder.subtitle}</p>
           </div>
 
           <span className="w-8 h-8 rounded-full bg-[#181D2B] border border-white/10 group-hover:bg-[#2F54EB] group-hover:border-[#2F54EB] text-[#A1A8B8] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
