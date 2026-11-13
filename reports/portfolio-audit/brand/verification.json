@@ -1,0 +1,36 @@
+{
+  "icons": [
+    {
+      "href": "http://127.0.0.1:4310/favicon.ico?favicon.1jrresc0juqns.ico",
+      "type": "image/x-icon",
+      "rel": "icon",
+      "sizes": "48x48",
+      "status": 200,
+      "width": 48,
+      "height": 48
+    },
+    {
+      "href": "http://127.0.0.1:4310/icon.svg?icon.238fn4h8tgser.svg",
+      "type": "image/svg+xml",
+      "rel": "icon",
+      "sizes": "any",
+      "status": 200,
+      "width": 48,
+      "height": 48
+    },
+    {
+      "href": "http://127.0.0.1:4310/apple-icon.png?apple-icon.0h3am65peltq8.png",
+      "type": "image/png",
+      "rel": "apple-touch-icon",
+      "sizes": "180x180",
+      "status": 200,
+      "width": 180,
+      "height": 180
+    }
+  ],
+  "navbarAndFooter": true,
+  "keyboardFocus": true,
+  "mobileOverflow": false,
+  "detailIconInherited": true,
+  "pageErrors": []
+}

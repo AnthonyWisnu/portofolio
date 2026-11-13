@@ -12,7 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const OWNER_PROFILE: OwnerProfile = {
   name: "Anthony Wisnu Jati",
   shortName: "Anthony Wisnu",
-  monogram: "AWJ",
+  monogram: "AW",
   role: "Fullstack & Systems Engineer",
   headlineIntro: "Membangun aplikasi web fullstack, otomasi sistem, dan eksplorasi data.",
   institution: "Universitas Udayana",

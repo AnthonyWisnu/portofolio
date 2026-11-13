@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "assets:brand": "node scripts/sync-brand-assets.mjs",
     "lint": "eslint"
   },
   "dependencies": {

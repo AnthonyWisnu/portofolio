@@ -29,7 +29,7 @@ export function Navbar() {
             className="flex items-center gap-2 pl-1 pr-1 sm:pl-1.5 sm:pr-2 py-1 rounded-full shrink-0 group"
             aria-label="Beranda Anthony Wisnu Jati"
           >
-            <MonogramMark className="w-5 h-5 sm:w-6 sm:h-6 text-[#708FFF] transition-transform duration-300 group-hover:scale-105" />
+            <MonogramMark className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 transition-transform group-hover:scale-105" />
             <span className="hidden lg:inline font-display text-xs font-bold tracking-wide text-[#F3F4F6]">
               {OWNER_PROFILE.shortName}
             </span>

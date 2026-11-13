@@ -1,0 +1,14 @@
+{
+  "name": "Anthony Wisnu",
+  "initials": "AW",
+  "viewBox": "0 0 48 48",
+  "size": 48,
+  "radius": 12,
+  "background": "#2F54EB",
+  "foreground": "#FFFFFF",
+  "strokeWidth": 3.25,
+  "paths": [
+    "M6 34L12 14L18 34M8.2 27H15.8",
+    "M21 14L25.5 34L31.5 21.5L37.5 34L42 14"
+  ]
+}

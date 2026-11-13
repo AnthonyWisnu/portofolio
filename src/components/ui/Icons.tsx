@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import BRAND_MARK from "@/data/brandMark.json";
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -70,15 +71,29 @@ export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
 
 export function MonogramMark(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
-      <rect x="2" y="2" width="28" height="28" rx="8" stroke="currentColor" strokeWidth="2" />
-      <path
-        d="M9 21L13.5 11L18 21M10.7 17.5H16.3M20.5 11V21M20.5 16L23.5 11"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <svg
+      viewBox={BRAND_MARK.viewBox}
+      fill="none"
+      aria-hidden="true"
+      data-brand-mark="aw"
+      {...props}
+    >
+      <rect
+        width={BRAND_MARK.size}
+        height={BRAND_MARK.size}
+        rx={BRAND_MARK.radius}
+        fill={BRAND_MARK.background}
       />
+      {BRAND_MARK.paths.map((path) => (
+        <path
+          key={path}
+          d={path}
+          stroke={BRAND_MARK.foreground}
+          strokeWidth={BRAND_MARK.strokeWidth}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ))}
     </svg>
   );
 }

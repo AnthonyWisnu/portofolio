@@ -21,7 +21,7 @@ export function Footer({ variant = "dark" }: FooterProps) {
     >
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <Link href="/" className="inline-flex items-center gap-2.5 group">
-          <MonogramMark className="w-6 h-6 text-[#708FFF] transition-transform duration-300 group-hover:scale-105" />
+          <MonogramMark className="w-8 h-8 shrink-0 transition-transform group-hover:scale-105" />
           <span className="font-display text-base font-bold tracking-tight">
             {OWNER_PROFILE.name}
           </span>
