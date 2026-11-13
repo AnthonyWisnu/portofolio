@@ -21,6 +21,9 @@ export function CustomCursor() {
     let isHovering = false;
     let isVisible = false;
     let rafId = 0;
+    let hasLabel = false;
+    let ringScale = 0.5;
+    const targetScale = () => (hasLabel ? 1 : isHovering ? 0.66 : 0.5) * (pressedRef.current ? 0.9 : 1);
 
     const applyDotTransform = () => {
       if (dotRef.current) {
@@ -30,8 +33,7 @@ export function CustomCursor() {
 
     const applyRingTransform = () => {
       if (ringRef.current) {
-        const scale = pressedRef.current ? 0.88 : isHovering ? 1.32 : 1;
-        ringRef.current.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%) scale(${scale})`;
+        ringRef.current.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%) scale(${ringScale.toFixed(3)})`;
       }
     };
 
@@ -47,11 +49,13 @@ export function CustomCursor() {
       const dy = mouseY - ringY;
       ringX += dx * 0.24;
       ringY += dy * 0.24;
+      const ds = targetScale() - ringScale;
+      ringScale += ds * 0.24;
 
       applyRingTransform();
 
       // Tidurkan loop RAF otomatis ketika cincin kursor sudah menyusul posisi pointer
-      if (Math.abs(dx) < 0.18 && Math.abs(dy) < 0.18) {
+      if (Math.abs(dx) < 0.18 && Math.abs(dy) < 0.18 && Math.abs(ds) < 0.001) {
         ringX = mouseX;
         ringY = mouseY;
         applyRingTransform();
@@ -86,18 +90,19 @@ export function CustomCursor() {
       const interactive = target?.closest("a, button, input, textarea, select, [role='button']");
       isHovering = Boolean(interactive || labeled);
       const nextLabel = labeled?.getAttribute("data-cursor-label") || "";
+      hasLabel = Boolean(nextLabel);
       setCursorLabel((prev) => (prev === nextLabel ? prev : nextLabel));
-      applyRingTransform();
+      wakeLoop();
     };
 
     const onMouseDown = () => {
       pressedRef.current = true;
-      applyRingTransform();
+      wakeLoop();
     };
 
     const onMouseUp = () => {
       pressedRef.current = false;
-      applyRingTransform();
+      wakeLoop();
     };
 
     const onLeave = () => {
@@ -131,10 +136,10 @@ export function CustomCursor() {
       <div
         ref={ringRef}
         aria-hidden="true"
-        className={`fixed top-0 left-0 z-[9998] hidden md:flex items-center justify-center rounded-full pointer-events-none opacity-0 transition-[width,height,background-color,border-color,opacity] duration-200 will-change-transform ${
+        className={`fixed top-0 left-0 z-[9998] hidden md:flex w-14 h-14 items-center justify-center rounded-full pointer-events-none opacity-0 transition-opacity ${
           cursorLabel
-            ? "w-20 h-20 bg-[#2F54EB]/90 border border-[#708FFF] text-white shadow-lg"
-            : "w-7 h-7 bg-transparent border border-[#708FFF]/60"
+            ? "bg-[#2F54EB]/90 border border-[#708FFF] text-white"
+            : "bg-transparent border border-[#708FFF]/60"
         }`}
       >
         {cursorLabel && (

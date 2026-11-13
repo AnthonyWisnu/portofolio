@@ -1,0 +1,25 @@
+{
+  "outputRoot": "public/projects",
+  "rawRoot": "C:/Temp/portfolio-captures",
+  "projects": [
+    {
+      "slug": "void-downloader",
+      "baseUrl": "https://voiddl.my.id",
+      "shots": [
+        {
+          "name": "downloader",
+          "path": "/",
+          "alt": "Antarmuka VOID Downloader untuk menganalisis tautan media",
+          "caption": "Antarmuka unduhan media dari demo online."
+        },
+        {
+          "name": "documentation",
+          "path": "/",
+          "actions": [{ "type": "scroll", "selector": "#how-to", "offset": 90 }],
+          "alt": "Panduan penggunaan dan pertanyaan umum pada aplikasi VOID",
+          "caption": "Panduan analisis dan pengunduhan media."
+        }
+      ]
+    }
+  ]
+}

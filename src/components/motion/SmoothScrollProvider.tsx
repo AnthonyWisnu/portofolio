@@ -1,115 +1,98 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useCallback, useMemo, type ReactNode } from "react";
 import type Lenis from "lenis";
+import { MOTION } from "@/config/motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
+type ScrollTarget = string | number | HTMLElement;
+type ScrollOptions = { offset?: number; duration?: number; immediate?: boolean };
 interface SmoothScrollContextValue {
-  scrollTo: (target: string | number | HTMLElement, options?: { offset?: number; duration?: number }) => void;
+  scrollTo: (target: ScrollTarget, options?: ScrollOptions) => void;
+  lock: () => () => void;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextValue>({
-  scrollTo: () => {},
+  scrollTo: () => {}, lock: () => () => {},
 });
-
-export function useSmoothScroll() {
-  return useContext(SmoothScrollContext);
-}
+export const useSmoothScroll = () => useContext(SmoothScrollContext);
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const reducedMotion = useReducedMotion();
+  const desktop = useMediaQuery("(min-width: 1024px) and (pointer: fine)");
   const lenisRef = useRef<Lenis | null>(null);
+  const lockCount = useRef(0);
 
   useEffect(() => {
-    if (typeof window === "undefined" || reducedMotion) return;
-    // Hanya muat Lenis pada desktop pointer presisi agar CPU mobile tetap 0% overhead
-    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024) return;
-
+    if (!desktop || reducedMotion) return;
     let cancelled = false;
-    let rafId = 0;
     let instance: Lenis | null = null;
-
-    const initDesktopLenis = async () => {
-      const { default: LenisCtor } = await import("lenis");
+    void import("lenis").then(({ default: LenisCtor }) => {
       if (cancelled) return;
-
       instance = new LenisCtor({
-        duration: 1.0,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 0.95,
-        syncTouch: false,
+        duration: MOTION.scroll, autoRaf: true, smoothWheel: true,
+        syncTouch: false, wheelMultiplier: 1,
+        prevent: (node) => node.hasAttribute("data-lenis-prevent"),
       });
-
       lenisRef.current = instance;
-
-      const raf = (time: number) => {
-        if (cancelled) return;
-        instance?.raf(time);
-        rafId = window.requestAnimationFrame(raf);
-      };
-      rafId = window.requestAnimationFrame(raf);
-    };
-
-    const handleHashClick = (event: MouseEvent) => {
-      const target = (event.target as HTMLElement | null)?.closest("a");
-      if (!target) return;
-      const href = target.getAttribute("href");
-      if (!href || !href.startsWith("#") || href === "#") return;
-      const el = document.querySelector(href);
-      if (!el) return;
-
-      event.preventDefault();
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(el as HTMLElement, { offset: -20, duration: 1.0 });
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-      window.history.replaceState(null, "", href);
-    };
-
-    document.addEventListener("click", handleHashClick);
-    const idleTimer = window.setTimeout(initDesktopLenis, 180);
-
+      if (lockCount.current) instance.stop();
+    });
     return () => {
       cancelled = true;
-      window.clearTimeout(idleTimer);
-      if (rafId) window.cancelAnimationFrame(rafId);
-      document.removeEventListener("click", handleHashClick);
       instance?.destroy();
       lenisRef.current = null;
     };
+  }, [desktop, reducedMotion]);
+
+  const scrollTo = useCallback((target: ScrollTarget, options: ScrollOptions = {}) => {
+    if (lockCount.current) return;
+    const element = typeof target === "string" ? document.querySelector<HTMLElement>(target) : target;
+    if (element === null) return;
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(element, {
+        offset: options.offset ?? -88, duration: options.duration ?? MOTION.scroll,
+        immediate: reducedMotion || options.immediate,
+      });
+      return;
+    }
+    const top = typeof element === "number" ? element : element.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: Math.max(0, top + (options.offset ?? -88)),
+      behavior: reducedMotion || options.immediate ? "instant" : "smooth" });
   }, [reducedMotion]);
 
-  const scrollTo = useCallback(
-    (target: string | number | HTMLElement, options?: { offset?: number; duration?: number }) => {
-      const lenis = lenisRef.current;
-      if (lenis && !reducedMotion) {
-        lenis.scrollTo(target, {
-          offset: options?.offset ?? -20,
-          duration: options?.duration ?? 1.0,
-        });
-        return;
-      }
+  useEffect(() => {
+    const handleHashClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target instanceof Element ? event.target.closest("a") : null;
+      const href = link?.getAttribute("href");
+      if (!href?.startsWith("#") || href === "#" || link?.hasAttribute("download")) return;
+      const element = document.getElementById(decodeURIComponent(href.slice(1)));
+      if (!element) return;
+      event.preventDefault();
+      scrollTo(element);
+      window.history.replaceState(null, "", href);
+    };
+    document.addEventListener("click", handleHashClick);
+    return () => document.removeEventListener("click", handleHashClick);
+  }, [scrollTo]);
 
-      const behavior = reducedMotion ? "auto" : "smooth";
-      if (typeof target === "number") {
-        window.scrollTo({ top: target, behavior });
-      } else if (typeof target === "string") {
-        const el = document.querySelector(target);
-        if (el) el.scrollIntoView({ behavior });
-      } else {
-        target.scrollIntoView({ behavior });
+  const lock = useCallback(() => {
+    const previousOverflow = document.documentElement.style.overflow;
+    lockCount.current += 1;
+    lenisRef.current?.stop();
+    document.documentElement.style.overflow = "hidden";
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      lockCount.current -= 1;
+      if (!lockCount.current) {
+        document.documentElement.style.overflow = previousOverflow;
+        lenisRef.current?.start();
       }
-    },
-    [reducedMotion]
-  );
-
-  return (
-    <SmoothScrollContext.Provider value={{ scrollTo }}>
-      {children}
-    </SmoothScrollContext.Provider>
-  );
+    };
+  }, []);
+  const value = useMemo(() => ({ scrollTo, lock }), [scrollTo, lock]);
+  return <SmoothScrollContext.Provider value={value}>{children}</SmoothScrollContext.Provider>;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { m, useScroll, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, m, useScroll, useTransform } from "framer-motion";
 import { CURATED_PROJECTS } from "@/data/projects";
 import type { Project } from "@/types/project";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,6 +10,7 @@ import { PortalModal } from "@/components/ui/PortalModal";
 import { ProjectCard } from "@/features/projects/ProjectCard";
 import { ProjectFilterControls, type FilterTier } from "@/features/projects/ProjectFilterControls";
 import { cn } from "@/utils/cn";
+import { MOTION } from "@/config/motion";
 
 export function ProjectsSection() {
   const reducedMotion = useReducedMotion();
@@ -34,7 +35,7 @@ export function ProjectsSection() {
       if (sectionRef.current) {
         const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY;
         if (window.scrollY > sectionTop + 24) {
-          scrollTo(sectionTop, { offset: 0, duration: 0.45 });
+          scrollTo(sectionTop, { offset: 0, immediate: true });
         }
       }
       if (viewportRef.current) {
@@ -97,8 +98,7 @@ export function ProjectsSection() {
   }, [filteredProjects]);
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 170, damping: 28, mass: 0.35 });
-  const xTransform = useTransform(smoothProgress, [0, 1], [0, -maxTravel]);
+  const xTransform = useTransform(scrollYProgress, [0, 1], [0, -maxTravel]);
 
   const scrollStep = (direction: -1 | 1) => {
     if (!sectionRef.current) return;
@@ -106,7 +106,7 @@ export function ProjectsSection() {
     const stepSize = Math.max(380, window.innerWidth * 0.45);
     const maxBottom = sectionTop + sectionRef.current.offsetHeight - window.innerHeight;
     const targetY = Math.min(maxBottom, Math.max(sectionTop, window.scrollY + direction * stepSize));
-    scrollTo(targetY, { duration: 0.75 });
+    scrollTo(targetY, { duration: MOTION.scroll });
   };
 
   const useStickyHorizontal = isDesktop && !reducedMotion && maxTravel > 40;
@@ -156,14 +156,14 @@ export function ProjectsSection() {
         </div>
       </div>
 
-      {modalState && (
+      <AnimatePresence>{modalState && (
         <PortalModal
           title={modalState.project.title}
           screenshots={modalState.project.screenshots}
           initialIndex={modalState.index}
           onClose={() => setModalState(null)}
         />
-      )}
+      )}</AnimatePresence>
     </section>
   );
 }

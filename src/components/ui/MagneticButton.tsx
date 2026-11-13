@@ -28,12 +28,14 @@ export function MagneticButton({
 }: MagneticButtonProps) {
   const reducedMotion = useReducedMotion();
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const bounds = useRef<DOMRect | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !wrapperRef.current) return;
     if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
 
-    const rect = wrapperRef.current.getBoundingClientRect();
+    const rect = bounds.current;
+    if (!rect) return;
     const offsetX = (e.clientX - (rect.left + rect.width / 2)) * strength;
     const offsetY = (e.clientY - (rect.top + rect.height / 2)) * strength;
     wrapperRef.current.style.transform = `translate3d(${offsetX.toFixed(1)}px, ${offsetY.toFixed(1)}px, 0)`;
@@ -42,6 +44,7 @@ export function MagneticButton({
   const handleMouseLeave = () => {
     if (!wrapperRef.current) return;
     wrapperRef.current.style.transform = "translate3d(0, 0, 0)";
+    bounds.current = null;
   };
 
   const sharedProps = {
@@ -56,9 +59,10 @@ export function MagneticButton({
   return (
     <div
       ref={wrapperRef}
+      onMouseEnter={() => { bounds.current = wrapperRef.current?.getBoundingClientRect() ?? null; }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="inline-block transition-transform duration-300 ease-out will-change-transform"
+      className="inline-block transition-transform duration-[var(--motion-hover)] ease-out"
     >
       {href ? (
         external ? (

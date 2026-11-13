@@ -3,13 +3,16 @@
 import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { CURATED_PROJECTS } from "@/data/projects";
+import { MOTION } from "@/config/motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export type FilterTier = "all" | "utama" | "pendukung";
 
 const FILTER_TABS: { key: FilterTier; label: string }[] = [
-  { key: "all", label: "Semua (7)" },
-  { key: "utama", label: "Proyek Utama (5)" },
-  { key: "pendukung", label: "Riset & Pendukung (2)" },
+  { key: "all", label: `Semua (${CURATED_PROJECTS.length})` },
+  { key: "utama", label: `Proyek Utama (${CURATED_PROJECTS.filter((project) => project.tier === "utama").length})` },
+  { key: "pendukung", label: `Riset & Pendukung (${CURATED_PROJECTS.filter((project) => project.tier === "pendukung").length})` },
 ];
 
 interface ProjectFilterControlsProps {
@@ -25,6 +28,7 @@ export function ProjectFilterControls({
   showStepControls,
   onStep,
 }: ProjectFilterControlsProps) {
+  const reducedMotion = useReducedMotion();
   return (
     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
       <div>
@@ -49,14 +53,14 @@ export function ProjectFilterControls({
                 aria-selected={active}
                 onClick={() => onSelectFilter(tab.key)}
                 className={cn(
-                  "relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer",
+                  "relative min-h-11 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer",
                   active ? "text-white" : "text-[#A1A8B8] hover:text-white"
                 )}
               >
                 {active && (
                   <m.span
                     layoutId="project-filter-pill"
-                    transition={{ type: "spring", stiffness: 320, damping: 30 }}
+                    transition={{ duration: reducedMotion ? 0 : MOTION.panel, ease: MOTION.ease }}
                     className="absolute inset-0 rounded-full bg-[#2F54EB]"
                   />
                 )}
@@ -72,7 +76,7 @@ export function ProjectFilterControls({
               type="button"
               onClick={() => onStep(-1)}
               aria-label="Geser ke proyek sebelumnya"
-              className="w-10 h-10 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
+              className="w-11 h-11 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -80,7 +84,7 @@ export function ProjectFilterControls({
               type="button"
               onClick={() => onStep(1)}
               aria-label="Geser ke proyek berikutnya"
-              className="w-10 h-10 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
+              className="w-11 h-11 rounded-full bg-[#181D2B] hover:bg-[#2F54EB] border border-white/12 hover:border-[#2F54EB] text-[#F3F4F6] flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

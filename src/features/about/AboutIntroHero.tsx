@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight, Code2, Mail } from "lucide-react";
 import { OWNER_PROFILE } from "@/data/owner";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { RevealGroup } from "@/components/motion/RevealGroup";
 
 export function AboutIntroHero() {
   return (
@@ -13,9 +14,9 @@ export function AboutIntroHero() {
       </div>
 
       {/* Komposisi 3 Kolom Simetris: Nama Kiri, Potret Cutout Tengah, Narasi Singkat Kanan */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-4">
+      <RevealGroup className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-4">
         {/* Kolom Kiri */}
-        <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-2 lg:order-1">
+        <div data-reveal className="lg:col-span-4 space-y-5 text-center lg:text-left order-2 lg:order-1">
           <div className="space-y-1.5">
             <div className="font-display text-2xl sm:text-3xl font-bold text-[#708FFF]">
               Halo, Saya
@@ -39,7 +40,7 @@ export function AboutIntroHero() {
         </div>
 
         {/* Kolom Tengah: Potret Transparan Menyatu ke Latar Obsidian */}
-        <div className="lg:col-span-4 flex justify-center order-1 lg:order-2">
+        <div data-reveal className="lg:col-span-4 flex justify-center order-1 lg:order-2">
           <div className="relative w-full max-w-[300px] sm:max-w-[340px] aspect-[4/5] flex items-end justify-center group">
             <div
               aria-hidden="true"
@@ -64,7 +65,7 @@ export function AboutIntroHero() {
         </div>
 
         {/* Kolom Kanan: Satu Paragraf Natural & Tombol Kontak */}
-        <div className="lg:col-span-4 space-y-5 text-center lg:text-left order-3">
+        <div data-reveal className="lg:col-span-4 space-y-5 text-center lg:text-left order-3">
           <p className="text-sm sm:text-base text-[#D1D5DB] leading-relaxed">
             {OWNER_PROFILE.extendedBio[0]}
           </p>
@@ -80,7 +81,7 @@ export function AboutIntroHero() {
             </MagneticButton>
           </div>
         </div>
-      </div>
+      </RevealGroup>
     </div>
   );
 }

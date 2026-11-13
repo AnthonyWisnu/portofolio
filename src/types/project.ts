@@ -4,6 +4,7 @@ export type ProjectCategory =
   | "Fullstack & SaaS"
   | "Automation & Media"
   | "Web Komersial"
+  | "Sistem Informasi"
   | "AI & Knowledge Graph"
   | "Machine Learning & Data";
 
@@ -11,6 +12,9 @@ export interface ProjectScreenshot {
   src: string;
   alt: string;
   caption: string;
+  width: number;
+  height: number;
+  kind?: "screenshot" | "diagram";
 }
 
 export interface ProjectArchitectureNode {
@@ -23,6 +27,8 @@ export interface Project {
   title: string;
   shortTitle: string;
   tier: ProjectTier;
+  featured?: boolean;
+  repositoryVisibility?: "public" | "private";
   category: ProjectCategory;
   year: string;
   tagline: string;
@@ -36,7 +42,6 @@ export interface Project {
   liveUrl?: string;
   coverImage?: string;
   screenshots: ProjectScreenshot[];
-  consoleVariant?: "void" | "minji" | "scout";
   verificationNote: string;
 }
 

@@ -34,9 +34,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       images: [
         {
           url: project.coverImage || "/images/og-portrait.jpg",
-          width: 1200,
-          height: 675,
-          alt: project.title,
+          width: project.screenshots[0]?.width ?? 1200,
+          height: project.screenshots[0]?.height ?? 675,
+          alt: project.screenshots[0]?.alt ?? project.title,
         },
       ],
     },

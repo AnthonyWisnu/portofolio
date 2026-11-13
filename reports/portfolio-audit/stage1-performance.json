@@ -1,0 +1,323 @@
+{
+  "chrome": "157.0.8103.52",
+  "results": [
+    {
+      "device": "desktop",
+      "trial": 1,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 1485
+        },
+        {
+          "id": "about",
+          "y": 1485,
+          "height": 1632
+        },
+        {
+          "id": "skills",
+          "y": 3117.1875,
+          "height": 575
+        },
+        {
+          "id": "projects",
+          "y": 3692.1875,
+          "height": 1350
+        },
+        {
+          "id": "projects-showcase",
+          "y": 5042.1875,
+          "height": 3017
+        },
+        {
+          "id": "contact",
+          "y": 8059.1875,
+          "height": 793
+        }
+      ],
+      "durationMs": 7666.9,
+      "frames": 873,
+      "fps": 113.73566891442434,
+      "p95FrameMs": 13.800000000001091,
+      "maxFrameMs": 514,
+      "over33ms": 15,
+      "over50ms": 7,
+      "longTaskCount": 0,
+      "longTaskMaxMs": 0,
+      "longTaskTotalMs": 0,
+      "finalY": 8041,
+      "scriptMs": 474.151,
+      "layoutMs": 15.113000000000001,
+      "recalcMs": 199.98000000000002,
+      "taskMs": 2889.71,
+      "eventListeners": 465,
+      "nodes": 1329
+    },
+    {
+      "device": "desktop",
+      "trial": 2,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 1485
+        },
+        {
+          "id": "about",
+          "y": 1485,
+          "height": 1632
+        },
+        {
+          "id": "skills",
+          "y": 3117.1875,
+          "height": 575
+        },
+        {
+          "id": "projects",
+          "y": 3692.1875,
+          "height": 1350
+        },
+        {
+          "id": "projects-showcase",
+          "y": 5042.1875,
+          "height": 3017
+        },
+        {
+          "id": "contact",
+          "y": 8059.1875,
+          "height": 793
+        }
+      ],
+      "durationMs": 6902.700000000001,
+      "frames": 989,
+      "fps": 143.13239746765757,
+      "p95FrameMs": 7.100000000002183,
+      "maxFrameMs": 20.599999999998545,
+      "over33ms": 0,
+      "over50ms": 0,
+      "longTaskCount": 0,
+      "longTaskMaxMs": 0,
+      "longTaskTotalMs": 0,
+      "finalY": 8041,
+      "scriptMs": 392.964,
+      "layoutMs": 7.305000000000006,
+      "recalcMs": 168.533,
+      "taskMs": 2495.911,
+      "eventListeners": 408,
+      "nodes": 1281
+    },
+    {
+      "device": "desktop",
+      "trial": 3,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 1485
+        },
+        {
+          "id": "about",
+          "y": 1485,
+          "height": 1632
+        },
+        {
+          "id": "skills",
+          "y": 3117.1875,
+          "height": 575
+        },
+        {
+          "id": "projects",
+          "y": 3692.1875,
+          "height": 1350
+        },
+        {
+          "id": "projects-showcase",
+          "y": 5042.1875,
+          "height": 3017
+        },
+        {
+          "id": "contact",
+          "y": 8059.1875,
+          "height": 793
+        }
+      ],
+      "durationMs": 6986.300000000003,
+      "frames": 931,
+      "fps": 133.11767316032802,
+      "p95FrameMs": 7.5,
+      "maxFrameMs": 35.299999999995634,
+      "over33ms": 3,
+      "over50ms": 0,
+      "longTaskCount": 0,
+      "longTaskMaxMs": 0,
+      "longTaskTotalMs": 0,
+      "finalY": 8041,
+      "scriptMs": 452.3920000000001,
+      "layoutMs": 9.733999999999993,
+      "recalcMs": 216.26899999999998,
+      "taskMs": 2888.313000000001,
+      "eventListeners": 409,
+      "nodes": 1282
+    },
+    {
+      "device": "mobile4x",
+      "trial": 1,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 844
+        },
+        {
+          "id": "about",
+          "y": 844,
+          "height": 2693
+        },
+        {
+          "id": "skills",
+          "y": 3536.5,
+          "height": 729
+        },
+        {
+          "id": "projects",
+          "y": 4265.5,
+          "height": 129
+        },
+        {
+          "id": "projects-showcase",
+          "y": 4394.5,
+          "height": 784
+        },
+        {
+          "id": "contact",
+          "y": 5178.25,
+          "height": 1372
+        }
+      ],
+      "durationMs": 6500.000000000002,
+      "frames": 767,
+      "fps": 117.84615384615381,
+      "p95FrameMs": 14,
+      "maxFrameMs": 125.20000000000073,
+      "over33ms": 13,
+      "over50ms": 3,
+      "longTaskCount": 4,
+      "longTaskMaxMs": 119,
+      "longTaskTotalMs": 341,
+      "finalY": 5827,
+      "scriptMs": 351.85,
+      "layoutMs": 17.210999999999864,
+      "recalcMs": 76.11899999999983,
+      "taskMs": 3246.993,
+      "eventListeners": 407,
+      "nodes": 1276
+    },
+    {
+      "device": "mobile4x",
+      "trial": 2,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 844
+        },
+        {
+          "id": "about",
+          "y": 844,
+          "height": 2693
+        },
+        {
+          "id": "skills",
+          "y": 3536.5,
+          "height": 729
+        },
+        {
+          "id": "projects",
+          "y": 4265.5,
+          "height": 129
+        },
+        {
+          "id": "projects-showcase",
+          "y": 4394.5,
+          "height": 784
+        },
+        {
+          "id": "contact",
+          "y": 5178.25,
+          "height": 1372
+        }
+      ],
+      "durationMs": 6979.299999999999,
+      "frames": 678,
+      "fps": 97.0011319186738,
+      "p95FrameMs": 27.599999999998545,
+      "maxFrameMs": 145.90000000000146,
+      "over33ms": 25,
+      "over50ms": 14,
+      "longTaskCount": 17,
+      "longTaskMaxMs": 123,
+      "longTaskTotalMs": 1352,
+      "finalY": 5827,
+      "scriptMs": 665.0710000000001,
+      "layoutMs": 36.782000000000096,
+      "recalcMs": 98.09099999999992,
+      "taskMs": 3973.9380000000006,
+      "eventListeners": 422,
+      "nodes": 1281
+    },
+    {
+      "device": "mobile4x",
+      "trial": 3,
+      "anchors": [
+        {
+          "id": "hero",
+          "y": 0,
+          "height": 844
+        },
+        {
+          "id": "about",
+          "y": 844,
+          "height": 2693
+        },
+        {
+          "id": "skills",
+          "y": 3536.5,
+          "height": 729
+        },
+        {
+          "id": "projects",
+          "y": 4265.5,
+          "height": 129
+        },
+        {
+          "id": "projects-showcase",
+          "y": 4394.5,
+          "height": 784
+        },
+        {
+          "id": "contact",
+          "y": 5178.25,
+          "height": 1372
+        }
+      ],
+      "durationMs": 7375.199999999997,
+      "frames": 527,
+      "fps": 71.32009979390392,
+      "p95FrameMs": 48.599999999998545,
+      "maxFrameMs": 132.09999999999854,
+      "over33ms": 40,
+      "over50ms": 25,
+      "longTaskCount": 28,
+      "longTaskMaxMs": 113,
+      "longTaskTotalMs": 2048,
+      "finalY": 5827,
+      "scriptMs": 879.2309999999999,
+      "layoutMs": 76.79199999999997,
+      "recalcMs": 115.04200000000009,
+      "taskMs": 6199.116999999999,
+      "eventListeners": 391,
+      "nodes": 1257
+    }
+  ]
+}

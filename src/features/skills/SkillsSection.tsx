@@ -6,6 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/data/skills";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/utils/cn";
+import { MOTION } from "@/config/motion";
 
 export function SkillsSection() {
   const reducedMotion = useReducedMotion();
@@ -51,7 +52,7 @@ export function SkillsSection() {
                   {isSelected && (
                     <m.span
                       layoutId="skills-active-pill"
-                      transition={{ type: "spring", stiffness: 320, damping: 30 }}
+                      transition={{ duration: reducedMotion ? 0 : MOTION.panel, ease: MOTION.ease }}
                       className="absolute inset-0 bg-[#2F54EB] -z-0"
                     />
                   )}
@@ -67,10 +68,10 @@ export function SkillsSection() {
           <AnimatePresence mode="wait">
             <m.div
               key={current.id}
-              initial={reducedMotion ? undefined : { opacity: 0, y: 10 }}
-              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-              exit={reducedMotion ? undefined : { opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              initial={reducedMotion ? false : { opacity: 0, y: MOTION.distance.small }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reducedMotion ? 0 : -MOTION.distance.small }}
+              transition={{ duration: reducedMotion ? 0 : MOTION.hover, ease: MOTION.ease }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2"
             >
               {current.skills.map((skill, idx) => (

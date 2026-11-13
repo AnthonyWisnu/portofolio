@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist_Mono, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "lenis/dist/lenis.css";
+import { MOTION_CSS } from "@/config/motion";
 import { OWNER_PROFILE } from "@/data/owner";
 import { CustomCursor } from "@/components/motion/CustomCursor";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
@@ -78,6 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
+      style={MOTION_CSS}
       className={`${spaceGrotesk.variable} ${plusJakarta.variable} ${geistMono.variable} antialiased`}
     >
       <body className="min-h-screen bg-[#0B0D12] text-[#F3F4F6] font-sans overflow-x-clip max-w-full">

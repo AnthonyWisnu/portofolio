@@ -1,18 +1,15 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { LazyMotion, domAnimation, m, useScroll, useSpring } from "framer-motion";
+import { LazyMotion, MotionConfig, domAnimation, m, useScroll } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { MOTION } from "@/config/motion";
 
 function TopScrollBar() {
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 240,
-    damping: 32,
-    restDelta: 0.001,
-  });
+  if (reducedMotion) return null;
 
   return (
     <div
@@ -22,7 +19,7 @@ function TopScrollBar() {
       <m.div
         className="h-full origin-left bg-[#708FFF]"
         style={{
-          scaleX: reducedMotion ? scrollYProgress : smoothProgress,
+          scaleX: scrollYProgress,
         }}
       />
     </div>
@@ -35,8 +32,10 @@ export function ScrollProgressChrome({ children }: { children: ReactNode }) {
 
   return (
     <LazyMotion features={domAnimation} strict>
-      {isHome && <TopScrollBar />}
-      {children}
+      <MotionConfig reducedMotion="user" transition={{ duration: MOTION.panel, ease: MOTION.ease }}>
+        {isHome && <TopScrollBar />}
+        {children}
+      </MotionConfig>
     </LazyMotion>
   );
 }

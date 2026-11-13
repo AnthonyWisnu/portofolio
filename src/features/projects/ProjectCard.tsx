@@ -22,7 +22,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
 
         <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
           <span className="px-2.5 py-0.5 rounded-full bg-[#2F54EB]/20 text-[#9FB4FF] font-semibold border border-[#708FFF]/30">
-            {project.tier === "utama" ? "Proyek Utama" : "Proyek Pendukung"}
+            {project.featured ? "Proyek Unggulan" : project.tier === "utama" ? "Proyek Utama" : "Proyek Pendukung"}
           </span>
           <span className="text-[#A1A8B8]">
             {project.category} · {project.year}
@@ -78,7 +78,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
           </a>
         )}
 
-        <a
+        {project.repositoryVisibility !== "private" && <a
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -87,7 +87,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
         >
           <GithubIcon className="w-3.5 h-3.5" />
           <span>Repo</span>
-        </a>
+        </a>}
       </div>
     </article>
   );

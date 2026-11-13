@@ -1,0 +1,125 @@
+{
+  "protocol": "Chrome headless; viewport 1440x900 desktop, 390x844 with 4x CPU mobile; three trials each; 52 wheel events of 180px at 85ms; results are rAF intervals, not physical display FPS.",
+  "devices": {
+    "desktop": {
+      "before": {
+        "medianFullProtocolP95Ms": 20.69999999999709,
+        "medianFullProtocolLongTasks": 0,
+        "medianActiveP95Ms": 20.799999999995634,
+        "medianActiveLongTasksPerSecond": 0,
+        "trials": [
+          {
+            "trial": 1,
+            "activeDurationMs": 6882,
+            "p95FrameMs": 20.80000000000109,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 2,
+            "activeDurationMs": 6409.9000000000015,
+            "p95FrameMs": 20.700000000000728,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 3,
+            "activeDurationMs": 6347.199999999997,
+            "p95FrameMs": 20.799999999995634,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          }
+        ]
+      },
+      "after": {
+        "medianFullProtocolP95Ms": 7.100000000002183,
+        "medianFullProtocolLongTasks": 0,
+        "medianActiveP95Ms": 7.100000000002183,
+        "medianActiveLongTasksPerSecond": 0,
+        "trials": [
+          {
+            "trial": 1,
+            "activeDurationMs": 5909.999999999999,
+            "p95FrameMs": 7.100000000000364,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 2,
+            "activeDurationMs": 5659.899999999998,
+            "p95FrameMs": 7.100000000002183,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 3,
+            "activeDurationMs": 5722.299999999996,
+            "p95FrameMs": 7.100000000002183,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          }
+        ]
+      }
+    },
+    "mobile4x": {
+      "before": {
+        "medianFullProtocolP95Ms": 62.5,
+        "medianFullProtocolLongTasks": 30,
+        "medianActiveP95Ms": 90.10000000000036,
+        "medianActiveLongTasksPerSecond": 4.625275589337198,
+        "trials": [
+          {
+            "trial": 1,
+            "activeDurationMs": 6486.1,
+            "p95FrameMs": 90.10000000000036,
+            "longTasks": 30,
+            "longTasksPerSecond": 4.625275589337198
+          },
+          {
+            "trial": 2,
+            "activeDurationMs": 5902.799999999999,
+            "p95FrameMs": 69.39999999999782,
+            "longTasks": 20,
+            "longTasksPerSecond": 3.3882225384563265
+          },
+          {
+            "trial": 3,
+            "activeDurationMs": 6951.299999999996,
+            "p95FrameMs": 125,
+            "longTasks": 37,
+            "longTasksPerSecond": 5.322745385755186
+          }
+        ]
+      },
+      "after": {
+        "medianFullProtocolP95Ms": 7.100000000002183,
+        "medianFullProtocolLongTasks": 0,
+        "medianActiveP95Ms": 13.900000000000546,
+        "medianActiveLongTasksPerSecond": 0,
+        "trials": [
+          {
+            "trial": 1,
+            "activeDurationMs": 3138.9000000000005,
+            "p95FrameMs": 13.900000000000546,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 2,
+            "activeDurationMs": 3118.0999999999985,
+            "p95FrameMs": 7.200000000000728,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          },
+          {
+            "trial": 3,
+            "activeDurationMs": 3270.9000000000015,
+            "p95FrameMs": 20.799999999999272,
+            "longTasks": 0,
+            "longTasksPerSecond": 0
+          }
+        ]
+      }
+    }
+  }
+}

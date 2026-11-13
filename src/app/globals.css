@@ -62,14 +62,34 @@ body {
 }
 
 .obsidian-card-glow {
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+  transition: transform var(--motion-panel) var(--motion-ease);
 }
 
 .obsidian-card-glow:hover {
   border-color: rgba(112, 143, 255, 0.5);
-  box-shadow:
-    0 16px 36px -12px rgba(47, 84, 235, 0.24),
-    0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.hero-scene { height: 165vh; }
+
+@media (max-width: 1023px) {
+  .hero-scene { height: 100svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scene { height: 100svh; }
+  .hero-title { opacity: 1 !important; transform: none !important; }
+}
+
+:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 4px; }
+
+.section-reveal[data-revealed="true"] > [data-reveal] {
+  animation: section-arrive var(--motion-reveal) var(--motion-ease) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes section-arrive {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 /* Scrollbar kustom ramping */
@@ -127,4 +147,18 @@ body {
 
 .hero-enter {
   animation: heroSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[class*="transition-"] {
+  transition-property: transform, opacity;
+  transition-duration: var(--motion-hover);
+  transition-timing-function: var(--motion-ease);
+}
+
+.project-page-enter {
+  animation: project-arrive var(--motion-panel) var(--motion-ease) both;
+}
+@keyframes project-arrive {
+  from { opacity: 0.6; transform: translate3d(0, 8px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
