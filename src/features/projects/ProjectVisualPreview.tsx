@@ -35,7 +35,13 @@ export function ProjectVisualPreview({ project, onOpenScreenshots }: ProjectVisu
       />
       <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-[#0B0D12]/95 px-2.5 py-1 text-[11px] text-[#F3F4F6]">
         <Expand className="h-3 w-3" />
-        <span>{cover.kind === "diagram" ? "Diagram" : `${project.screenshots.length} gambar`}</span>
+        <span>
+          {cover.kind === "illustration"
+            ? "Ilustrasi"
+            : cover.kind === "diagram"
+              ? "Diagram"
+              : `${project.screenshots.length} gambar`}
+        </span>
       </span>
     </button>
   );

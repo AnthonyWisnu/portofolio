@@ -1,0 +1,45 @@
+{
+  "method": "Built-in image_gen",
+  "assets": [
+    {
+      "name": "whatsapp-group-menu",
+      "path": "public/projects/minjibot/whatsapp-group-menu.webp",
+      "width": 1568,
+      "height": 1003,
+      "bytes": 76278,
+      "prompt": "Create a high fidelity 1600x1000 landscape UI illustration for a developer portfolio, a believable Indonesian WhatsApp Web dark-mode group conversation using MinjiBot. Flat straight-on desktop screen, crisp legible interface, charcoal #111b21 chat background, #202c33 top bar, restrained WhatsApp green sent bubbles, dark incoming bubbles, realistic spacing and clean sans-serif type. Narrow left chat list, main conversation takes most width. Group name 'Ruang Santai', sublabel 'Grup demo'. Initial-letter avatars only, no real faces, phone numbers, photos of people, personal details, verified badges, real user claims, metrics, emojis, diagrams, 3D devices or perspective mockups. Include recognizable normal line icons for search, menu and composer. Show a small clearly legible footer label 'Ilustrasi penggunaan MinjiBot'. All conversations fictional, for illustrative purposes. Render only the exact short Indonesian messages specified below, no extra marketing copy or invented features. Prioritize accurate message text, make chat large and easy to read. Scene: discovering bot commands. A short natural group conversation in order: Alya says 'Botnya bisa apa saja?'; Dimas sends '.menu'; MinjiBot replies in one well-formatted bubble with heading 'MinjiBot' then separate lines 'Menu grup', '.profile - Profil anggota', '.daily - Klaim harian', '.s - Buat stiker', '.antilink - Pengaturan tautan'; Alya says 'Oke, coba bikin stiker dulu.'; Dimas says 'Bisa langsung dari foto di grup.' Show subtle 19.20 to 19.22 timestamps. Composer placeholder 'Ketik pesan'. Include full interface boundaries and comfortable margins."
+    },
+    {
+      "name": "whatsapp-group-sticker",
+      "path": "public/projects/minjibot/whatsapp-group-sticker.webp",
+      "width": 1568,
+      "height": 1003,
+      "bytes": 72118,
+      "prompt": "Create a high fidelity 1600x1000 landscape UI illustration for a developer portfolio, a believable Indonesian WhatsApp Web dark-mode group conversation using MinjiBot. Flat straight-on desktop screen, crisp legible interface, charcoal #111b21 chat background, #202c33 top bar, restrained WhatsApp green sent bubbles, dark incoming bubbles, realistic spacing and clean sans-serif type. Narrow left chat list, main conversation takes most width. Group name 'Ruang Santai', sublabel 'Grup demo'. Initial-letter avatars only, no real faces, phone numbers, photos of people, personal details, verified badges, real user claims, metrics, emojis, diagrams, 3D devices or perspective mockups. Include recognizable normal line icons for search, menu and composer. Show a small clearly legible footer label 'Ilustrasi penggunaan MinjiBot'. All conversations fictional, for illustrative purposes. Render only the exact short Indonesian messages specified below, no extra marketing copy or invented features. Prioritize accurate message text, make chat large and easy to read. Scene: converting an image into a sticker using the implemented '.s' command. In order: Alya sends a photo attachment containing a simple cute orange cat sitting on a plain light background, caption 'Bikin stiker dari ini, ya.'; Dimas replies to Alya's photo with quoted preview and text '.s'; MinjiBot sends a transparent-style sticker of the same cute orange cat, clean white contour, no text on the sticker; Alya replies 'Nah, ini pas buat stiker grup.'; Dimas replies 'Tinggal balas fotonya pakai .s'. Use 19.24 to 19.25 timestamps. The photo and resulting sticker should visually demonstrate the conversion clearly. Composer placeholder 'Ketik pesan'."
+    },
+    {
+      "name": "whatsapp-group-daily",
+      "path": "public/projects/minjibot/whatsapp-group-daily.webp",
+      "width": 1568,
+      "height": 1003,
+      "bytes": 73444,
+      "prompt": "Create a high fidelity 1600x1000 landscape UI illustration for a developer portfolio, a believable Indonesian WhatsApp Web dark-mode group conversation using MinjiBot. Flat straight-on desktop screen, crisp legible interface, charcoal #111b21 chat background, #202c33 top bar, restrained WhatsApp green sent bubbles, dark incoming bubbles, realistic spacing and clean sans-serif type. Narrow left chat list, main conversation takes most width. Group name 'Ruang Santai', sublabel 'Grup demo'. Initial-letter avatars only, no real faces, phone numbers, photos of people, personal details, verified badges, real user claims, metrics, emojis, diagrams, 3D devices or perspective mockups. Include recognizable normal line icons for search, menu and composer. Show a small clearly legible footer label 'Ilustrasi penggunaan MinjiBot'. All conversations fictional, for illustrative purposes. Render only the exact short Indonesian messages specified below, no extra marketing copy or invented features. Prioritize accurate message text, make chat large and easy to read. Scene: group member daily claim and profile commands, both implemented in MinjiBot. In order: Alya sends '.daily'; MinjiBot replies 'Klaim harian berhasil.'; Dimas sends '.profile'; MinjiBot replies with a clean chat bubble heading 'Profil anggota' then separate short lines 'Nama: Dimas', 'Poin, limit, dan XP', 'Berlaku untuk grup ini'; Alya says 'Jadi profilnya terpisah per grup?'; Dimas replies 'Iya, sesuai grup yang sedang dipakai.' Do not draw numeric statistics or fake activity metrics. Keep this as an ordinary group chat, no dashboard. Use 19.28 to 19.29 timestamps. Composer placeholder 'Ketik pesan'."
+    },
+    {
+      "name": "hero-foliage-left",
+      "path": "public/images/hero-foliage-left.webp",
+      "width": 640,
+      "height": 960,
+      "bytes": 121908,
+      "prompt": "Generate a photorealistic isolated foreground foliage cutout for layering over a misty Indonesian mountain forest photograph. Vertical portrait 1024x1536. A slender naturally curved dark brown tree branch enters from the LEFT edge and grows upward toward the upper center, bearing several clusters of small to medium lush oval tropical forest leaves. Organic irregular silhouette, subtle dew, cool muted dark green tones, soft overcast mountain light, believable botanical texture and thin twigs, not too dense. Leaves and branch occupy mostly the left two thirds, tapering toward empty right edge. Fully TRANSPARENT background with real alpha around every leaf, no black, white or checkerboard backdrop, no scenery, no soil, no flowerpot, no people, no text, no frame, no glow, no artificial bokeh, no shadows outside foliage. Entire branch cluster should fit inside canvas except the branch base at the left edge. Intended as a light decorative edge layer in a photographic mountain hero, not an illustration or icon."
+    },
+    {
+      "name": "hero-foliage-right",
+      "path": "public/images/hero-foliage-right.webp",
+      "width": 640,
+      "height": 960,
+      "bytes": 117902,
+      "prompt": "Generate a photorealistic isolated foreground foliage cutout for layering over a misty Indonesian mountain forest photograph. Vertical portrait 1024x1536. A delicate forest branch enters from the RIGHT edge with a few elegant elongated lanceolate tropical leaves and one airy fern-like frond, curving gently inward toward the LEFT. Organic asymmetrical silhouette, soft overcast mountain light, cool desaturated deep olive and forest green, subtly visible leaf veins, refined natural detail, not too dense. Foliage occupies mostly the right two thirds with an open empty left edge. Fully TRANSPARENT background with real alpha around leaves and fine fronds, no black, white or checkerboard backdrop, no scenery, no soil, no flowerpot, no people, no text, no frame, no glow, no artificial bokeh, no shadows outside foliage. Entire foliage cluster should fit canvas except branch base at right edge. A photographic decorative edge layer for a mountain landscape web hero, not vector art or a botanical diagram."
+    }
+  ]
+}

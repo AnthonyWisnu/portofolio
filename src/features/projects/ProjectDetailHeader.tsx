@@ -27,8 +27,8 @@ export function ProjectDetailHeader({ project }: { project: Project }) {
             {project.featured
               ? "Proyek Unggulan"
               : project.tier === "utama"
-                ? "Proyek Utama"
-                : "Riset & Pendukung"}
+                ? "Aplikasi Web"
+                : "Data & Bot"}
           </span>
           <span className="px-3 py-1 rounded-full bg-[#181D2B] border border-white/10 text-[#D1D5DB]">
             {project.category}

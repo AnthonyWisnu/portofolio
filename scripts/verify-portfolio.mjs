@@ -20,6 +20,17 @@ try {
     const gallery = page.locator("figure button");
     const count = await gallery.count();
     assert.ok(count >= 3 && count <= 5, `${slug}: gallery count`);
+    if (["kemitraan-mebel", "sora-wellness"].includes(slug)) assert.equal(count, 5);
+    if (slug === "kemitraan-mebel") {
+      assert.equal(await page.locator("figcaption").filter({ hasText: "Sisi eksportir:" }).count(), 2);
+      assert.equal(await page.locator("figcaption").filter({ hasText: "Sisi UMKM:" }).count(), 3);
+    }
+    if (slug === "sora-wellness") assert.equal(await page.locator('figure img[alt^="Dashboard member Sora"]').count(), 1);
+    if (slug === "minjibot") {
+      await page.getByRole("heading", { name: "Ilustrasi penggunaan" }).waitFor();
+      assert.equal(await page.locator('figure img[alt^="Ilustrasi"]').count(), 3);
+      await page.screenshot({ path: path.join(output, "minjibot-gallery-desktop.png") });
+    }
     for (const image of await gallery.locator("img").all()) {
       await image.scrollIntoViewIfNeeded();
       await image.evaluate(img => img.decode());
@@ -59,11 +70,22 @@ try {
   assert.equal(removed.status(), 404);
   await page.goto(base, { waitUntil: "networkidle" });
   assert.ok(await page.locator("html").evaluate(el => el.classList.contains("lenis")));
+  assert.ok(!(await page.content()).includes("Riset &amp; AI"));
+  assert.ok(!(await page.content()).includes("GraphRAG"));
+  await page.locator("[data-hero-foliage] img").first().evaluate(img => img.decode());
+  await page.locator("[data-hero-foliage] img").last().evaluate(img => img.decode());
+  await page.evaluate(() => window.scrollTo(0, 340));
+  await page.waitForTimeout(300);
+  const foliage = page.locator("[data-hero-foliage] > div").first();
+  assert.ok(Number(await foliage.evaluate(el => getComputedStyle(el).opacity)) > 0.5);
+  await page.mouse.move(1400, 880);
+  await page.screenshot({ path: path.join(output, "hero-foliage-desktop.png") });
+  results.heroFoliage = { desktop: true, scrollResponsive: true };
   await page.screenshot({ path: path.join(output, "homepage-desktop.png") });
   const showcase = page.locator("#projects-showcase");
-  await showcase.getByRole("tab", { name: "Riset & Pendukung (2)" }).click();
+  await showcase.getByRole("tab", { name: "Data & Bot (2)" }).click();
   assert.equal(await showcase.locator("article").count(), 2);
-  await showcase.getByRole("tab", { name: "Proyek Utama (5)" }).click();
+  await showcase.getByRole("tab", { name: "Aplikasi Web (5)" }).click();
   assert.equal(await showcase.locator("article").count(), 5);
   await showcase.getByRole("tab", { name: "Semua (7)" }).click();
   assert.equal(await showcase.locator("article").count(), 7);
@@ -78,6 +100,7 @@ try {
   assert.ok(await page.locator("html").evaluate(el => !el.classList.contains("lenis")));
   const title = page.locator("#hero h1");
   assert.equal(await title.evaluate(el => getComputedStyle(el).opacity), "1");
+  assert.equal(await page.locator("[data-hero-foliage] > div").first().evaluate(el => getComputedStyle(el).transform), "none");
   await showcase.locator("article").last().scrollIntoViewIfNeeded();
   assert.ok(await showcase.locator("article").last().isVisible());
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" });
@@ -85,6 +108,7 @@ try {
   for (const route of ["/", "/projects/minjibot", "/projects/kemitraan-mebel"]) {
     await mobilePage.goto(`${base}${route}`, { waitUntil: "networkidle" });
     assert.ok(await mobilePage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Overflow ${route}`);
+    if (route === "/") assert.equal(await mobilePage.locator("[data-hero-foliage]").count(), 0);
   }
   await mobilePage.locator("figure button").first().click();
   const bounds = await mobilePage.getByRole("dialog").locator(":scope > div").boundingBox();

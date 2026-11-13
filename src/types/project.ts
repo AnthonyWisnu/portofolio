@@ -1,11 +1,11 @@
 export type ProjectTier = "utama" | "pendukung";
 
 export type ProjectCategory =
-  | "Fullstack & SaaS"
+  | "Sistem Bisnis"
   | "Automation & Media"
   | "Web Komersial"
   | "Sistem Informasi"
-  | "AI & Knowledge Graph"
+  | "Bot WhatsApp"
   | "Machine Learning & Data";
 
 export interface ProjectScreenshot {
@@ -14,7 +14,7 @@ export interface ProjectScreenshot {
   caption: string;
   width: number;
   height: number;
-  kind?: "screenshot" | "diagram";
+  kind?: "screenshot" | "diagram" | "illustration";
 }
 
 export interface ProjectArchitectureNode {

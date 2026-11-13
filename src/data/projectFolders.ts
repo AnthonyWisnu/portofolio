@@ -1,13 +1,14 @@
 import { Cpu, FolderKanban, Layers } from "lucide-react";
 import { CURATED_PROJECTS } from "@/data/projects";
+import { SKILL_CATEGORIES } from "@/data/skills";
 import type { QuickFolder } from "@/types/projectFolder";
 
 export const PROJECT_FOLDERS: QuickFolder[] = [
   {
     id: "utama",
-    label: "Proyek Utama",
-    countLabel: `${String(CURATED_PROJECTS.filter((project) => project.tier === "utama").length).padStart(2, "0")} Sistem`,
-    subtitle: "Aplikasi produksi dan arsitektur inti",
+    label: "Aplikasi Web",
+    countLabel: `${String(CURATED_PROJECTS.filter((project) => project.tier === "utama").length).padStart(2, "0")} Proyek`,
+    subtitle: "Sistem bisnis dan layanan berbasis web",
     sheets: [
       ...["sora-wellness", "kemitraan-mebel", "hotdog-watersport"].map((slug) => {
         const project = CURATED_PROJECTS.find((item) => item.slug === slug)!;
@@ -20,13 +21,12 @@ export const PROJECT_FOLDERS: QuickFolder[] = [
   },
   {
     id: "pendukung",
-    label: "Riset & AI",
-    countLabel: `${String(CURATED_PROJECTS.filter((project) => project.tier === "pendukung").length).padStart(2, "0")} Sistem`,
-    subtitle: "Machine learning dan otomasi",
+    label: "Data & Bot",
+    countLabel: `${String(CURATED_PROJECTS.filter((project) => project.tier === "pendukung").length).padStart(2, "0")} Proyek`,
+    subtitle: "Prediksi tarif dan bot WhatsApp",
     sheets: [
-      { title: "Penjelasan SHAP", image: "/projects/bali-smart-pricing/shap.webp" },
       { title: "Bali Smart Pricing", image: "/projects/bali-smart-pricing/calculator.webp" },
-      { title: "MinjiBot", image: "/projects/minjibot/message-flow.webp" },
+      { title: "MinjiBot", image: "/projects/minjibot/whatsapp-group-menu.webp" },
     ],
     targetHash: "#projects-showcase",
     filterKey: "pendukung",
@@ -35,12 +35,12 @@ export const PROJECT_FOLDERS: QuickFolder[] = [
   {
     id: "skills",
     label: "Keahlian Teknis",
-    countLabel: "06 Modul",
+    countLabel: `${String(SKILL_CATEGORIES.length).padStart(2, "0")} Kategori`,
     subtitle: "Bahasa, framework, dan infrastruktur",
     sheets: [
       { title: "Next.js & React 19" },
       { title: "NestJS & PostgreSQL" },
-      { title: "Docker & CI/CD" },
+      { title: "Python & CatBoost" },
     ],
     targetHash: "#skills",
     icon: Layers,

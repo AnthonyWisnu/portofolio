@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Systems Engineer",
     "Next.js",
     "NestJS",
-    "GraphRAG",
+    "Machine Learning",
     "Portofolio Developer Indonesia",
   ],
   openGraph: {

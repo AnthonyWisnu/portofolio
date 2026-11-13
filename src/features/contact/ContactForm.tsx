@@ -9,9 +9,9 @@ import { cn } from "@/utils/cn";
 
 const TOPIC_OPTIONS = [
   "Kolaborasi Proyek",
-  "Sistem Fullstack / SaaS",
+  "Aplikasi Web & Sistem Bisnis",
   "Otomasi & Pipeline",
-  "Diskusi Riset AI",
+  "Data & Machine Learning",
   "Sapa Singkat",
 ];
 

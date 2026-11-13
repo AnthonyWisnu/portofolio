@@ -11,8 +11,8 @@ export type FilterTier = "all" | "utama" | "pendukung";
 
 const FILTER_TABS: { key: FilterTier; label: string }[] = [
   { key: "all", label: `Semua (${CURATED_PROJECTS.length})` },
-  { key: "utama", label: `Proyek Utama (${CURATED_PROJECTS.filter((project) => project.tier === "utama").length})` },
-  { key: "pendukung", label: `Riset & Pendukung (${CURATED_PROJECTS.filter((project) => project.tier === "pendukung").length})` },
+  { key: "utama", label: `Aplikasi Web (${CURATED_PROJECTS.filter((project) => project.tier === "utama").length})` },
+  { key: "pendukung", label: `Data & Bot (${CURATED_PROJECTS.filter((project) => project.tier === "pendukung").length})` },
 ];
 
 interface ProjectFilterControlsProps {

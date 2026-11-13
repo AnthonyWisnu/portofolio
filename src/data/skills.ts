@@ -4,25 +4,22 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "languages",
     name: "Bahasa Pemrograman",
-    summary:
-      "Bahasa utama yang digunakan sehari-hari pada layanan backend, frontend web, dan skrip data science.",
-    skills: ["TypeScript", "JavaScript (ES2023+)", "Python 3", "SQL (PostgreSQL)", "HTML5 & CSS3"],
+    summary: "Bahasa yang digunakan pada aplikasi web, bot, dan pengolahan data dalam proyek.",
+    skills: ["TypeScript", "JavaScript", "Python", "SQL", "HTML & CSS"],
     verifiedIn: ["Sora Wellness", "Kemitraan Mebel", "MinjiBot V2", "Bali Smart Pricing"],
   },
   {
     id: "frontend",
     name: "Frontend & Visual",
-    summary:
-      "Membangun antarmuka editorial responsif, grafis vektor SVG presisi, serta animasi interaksi berbasis scroll.",
+    summary: "Antarmuka aplikasi, visualisasi data, dan animasi pada portofolio.",
     skills: [
       "Next.js (App Router)",
       "React 18 & 19",
       "Tailwind CSS v4",
-      "SVG & UI Interaktif",
       "Lenis Smooth Scroll",
       "Framer Motion",
       "Vite",
-      "Recharts & Plotly",
+      "Recharts",
     ],
     verifiedIn: [
       "Portofolio",
@@ -30,19 +27,20 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       "Sora Wellness",
       "PT Hotdog Water Sport",
       "VOID Downloader",
+      "PINFAS",
     ],
   },
   {
     id: "backend",
     name: "Backend & Database",
-    summary:
-      "Layanan API modular, kontrol transaksi atomik, isolasi multi-tenant, serta skema relasional ketat.",
+    summary: "API, hak akses pengguna, transaksi, dan penyimpanan data aplikasi.",
     skills: [
       "NestJS",
       "Node.js & Express",
       "PostgreSQL",
       "Prisma ORM",
       "Drizzle ORM",
+      "Supabase",
       "Zod Validation",
       "Midtrans Snap Webhook",
     ],
@@ -55,17 +53,17 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    id: "ai-data",
+    id: "data-learning",
     name: "Data & Machine Learning",
     summary: "Rekayasa fitur geospasial, perbandingan model, dan penjelasan hasil prediksi.",
-    skills: ["CatBoost & XGBoost", "Random Forest", "SHAP TreeExplainer", "Pandas & Scikit-Learn"],
+    skills: ["CatBoost & XGBoost", "Random Forest", "SHAP", "Pandas & Scikit-Learn", "Streamlit & Plotly"],
     verifiedIn: ["Bali Smart Pricing"],
   },
   {
     id: "devops-security",
     name: "DevOps & Keamanan",
     summary:
-      "Menjalankan aplikasi di VPS Linux secara stabil dengan otomatisasi pengujian, kontainerisasi, dan proteksi sesi.",
+      "Konfigurasi deployment VPS, pengujian, dan perlindungan akses yang tersedia pada repositori.",
     skills: [
       "Docker & Compose",
       "GitHub Actions CI/CD",
@@ -87,8 +85,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "media-automation",
     name: "Media & Otomasi",
-    summary:
-      "Pemrosesan berkas media berkapasitas besar, konversi codec universal, dan mesin otomasi percakapan.",
+    summary: "Konversi media, pembuatan dokumen, dan perintah bot WhatsApp.",
     skills: [
       "FFmpeg & FFprobe",
       "yt-dlp & gallery-dl",

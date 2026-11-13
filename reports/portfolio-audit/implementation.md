@@ -1,5 +1,7 @@
 # Perbaikan portofolio, 13 November 2026
 
+Catatan versi: laporan ini mencatat implementasi awal. Revisi berikutnya menambah POV member dan eksportir, mengganti diagram MinjiBot, memperbaiki kategori, dan menambah dedaunan hero. Lihat `revision-review.md` untuk hasil terbaru.
+
 ScoutRAG dibatalkan sesuai konfirmasi pengguna. Daftar akhir berisi tujuh proyek, dengan Kemitraan Mebel dan Sora Wellness sebagai unggulan. Pengambilan gambar hanya desktop. Website tetap responsif.
 
 ## Animasi

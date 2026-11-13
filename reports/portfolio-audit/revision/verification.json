@@ -1,0 +1,63 @@
+{
+  "chrome": "157.0.8103.52",
+  "projects": [
+    {
+      "slug": "kemitraan-mebel",
+      "status": 200,
+      "images": 5,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "sora-wellness",
+      "status": 200,
+      "images": 5,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "bali-smart-pricing",
+      "status": 200,
+      "images": 4,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "pinfas",
+      "status": 200,
+      "images": 4,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "hotdog-watersport",
+      "status": 200,
+      "images": 3,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "void-downloader",
+      "status": 200,
+      "images": 3,
+      "decoded": true,
+      "keyboardLightbox": true
+    },
+    {
+      "slug": "minjibot",
+      "status": 200,
+      "images": 3,
+      "decoded": true,
+      "keyboardLightbox": true
+    }
+  ],
+  "errors": [],
+  "heroFoliage": {
+    "desktop": true,
+    "scrollResponsive": true
+  },
+  "projectFilters": true,
+  "lastDesktopProjectReachable": true,
+  "reducedMotion": true,
+  "mobileOverflow": false
+}

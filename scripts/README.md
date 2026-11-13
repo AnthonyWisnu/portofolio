@@ -4,7 +4,6 @@ Gunakan Chrome lokal. `playwright-core` dan `sharp` merupakan dependency pengemb
 
 ```powershell
 node scripts/capture-projects.mjs C:/Temp/capture-config.json
-node scripts/create-minji-diagrams.mjs
 node scripts/verify-portfolio.mjs
 node scripts/measure-scroll.mjs
 ```
@@ -15,7 +14,7 @@ Untuk halaman yang memerlukan login, tambahkan `storageState` pada entri proyek,
 
 Action yang tersedia: `click`, `fill`, `select`, `upload`, `scroll`, dan `wait`. Gunakan selector antarmuka asli. Skrip tidak mengganti respons API atau membuat antarmuka palsu. Layar converter VOID memakai video sintetis milik sendiri, tanpa media pribadi.
 
-Diagram MinjiBot dibuat dengan SVG dan dirender sebagai WebP 1600 x 1000. Sumber SVG disimpan dalam `reports/portfolio-audit/minji-diagrams`. Diagram diberi label dan menjelaskan alur kode.
+Galeri MinjiBot memakai ilustrasi percakapan grup WhatsApp dari tool image_gen bawaan. Semua nama dan pesan merupakan contoh, dengan label "Ilustrasi penggunaan". Prompt dan path aset terpilih dicatat pada `reports/portfolio-audit/generated-visuals.json`. Diagram serta generator lama hanya menyimpan bukti versi audit awal dan tidak dipakai pada galeri.
 
 Manifest akhir aplikasi terdapat di `src/data/projectGalleries.ts`. Urutan pertama menjadi sampul. Setiap gambar menyertakan alt, caption, width, height, dan jenis dokumentasi.
 

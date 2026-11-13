@@ -12,11 +12,16 @@ interface ProjectGalleryProps {
 export function ProjectGallery({ project, onOpenLightbox }: ProjectGalleryProps) {
   if (!project.screenshots.length) return null;
   const diagramsOnly = project.screenshots.every((image) => image.kind === "diagram");
+  const illustrationsOnly = project.screenshots.every((image) => image.kind === "illustration");
   return (
     <section aria-label={`Galeri ${project.shortTitle}`} className="space-y-6">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <h2 className="font-display text-xl sm:text-2xl font-bold text-white">
-          {diagramsOnly ? "Arsitektur dan alur kerja" : "Tampilan aplikasi"}
+          {illustrationsOnly
+            ? "Ilustrasi penggunaan"
+            : diagramsOnly
+              ? "Arsitektur dan alur kerja"
+              : "Tampilan aplikasi"}
         </h2>
         <span className="text-xs text-[#A1A8B8]">Pilih gambar untuk memperbesar</span>
       </div>

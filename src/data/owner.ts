@@ -24,14 +24,14 @@ export const OWNER_PROFILE: OwnerProfile = {
   shortBio:
     "Mahasiswa Teknologi Informasi Universitas Udayana yang membangun aplikasi web fullstack, layanan otomasi, dan sistem berbasis data.",
   extendedBio: [
-    "Sebagai mahasiswa Teknologi Informasi Universitas Udayana, saya senang membangun perangkat lunak yang langsung dipakai untuk kebutuhan nyata, mulai dari platform reservasi studio dan sistem kemitraan bisnis, layanan otomasi media, hingga eksplorasi Knowledge Graph dan machine learning.",
+    "Saya mahasiswa Teknologi Informasi Universitas Udayana. Proyek saya mencakup sistem kemitraan mebel, reservasi studio, peminjaman fasilitas, dan katalog wisata. Saya juga membuat bot WhatsApp, pengolah media, serta model prediksi tarif penginapan.",
   ],
   focusAreas: [
     {
       id: "fullstack-architecture",
       title: "Pengembangan Web Fullstack",
       subtitle: "Next.js, NestJS, PostgreSQL",
-      badge: "SaaS & Sistem Bisnis",
+      badge: "Sistem Bisnis",
     },
     {
       id: "systems-automation",
@@ -40,10 +40,10 @@ export const OWNER_PROFILE: OwnerProfile = {
       badge: "Bot & Ekstraksi Media",
     },
     {
-      id: "ai-data-retrieval",
-      title: "Knowledge Graph & Machine Learning",
-      subtitle: "FastAPI, Neo4j, ChromaDB, CatBoost",
-      badge: "GraphRAG & Explainable AI",
+      id: "data-machine-learning",
+      title: "Data & Machine Learning",
+      subtitle: "Python, CatBoost, Streamlit, SHAP",
+      badge: "Prediksi Tarif Penginapan",
     },
   ],
   education: [
